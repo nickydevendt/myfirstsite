@@ -2,47 +2,94 @@ body {
     margin: 0;
     padding: 0;
 }
-.topnav {
-    text-align: center;
-    background-color: rgba(87, 87, 79, 0.7);
-    position: absolute;
-    top: 0;
-    height: 50px;
+body h1, body h2, body p {
+    font-family: 'Open Sans', sans-serif;
+    color: rgba(85,85,85,1);
+}
+.topnav{
     width: 100%;
+    height: 50px;
+    background: -moz-linear-gradient(top, #0e0e0e 0%, #c2eae5 0%, #d8e0de 100%);
+    background: -webkit-linear-gradient(top, #0e0e0e 0%,#c2eae5 0%,#d8e0de 100%);
+    background: linear-gradient(to bottom, #0e0e0e 0%,#c2eae5 0%,#d8e0de 100%);
+}
+.topnav ul {
+    width: 60%;
+    margin: 0 auto;
+    padding-top: 15px;
+}
+.topnav ul li {
+    list-style-type: none;
+    display: inline-block;
+    margin: 0;
+    padding: 0;
+    font-family: 'Open Sans', sans-serif;
 }
 .topnav a {
     text-decoration: none;
     margin:10px 20px 0 20px;
+    color: #939293;
 }
-.topnav button {
-    background-color: transparent;
-    padding: 14px 30px 14px 30px;
-    border: 1px solid rgba(87,87,79,0.7);
-    background: rgba(87,87,79,0.7);
-    color: #eadede;
-}
-.topnav button:hover {
-    background-color: #9f9898;
+.topnav a:hover {
+    color: #000;
     transition: ease-in 0.5s;
 }
-.contact {
-    background-color: rgba(248, 247, 216, 0.7);
-    background-image: url("./img/office.jpeg");
-    background-position: 50% 10%;
+.name {
+    text-align: left;
+    width: 20%;
+    margin: 0 auto;
+    padding: 50px 0;
+}
+.namediv {
     width: 100%;
+}
+.contact {
+    background-image: url("./img/manstoel.jpg");
+    background-size: cover;
+    width: 100%;
+    height:60%;
     padding-top: 20%;
     padding-bottom: 20%;
 }
 .contact h2 {
     text-align: center;
+    color: #1a1212;
 }
 .contact .buttonstyling {
-    display: inline-block;
-    margin-left: 40%;
+    width: 30%;
+    margin: 0 auto;
+}
+.contact .buttonstyling button {
+    padding: 15px 60px 15px 60px;
+    border: 1px solid rgba(87,87,79,0.7);
+    color: #000;
+    background: #e8eceb;
+    background: -moz-linear-gradient(-45deg, #e8eceb 0%, #cfd9d7 22%, #c1cfcc 33%, #bbc9c7 50%, #b4c4c1 67%, #91a19f 82%, #6e6e6e 100%);
+    background: -webkit-linear-gradient(-45deg, #e8eceb 0%,#cfd9d7 22%,#c1cfcc 33%,#bbc9c7 50%,#b4c4c1 67%,#91a19f 82%,#6e6e6e 100%);
+    background: linear-gradient(135deg, #e8eceb 0%,#cfd9d7 22%,#c1cfcc 33%,#bbc9c7 50%,#b4c4c1 67%,#91a19f 82%,#6e6e6e 100%);
+}
+.contact .buttonstyling button:hover {
+    opacity: 0.5;
+    transition: ease-in 0.5s;
+}
+.text {
+    text-align: center;
+    width: 60%;
+    margin: 0 auto;
+    padding: 50px 0;
+}
+.text h2 {
+    color: rgba(85,85,85,1);
+    font-weight: bold;
+    line-height:normal;
+    letter-spacing:normal;
+}
+.text p {
+    color: #000;
 }
 .promotion {
     width: 100%;
-    margin: 500px 0 100px 0;
+    margin: 100px 0 100px 0;
 }
 .promotion img {
     width: 96.7%;
@@ -55,19 +102,25 @@ body .project {
     width: 80%;
     margin-left: 1.5%;
     margin-right: 1.5%;
+    margin-bottom: 25%;
+}
+body .project:hover {
+    opacity: 0.5;
+    transition: ease-in 0.5s;
+}
+body .project img {
+    width:100%;
+    height: 300px;
 }
 body #project1 {
-    background-color: green;
     width: 30%;
     height: 100px;
 }
 body #project2 {
-    background-color: pink; 
     width: 30%;
     height: 100px;
 }
 body #project3 {
-    background-color: orange;    
     width: 30%;
     height: 100px;
 }
