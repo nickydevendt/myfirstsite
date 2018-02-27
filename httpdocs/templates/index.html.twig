@@ -4,44 +4,36 @@
         <meta charset="utf-8">
         <meta name="viewport" content=" width=device-width, initial-scale=1">
         <link rel="stylesheet" type="text/css" href="../home.css">
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
         <title>nicky's website</title>
     </head>
     <body>
         {% block header %}
             <div class="topnav">
-                <a class="active" href="/"><button>Home</button></a>
-                <a href="/"><button>Work history</button></a>
-                <a href="/"><button>Contact</button></a>
-                <a href="/"><button>About</button></a>
+                <ul>
+                    <li><a class="active" href="/">Home</a></li>
+                    <li><a href="/">Work history</a></li>
+                    <li><a href="/">Recent projects</a></li>
+                    <li><a href="/">Resume</a></li>
+                    <li><a href="/">About</a></li>
+                    <li><a href="/">Contact</a></li>
+                </ul>
             </div>
+        {% endblock %}
+
+        {% block name %}
         {% endblock %}
 
         {% block main %}
-            <div class="contact">
-            <h2>Get in "contact" or take a look at my "Resume"</h2>
-                <div class="buttonstyling">
-                    <button type="button">Resume</button>
-                    <button type="button">Contact!</button>
-                </div>
-            </div>
+        {% endblock %}
+
+        {% block text %}
         {% endblock %}
 
         {% block promotion %}
-            <div class="promotion">
-                <img src="/img/plaatje1.jpeg" alt="dit wordt een foto website breedte">
-            </div>
         {% endblock %}
 
         {% block recentprojects %}
-            <div class="project" id="project1">
-                <p>Project 1</p>
-            </div>
-            <div class="project" id="project2">
-                <p>Project 2</p>
-            </div>
-            <div class="project" id="project3">
-                <p>Project 3</p>
-            </div>
         {% endblock %}
 
         {% block footer %}
