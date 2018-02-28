@@ -6,6 +6,9 @@ body h1, body h2, body p {
     font-family: 'Open Sans', sans-serif;
     color: rgba(85,85,85,1);
 }
+body h2 {
+  margin-left: 2%
+}
 .topnav{
     width: 100%;
     height: 50px;
@@ -55,9 +58,12 @@ body h1, body h2, body p {
     text-align: center;
     color: #1a1212;
 }
-.contact .buttonstyling {
-    width: 30%;
+.overheaddiv {
     margin: 0 auto;
+    width: 349px;
+}
+.contact .buttonstyling {
+    display: inline;
 }
 .contact .buttonstyling button {
     padding: 15px 60px 15px 60px;
@@ -125,10 +131,59 @@ body #project3 {
     height: 100px;
 }
 footer {
+    background-color: rgb(23,32,51);
+    margin: 0;
+    padding: 0;
+    width: 100%;
     text-align: center;
-    height: 150px;
-    background-color: black;
 }
-footer h1, h2 {
-    color: red;
+footer #creative {
+    text-align: left;
+}
+footer #creative h3,h4 {
+    margin:0;
+    padding:0;
+}
+footer #creative p {
+    margin-top: 30px;
+}
+footer #svg {
+    color: rgb(75,112,245);
+    font-size: 60px;
+    margin-bottom: 50px;
+}
+footer p {
+    color: rgb(48,60,86);
+    font-family: 'Open Sans', sans-serif;
+    font-size: 18px;
+    margin-top:0;
+}
+footer h3 {
+    color: white;
+    margin-top: 0;
+    margin-bottom: 0;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 30px;
+}
+footer h4 {
+    color: rgb(75,112,245);
+    font-family: 'Open Sans', sans-serif;
+    margin-bottom: 0;
+    font-size: 25px;
+}
+footer .footerlayout {
+    margin: 0% 10%;
+    padding: 5% 0;
+  }
+footer .footercontact {
+    display: inline-block;
+    width: 20%;
+}
+footer #mail {
+    border-left: 1px white;
+    border-top: 1px;
+    color: white;
+}
+footer #telephone {
+    border-right: 1px;
 }
