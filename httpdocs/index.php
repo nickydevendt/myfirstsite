@@ -6,6 +6,10 @@
     $loader = new Twig_Loader_Filesystem(__DIR__.'/templates');
     $twig = new Twig_Environment($loader);
 
-    echo $twig->render('page.html.twig');
+    switch ($_SERVER['REQUEST_URI']) {
+        case '/': $template = 'page.html.twig'; break;
+        default: $template = substr($_SERVER['REQUEST_URI'], 1);
+    }
+    echo $twig->render($template);
 ?>
 
