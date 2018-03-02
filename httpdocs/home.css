@@ -1,3 +1,4 @@
+/* hier komt alle css van de homepage */
 body {
     margin: 0;
     padding: 0;
@@ -64,19 +65,18 @@ body h2 {
 }
 .contact .buttonstyling {
     display: inline;
+    font-size: 16px;
+    line-height: 24px;
 }
 .contact .buttonstyling button {
     padding: 15px 60px 15px 60px;
-    border: 1px solid rgba(87,87,79,0.7);
-    color: #000;
-    background: #e8eceb;
-    background: -moz-linear-gradient(-45deg, #e8eceb 0%, #cfd9d7 22%, #c1cfcc 33%, #bbc9c7 50%, #b4c4c1 67%, #91a19f 82%, #6e6e6e 100%);
-    background: -webkit-linear-gradient(-45deg, #e8eceb 0%,#cfd9d7 22%,#c1cfcc 33%,#bbc9c7 50%,#b4c4c1 67%,#91a19f 82%,#6e6e6e 100%);
-    background: linear-gradient(135deg, #e8eceb 0%,#cfd9d7 22%,#c1cfcc 33%,#bbc9c7 50%,#b4c4c1 67%,#91a19f 82%,#6e6e6e 100%);
+    background-color:#6ba8b2;
+    border: 1px solid #6ba8b2;
+    color: #fff;
 }
 .contact .buttonstyling button:hover {
-    opacity: 0.5;
-    transition: ease-in 0.5s;
+    opacity: 0.7;
+    transition: ease-in .3s;
 }
 .text {
     text-align: center;
@@ -180,10 +180,57 @@ footer .footercontact {
     width: 20%;
 }
 footer #mail {
-    border-left: 1px white;
-    border-top: 1px;
+    border-left: 1px #fff;
+    border-right: 1px #fff;
     color: white;
 }
 footer #telephone {
     border-right: 1px;
 }
+/* hier komt alle css van work history (heel lelijk maar het is niet anders)*/
+.worktextintro {
+    width: 80%;
+    margin: 0 auto;
+}
+.bodylayout {
+    margin: 5% 10%;
+}
+.overallineup{
+    display: flex;
+    margin-bottom: 2%;
+    width: 100%;
+}
+.worklineup {
+    margin:0;
+    padding:0;
+    width: 50%;
+    height: 200px;
+}
+.worklineup img {
+    width: 100%;
+    height:100%;
+    max-height: 300px;
+}
+.textlineup {
+    width: 50%;
+    margin-left: 5%;
+}
+#divwidth {
+    border: 1px solid #000;
+}
+/* hieronder komt de css van Resume*/
+.section_row_3 {
+    width:100%;
+    display: flex;
+}
+.learngoals {
+    width: 50%;
+}
+.imggallery {
+    display: inline-block;
+    width: 50%;
+}
+.imggallery img {
+    width:49%;
+}
+
