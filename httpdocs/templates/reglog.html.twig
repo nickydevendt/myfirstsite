@@ -1,0 +1,34 @@
+{% extends "index.html.twig" %}
+
+{% block name %}
+    <div>
+        <h1>Sign Up or Log in</h1>
+    </div>
+{% endblock %}
+
+{% block main %}
+    <div class="login">
+        <form action="" method="post">
+            <label for="username">Fill in your username</label>
+            <input type="text" name="username" placeholder="username" required></br>
+            <label for="password">Fill in your username</label>
+            <input type="password" name="password" placeholder="password" required></br>
+            <input type="submit" name="submit" value="Log in"></br></br></br></br>
+        </form>
+    </div>
+    <div class="register">
+        <form action="" method="post">
+            <label for="firstname">What is your firstname?</label>
+            <input type="text" name="firstname" value="" required></br>
+            <label for="lastname">What is your lastname</label>
+            <input type="text" name="lastname" value="" required></br>
+            <label for="username">What username would you like to use?</label>
+            <input type="text" name="username" value="" required></br>
+            <label for="password">What password would you like to use?</label>
+            <input type="password" name="password" value="" required></br>
+            <label for="email">What username do you like to use?</label>
+            <input type="email" name="email" value="" required></br>
+            <input type="submit" name="submit" value="Register">
+        </form>
+    </div>
+{% endblock %}
