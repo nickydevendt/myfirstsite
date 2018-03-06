@@ -1,8 +1,6 @@
 <?php
 class User
 {
-    private const PASSWORD_BCRYPT = "...";
-
     private $firstname;
     private $lastname;
     private $email;
@@ -10,10 +8,12 @@ class User
     private $username;
     private $password;
       
-    public function User($username, $email, $password)
+    public function User($firstname, $lastname, $email, $currentemployer, $username, $password)
     {
-        
+        $this->set_firstname($firstname);
+        $this->set_lastname($lastname);
         $this->set_email($email);
+        $this->set_currentemployer($currentemployer);
         $this->set_username($username);
         $this->set_password($password);
     }
@@ -22,6 +22,7 @@ class User
     {   
         return $this->firstname;
     }
+
     public function set_firstname()
     {
         $this->firstname = $value;
@@ -31,6 +32,7 @@ class User
     {   
         return $this->lastname;
     }
+
     public function set_lastname()
     {
         $this->lastname = $value;
@@ -40,10 +42,12 @@ class User
     {   
         return $this->currentemployer;
     }
+
     public function set_currentemployer()
     {
         $this->currentemployer = $value;
     }
+
     public function get_username()
     {
         return $this->username;
@@ -71,7 +75,7 @@ class User
 
     public function set_password($value)
     {
-    $this->password = password_hash($value, User::PASSWORD_BCRYPT);
+    $this->password = $value;
     }
 }
 
