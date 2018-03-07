@@ -15,7 +15,7 @@ class UsersController
         $user = new User($params['username'], $params['email'], $params['firstname'], $params['lastname'], $params['currentemployer'], $params['password']);
         $this->repository->add($user);
 
-        return '/users/index.php';
+        return '/register.html.twig';
         }
     }
 }
