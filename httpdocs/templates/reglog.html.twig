@@ -7,28 +7,32 @@
 {% endblock %}
 
 {% block main %}
-    <div class="login">
-        <form action="#" method="post">
-            <label for="username">Fill in your username</label>
-            <input type="text" name="username" placeholder="username" required></br>
-            <label for="password">Fill in your username</label>
-            <input type="password" name="password" placeholder="password" required></br>
-            <input type="submit" name="submit" value="Log in"></br></br></br></br>
-        </form>
-    </div>
-    <div class="register">
-        <form action="/register" method="post">
-            <label for="firstname">What is your firstname?</label>
-            <input type="text" name="firstname" value="" required></br>
-            <label for="lastname">What is your lastname</label>
-            <input type="text" name="lastname" value="" required></br>
-            <label for="username">What username would you like to use?</label>
-            <input type="text" name="username" value="" required></br>
-            <label for="password">What password would you like to use?</label>
-            <input type="password" name="password" value="" required></br>
-            <label for="email">What email do you like to use?</label>
-            <input type="email" name="email" value="" required></br>
-            <input type="submit" name="submit" value="Register">
-        </form>
+    <div class="reglog">
+        <div class="login">
+            <form action="/login" method="post">
+                <label for="username">Fill in your username</label></br>
+                <input type="text" name="username" placeholder="username" required></br>
+                <label for="password">Fill in your password</label></br>
+                <input type="password" name="password" placeholder="password" required></br>
+                <input type="submit" name="submit" value="Log in"></br>
+            </form>
+        </div>
+        <div class="register">
+            <form action="/register" method="post">
+                <label for="firstname">What is your firstname?</label></br>
+                <input type="text" name="firstname" value="" required></br>
+                <label for="lastname">What is your lastname</label></br>
+                <input type="text" name="lastname" value="" required></br>
+                <label for="username">What username would you like to use?</label></br>
+                <input type="text" name="username" value="" required></br>
+                <label for="password">What password would you like to use?</label></br>
+                <input type="password" name="password" value="" required></br>
+                <label for="email">What email do you like to use?</label></br>
+                <input type="email" name="email" value="" required></br>
+                <label for="employer">What is your current employer?</label></br>
+                <input type="text" name="currentemployer" value="" required></br>
+                <input type="submit" name="submit" value="Register">
+            </form>
+        </div>
     </div>
 {% endblock %}
