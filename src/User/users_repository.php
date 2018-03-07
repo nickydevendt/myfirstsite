@@ -11,7 +11,7 @@ class UsersRepository implements IUsersRepository
 
     public static function set_connection_string($value)
     {
-        UsersRepository::$connection_string = $value;
+        UsersRepository::$connection_string = $value; 
     }
 
     private $connection;
