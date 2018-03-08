@@ -16,7 +16,7 @@
         case '/register':
             include '../src/User/register.php';
             $template = 'register.html.twig';
-            echo $twig->render($template, ['post' => $post, 'newuser' => $newuser]);
+            echo $twig->render($template, ['result' => $result]);
             break;
         case '/login':
             $template = 'reglog.html.twig';
