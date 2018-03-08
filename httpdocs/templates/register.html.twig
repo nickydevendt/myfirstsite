@@ -7,8 +7,14 @@
 {% endblock %}
 
 {% block main %}
-    {{ dump(post) }}
-    {{ dump(newuser) }}
+    <p>Array inspections:</p>
+    {{ dump(result) }}</br></br>
+    {% if result == true %}
+        <h1>ik ben geregistreerd wat een feest</h1>
+    {% endif %}
+    {% if result == false %}
+        <h1>Ik ben niet geregistreed nou nu geen feest</h1>
+    {% endif %}
     </br>
     <h1>Ruimte voor mijn dump van post</h1>
 {% endblock %}
