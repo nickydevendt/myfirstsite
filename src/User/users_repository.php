@@ -18,7 +18,7 @@ class UsersRepository implements IUsersRepository
 
     public function UsersRepository()
     {
-         $connection = new mysqli("127.0.0.1", "nicky", "blarps", "nicky");
+        $connection = new pgsql("127.0.0.1", "nicky", "blarps", "nicky");
     }
 
     public function add(User $user)
