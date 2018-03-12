@@ -240,15 +240,24 @@ footer #telephone {
 
 .reglog {
     display:flex;
-    margin: 10% 10%;
+    margin: 10% 0;
+    padding: 4% 0%;
+    color: #fff;
+}
+.reglog form {
+  width: 100%;
+  background-color: rgb(46, 49, 54);
 }
 .login {
-    display:flex;
+    display: flex;
+    flex-direction: column;
     margin: 0 10%;
+
+    padding: 0% 3%;
 }
 .login form {
-    border: 1px solid #000;
     padding: 30% 5px;
+    background-color: rgb(46, 49, 54);
 }
 .login form input {
     margin-bottom: 15% !important;
@@ -257,10 +266,17 @@ footer #telephone {
     margin-bottom: 5%;
 }
 .register {
-    display:flex;
+    flex-direction: column;
     margin:0 10%;
+
+    padding: 0% 3%;
 }
-.register form {
-    border: 1px solid #000;
-    padding: 5px 5px;
+.registerform {
+  padding: 5px 5px;
+}
+.loginh3{
+  text-align: center;
+}
+.registerh3{
+  text-align: center;
 }
