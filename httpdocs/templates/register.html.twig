@@ -8,13 +8,14 @@
 
 {% block main %}
     <p>Array inspections:</p>
-    {{ dump(result) }}</br></br>
-    {% if result == true %}
-        <h1>ik ben geregistreerd wat een feest</h1>
-    {% endif %}
-    {% if result == false %}
-        <h1>Ik ben niet geregistreed nou nu geen feest</h1>
-    {% endif %}
+        {% if registerresult == true and loginresult == false %}
+            <h1>U bent geregistreerd u wordt terug gestuurd.</h1>
+        {% elseif loginresult == true and registerresult == false %}
+            <h1>U bent ingelogd en wordt zo naar de homepage gestuurd</h1>
+        {% endif %}
+        {% if loginresult is empty %}
+            <h1>er is iets fout gegaan bij het inloggen</h1>
+        {% endif %}
     </br>
     <h1>Ruimte voor mijn dump van post</h1>
 {% endblock %}
