@@ -18,7 +18,15 @@
                     <li><a href="/about">About</a></li>
                     <li><a href="/resume">Resume</a></li>
                     <li><a href="/contact">Contact</a></li>
-                    <li><a href="/login">Inloggen & registreren</a></li>
+                    {% if session.login.admin == 1 %}
+                        <li><a href="/adminpanel">Admin panel</a></li>
+                        <li><a>Log out</a></li>
+                    {% elseif session.login.admin == 0 %}
+                        <li><a href="/userpanel">user panel</a></li>
+                        <li><a href="/logout">Log out</a></a>
+                    {% else %}
+                        <li><a href="/reglog">Inloggen & registeren</a></li>
+                    {% endif %}
                 </ul>
             </div>
         {% endblock %}
