@@ -1,5 +1,7 @@
 <?php
 
+global $pdo;
+
 $pdo = connection();
 
 function connection()
@@ -9,7 +11,7 @@ function connection()
     return $pdo;
 }
 
-function insert ($pdo, $data)
+function insert($pdo, $data)
 {
     try {
         $statement = $pdo->prepare('INSERT INTO users (firstname, lastname, email, currentemployer, username, password) VALUES (?, ?, ?, ?, ?, ?)');
@@ -22,7 +24,7 @@ function insert ($pdo, $data)
             return false;
         }
     } catch (PDOException $e) {
-        die('error!: ' . $e->getMessage() );
+        die('error!: ' . $e->getMessage());
     }
 }
 
@@ -39,16 +41,17 @@ function login($pdo, $data)
             return false;
         }
     } catch (PDOException $e) {
-        die('error!: ' . $e->getMessage() );
+        die('error!: ' . $e->getMessage());
     }
 }
 
-function showusers($pdo)
-{
+/*{
     try {
+        $statement = $pdo->prepare( 'SELECT * FROM users' );
+        $statement->execute();
 
     } catch (PDOException $e) {
         die('error!: ' . $e->getMessage() );
     }
-}
+}*/
 

@@ -1,2 +1,18 @@
 {% extends 'index.html.twig' %}
 
+{% block main %}
+
+    <tr>
+        <td>ID</td>
+        <td>Firstname</td>
+        <td>Lastname</td>
+        <td>Email</td>
+    </tr>
+    <tr>
+    {% for user in users %}
+        <td>{{ user.id }}</td>
+    {% endfor %}
+    </tr>
+
+{% endblock%}
+

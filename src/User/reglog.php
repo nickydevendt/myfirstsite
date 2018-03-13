@@ -29,7 +29,11 @@ if (isset($_REQUEST['loginsubmit']))
     $loginresult = login($pdo, $data);
     if ($loginresult == true)
     {
-        header( "refresh:0;url=/home" );
+        if ($_SESSION['login']['admin'] == 2) {
+            header( "refresh:0;url=/adminpanel" );
+        } else{
+            header( "refresh:0;url=/userpanel" );
+        }
     }
     if ($loginresult == false)
     {
@@ -42,3 +46,4 @@ if (isset($_REQUEST['logoutnow']))
     session_destroy();
     header( "refresh:0;url=/login" );
 }
+
