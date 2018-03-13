@@ -2,6 +2,13 @@
 
 $pdo = connection();
 
+function connection()
+{
+    $pdo = new PDO('pgsql:host=localhost;dbname=nicky;', 'nicky', 'blarps');
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    return $pdo;
+}
+
 function insert ($pdo, $data)
 {
     try {
@@ -36,10 +43,12 @@ function login($pdo, $data)
     }
 }
 
-function connection()
+function showusers($pdo)
 {
-    $pdo = new PDO('pgsql:host=localhost;dbname=nicky;', 'nicky', 'blarps');
-    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    return $pdo;
+    try {
+
+    } catch (PDOException $e) {
+        die('error!: ' . $e->getMessage() );
+    }
 }
 

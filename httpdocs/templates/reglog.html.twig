@@ -18,6 +18,9 @@
             </form>
         </div>
         <div class="register">
+            {% if session.register == true %}
+                <h1> het registreren is gelukt</h1>
+            {% endif%}
             <form action="/register" method="post">
                 <label for="firstname">What is your firstname?</label></br>
                 <input type="text" name="firstname" value="" required></br>

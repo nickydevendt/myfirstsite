@@ -17,7 +17,7 @@ if (isset($_REQUEST['registersubmit']))
         );
     $registerresult = insert($pdo, $data);
     if ($registerresult == true ){
-        header( "refresh:0.1;url=/login" );
+        $_SESSION['register'] = true;
     }
 }
 if (isset($_REQUEST['loginsubmit']))
@@ -29,16 +29,16 @@ if (isset($_REQUEST['loginsubmit']))
     $loginresult = login($pdo, $data);
     if ($loginresult == true)
     {
-        header( "refresh:0.1;url=/home" );
+        header( "refresh:0;url=/home" );
     }
     if ($loginresult == false)
     {
-        header( "refresh:0.1;url=/login" );
+        header( "refresh:0;url=/login" );
     }
 
 }
 if (isset($_REQUEST['logoutnow']))
 {
     session_destroy();
-    header( "refresh:0.1;url=/login" );
+    header( "refresh:0;url=/login" );
 }

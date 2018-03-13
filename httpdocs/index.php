@@ -35,6 +35,14 @@
             $template = 'contact.html.twig';
             echo $twig->render($template, ['session' => $_SESSION]);
             break;
+        case '/adminpanel':
+            $template = 'adminpanel.html.twig';
+            echo $twig->render($template, ['session' => $_SESSION]);
+            break;
+        case '/userpanel':
+            $template = 'userpanel.html.twig';
+            echo $twig->render($template, ['session' => $_SESSION]);
+            break;
 
         default:
             include '../src/User/reglog.php';
@@ -43,4 +51,3 @@
             break;
     }
 
-?>
