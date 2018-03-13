@@ -13,28 +13,32 @@ if (isset($_REQUEST['registersubmit']))
         $_REQUEST['email'],
         $_REQUEST['currentemployer'],
         $_REQUEST['username'],
-        $_REQUEST['password']
+        md5($_REQUEST['password'])
         );
     $registerresult = insert($pdo, $data);
     if ($registerresult == true ){
-        header( "refresh:5;url=/login" );
+        header( "refresh:0.1;url=/login" );
     }
 }
 if (isset($_REQUEST['loginsubmit']))
 {
     $data = array(
         $_REQUEST['username'],
-        $_REQUEST['password']
+        md5($_REQUEST['password'])
     );
     $loginresult = login($pdo, $data);
     if ($loginresult == true)
     {
-        header( "refresh:5;url=/home" );
+        header( "refresh:0.1;url=/home" );
     }
     if ($loginresult == false)
     {
-        header( "refresh:5;url=/login" );
+        header( "refresh:0.1;url=/login" );
     }
 
 }
-
+if (isset($_REQUEST['logoutnow']))
+{
+    session_destroy();
+    header( "refresh:0.1;url=/login" );
+}

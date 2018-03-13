@@ -43,8 +43,3 @@ function connection()
     return $pdo;
 }
 
-function logout()
-{
-    session_destroy();
-}
-

@@ -8,20 +8,25 @@ CREATE TABLE users (
     currentemployer VARCHAR(255) NOT NULL,
     username VARCHAR(255) NOT NULL,
     password VARCHAR(255) NOT NULL,
-    admin BIGINT NOT NULL DEFAULT 0
+    admin BIGINT NOT NULL DEFAULT 1
 );
+
+CREATE UNIQUE INDEX ON users(username);
+CREATE UNIQUE INDEX ON users(email);
 
 CREATE SEQUENCE visitors_id_seq;
 
 CREATE TABLE visitors (
     id BIGINT NOT NULL PRIMARY KEY DEFAULT NEXTVAL('visitors_id_seq'::regclass),
-    randomid varchar(255),
+    randomid UUID DEFAULT gen_random_uuid(),
     firstname VARCHAR(255) DEFAULT NULL,
     lastname VARCHAR(255) DEFAULT NULL,
     email VARCHAR(255) DEFAULT NULL,
     datecreated TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT NOW(),
     expiredate TIMESTAMP WITH TIME ZONE DEFAULT NOW() + interval '7 days'
 );
+
+CREATE UNIQUE INDEX ON visitors(email);
 
 CREATE SEQUENCE employers_id_seq;
 

@@ -14,11 +14,6 @@
 
     switch ($_SERVER['REQUEST_URI']) {
        // $template = substr($_SERVER['REQUEST_URI'], 1);
-        case '/register':
-            include '../src/User/reglog.php';
-            $template = 'register.html.twig';
-            echo $twig->render($template, ['registerresult' => $registerresult, 'loginresult' => $loginresult, 'session' => $_SESSION]);
-            break;
         case '/login':
             include '../src/User/reglog.php';
             $template = 'reglog.html.twig';
@@ -42,6 +37,7 @@
             break;
 
         default:
+            include '../src/User/reglog.php';
             $template = 'page.html.twig';
             echo $twig->render($template, ['session' => $_SESSION]);
             break;

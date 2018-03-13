@@ -9,7 +9,6 @@
         <title>Portfolio</title>
     </head>
     <body>
-
         {% block header %}
             <div class="topnav">
                 <ul>
@@ -18,14 +17,22 @@
                     <li><a href="/about">About</a></li>
                     <li><a href="/resume">Resume</a></li>
                     <li><a href="/contact">Contact</a></li>
-                    {% if session.login.admin == 1 %}
+                    {% if session.login.admin == 2 %}
                         <li><a href="/adminpanel">Admin panel</a></li>
-                        <li><a>Log out</a></li>
-                    {% elseif session.login.admin == 0 %}
+                         <li>
+                            <form action="/login" method="get">
+                                <button type="submit" name="logoutnow" value="logoutnow">Admin log out</button>
+                            </form>
+                        </li>
+                    {% elseif session.login.admin == 1 %}
                         <li><a href="/userpanel">user panel</a></li>
-                        <li><a href="/logout">Log out</a></a>
+                        <li>
+                            <form action="/login" method="get">
+                                <button type="submit" name="logoutnow" value="logoutnow">User log out</button>
+                            </form>
+                        </li>
                     {% else %}
-                        <li><a href="/reglog">Inloggen & registeren</a></li>
+                        <li><a href="/login">Inloggen & registeren</a></li>
                     {% endif %}
                 </ul>
             </div>
