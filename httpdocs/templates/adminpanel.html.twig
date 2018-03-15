@@ -28,8 +28,8 @@
                         <td><p>Admin</p></td>
                     {% endif %}
                     <td>
-                        <form method="get" action="{{ deleteUser }}">
-                            <button type="submit" name="deleteuserid" value="{{ user.id }}" >Delete Gebruiker</button>
+                        <form method="post" action="">
+                            <button type="submit" name="deleterow" value="{{ user.id }}" >Delete Gebruiker</button>
                         </form>
                     </td>
                 </tr>
@@ -40,7 +40,7 @@
 
 {% block text %}
     <h1>See all visitors</h1>
-    {{ dump(visitors) }}
+    {{ dump(visitors[1]) }}
 {% endblock%}
 {% block promotion %}
     <div class="tablealignment">
@@ -64,7 +64,11 @@
                     <td>{{ visitor.email }}</td>
                     <td>{{ visitor.datecreated }}</td>
                     <td>{{ visitor.expiredate }}</td>
-                    <td><button>Delete visitor</button></td>
+                    <td>
+                        <form method="post" action="">
+                            <button type="submit" name="deletevisitor" value="{{ visitor.id }}" >Delete Visitor</button>
+                        </form>
+                    </td>
                     <td></td>
                 </tr>
             {% endfor %}
