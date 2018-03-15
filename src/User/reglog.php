@@ -36,7 +36,7 @@ if(isset($_REQUEST['loginsubmit'])) {
             header( "refresh:0;url=/adminpanel" );
         }
         else{
-            header( "refresh:0;url/userpanel" );
+            header( "refresh:0;url=/userpanel" );
         }
     } else {
         echo 'Invalid login';
