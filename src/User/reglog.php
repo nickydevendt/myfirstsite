@@ -28,28 +28,16 @@ if(isset($_REQUEST['logoutnow']))
     header( "refresh:0;url=/login" );
 }
 
-/*if(isset($_REQUEST['loginsubmit']))
-{
-    $data = array(
-        $_REQUEST['username'],
-        md5($_REQUEST['password'])
-    );
-    $loginresult = login($pdo, $data);
-    if($loginresult == true)
-    {
-        header( "refresh:0;url=/home" );
-    }
-    if($loginresult == false)
-    {
-        header( "refresh:0;url=/login" );
-    }
-$_POST['username'], $_POST['password']
-}*/
 if(isset($_REQUEST['loginsubmit'])) {
     $userService = new UserService($_POST['username'], $_POST['password']);
     if($user = $userService->login()) {
-        echo 'logged it as user id: ' . $user['id'];
         $userData = $userService->getUser();
+        if($user['id'] == 2) {
+            header( "refresh:0;url=/adminpanel" );
+        }
+        else{
+            header( "refresh:0;url/userpanel" );
+        }
     } else {
         echo 'Invalid login';
     }
