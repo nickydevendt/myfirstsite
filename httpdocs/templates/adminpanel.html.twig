@@ -1,18 +1,73 @@
 {% extends 'index.html.twig' %}
 
+{% block name %}
+    <h1>See all users & admins</h1>
+    {{ dump(users[1])}}
+{% endblock %}
+
 {% block main %}
-
-    <tr>
-        <td>ID</td>
-        <td>Firstname</td>
-        <td>Lastname</td>
-        <td>Email</td>
-    </tr>
-    <tr>
-    {% for user in users %}
-        <td>{{ user.id }}</td>
-    {% endfor %}
-    </tr>
-
+    <div class="adminalignment">
+        <table class="table">
+            <tr>
+                <th>Id</th>
+                <th>Firstname</th>
+                <th>Lastname</th>
+                <th>Email</th>
+                <th>Role</th>
+                <th>Action</th>
+            </tr>
+            {% for user in users %}
+                <tr>
+                    <td>{{ user.id }}</td>
+                    <td>{{ user.firstname }}</td>
+                    <td>{{ user.lastname }}</td>
+                    <td>{{ user.email }}</td>
+                    {% if user.admin == 1 %}
+                        <td><p>Gebruiker</p></td>
+                    {% elseif user.admin == 2 %}
+                        <td><p>Admin</p></td>
+                    {% endif %}
+                    <td>
+                        <form method="get" action="{{ deleteUser }}">
+                            <button type="submit" name="deleteuserid" value="{{ user.id }}" >Delete Gebruiker</button>
+                        </form>
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
 {% endblock%}
 
+{% block text %}
+    <h1>See all visitors</h1>
+    {{ dump(visitors) }}
+{% endblock%}
+{% block promotion %}
+    <div class="tablealignment">
+        <table class="table">
+            <tr>
+                <th>Id</th>
+                <th>Randomid</th>
+                <th>Firstname</th>
+                <th>Lastname</th>
+                <th>Email</th>
+                <th>Date created</th>
+                <th>Expire date</th>
+                <th>Action</th>
+            </tr>
+            {% for visitor in visitors %}
+                <tr>
+                    <td>{{ visitor.id }}</td>
+                    <td>{{ visitor.randomid }}</td>
+                    <td>{{ visitor.firstname }}</td>
+                    <td>{{ visitor.lastname }}</td>
+                    <td>{{ visitor.email }}</td>
+                    <td>{{ visitor.datecreated }}</td>
+                    <td>{{ visitor.expiredate }}</td>
+                    <td><button>Delete visitor</button></td>
+                    <td></td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+{% endblock %}

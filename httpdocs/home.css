@@ -280,3 +280,10 @@ footer #telephone {
 .registerh3{
   text-align: center;
 }
+
+/* css for adminpanel */
+
+.table table, th, td {
+    border: 1px solid black;
+}
+

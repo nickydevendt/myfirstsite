@@ -2,10 +2,11 @@
 
 include 'function.php';
 
-$registerresult = "";
-$loginresult = "";
+global $pdo;
+
+$userData = "";
 // if statement voor registratie formulier:
-if (isset($_REQUEST['registersubmit']))
+if(isset($_REQUEST['registersubmit']))
 {
     $data = array( 
         $_REQUEST['firstname'],
@@ -20,30 +21,37 @@ if (isset($_REQUEST['registersubmit']))
         $_SESSION['register'] = true;
     }
 }
-if (isset($_REQUEST['loginsubmit']))
+
+if(isset($_REQUEST['logoutnow']))
+{
+    session_destroy();
+    header( "refresh:0;url=/login" );
+}
+
+/*if(isset($_REQUEST['loginsubmit']))
 {
     $data = array(
         $_REQUEST['username'],
         md5($_REQUEST['password'])
     );
     $loginresult = login($pdo, $data);
-    if ($loginresult == true)
+    if($loginresult == true)
     {
-        if ($_SESSION['login']['admin'] == 2) {
-            header( "refresh:0;url=/adminpanel" );
-        } else{
-            header( "refresh:0;url=/userpanel" );
-        }
+        header( "refresh:0;url=/home" );
     }
-    if ($loginresult == false)
+    if($loginresult == false)
     {
         header( "refresh:0;url=/login" );
     }
-
-}
-if (isset($_REQUEST['logoutnow']))
-{
-    session_destroy();
-    header( "refresh:0;url=/login" );
+$_POST['username'], $_POST['password']
+}*/
+if(isset($_REQUEST['loginsubmit'])) {
+    $userService = new UserService($_POST['username'], $_POST['password']);
+    if($user = $userService->login()) {
+        echo 'logged it as user id: ' . $user['id'];
+        $userData = $userService->getUser();
+    } else {
+        echo 'Invalid login';
+    }
 }
 
