@@ -14,6 +14,23 @@ function getAllUsers() : array
     }
 }
 
+if(isset($_POST['deleterow']))
+{
+    deleteUser($_POST['deleterow']);
+}
+
+function deleteUser($id)
+{
+    $pdo = connection();
+    try {
+        $statement = $pdo->prepare('delete from users where id = ?');
+        $statement->execute(array($id));
+        return $statement->fetch(PDO::FETCH_ASSOC);
+    } catch (PDOException $e) {
+        die('error!: ' . $e->getMessage());
+    }
+}
+
 function getAllVisitors() : array
 {
     $pdo = connection();
@@ -26,18 +43,22 @@ function getAllVisitors() : array
     }
 }
 
-function deleteUser()
+if(isset($_POST['deletevisitor']))
+{
+    deleteVisitor($_POST['deletevisitor']);
+}
+
+function deleteVisitor($id)
 {
     $pdo = connection();
     try {
-        $statement = $pdo->prepare('delete from user where id = ?');
-        $statement->execute();
-        return $statement->fetchAll(PDO::FETCH_ASSOC);
+        $statement = $pdo->prepare('delete from visitors where id = ?');
+        $statement->execute(array($id));
+        return $statement->fetch(PDO::FETCH_ASSOC);
     } catch (PDOException $e) {
         die('error!: ' . $e->getMessage());
     }
 }
-
 
 function connection()
 {
@@ -45,3 +66,4 @@ function connection()
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     return $pdo;
 }
+
