@@ -2,7 +2,6 @@
 
 {% block name %}
     <h1>See all users & admins</h1>
-    {{ dump(users[1])}}
 {% endblock %}
 
 {% block main %}
@@ -13,25 +12,34 @@
                 <th>Firstname</th>
                 <th>Lastname</th>
                 <th>Email</th>
+                <th>Current employer</th>
+                <th>Username</th>
+                <th>Password</th>
                 <th>Role</th>
                 <th>Action</th>
+                <th></th>
             </tr>
             {% for user in users %}
                 <tr>
-                    <td>{{ user.id }}</td>
-                    <td>{{ user.firstname }}</td>
-                    <td>{{ user.lastname }}</td>
-                    <td>{{ user.email }}</td>
-                    {% if user.admin == 1 %}
-                        <td><p>Gebruiker</p></td>
-                    {% elseif user.admin == 2 %}
-                        <td><p>Admin</p></td>
-                    {% endif %}
-                    <td>
-                        <form method="post" action="">
-                            <button type="submit" name="deleterow" value="{{ user.id }}" >Delete Gebruiker</button>
-                        </form>
-                    </td>
+                    <form method="post" action="">
+                        <td><input name="id" value="{{ user.id }}"></td>
+                        <td><input name="firstname" value="{{ user.firstname }}"></td>
+                        <td><input name="lastname" value="{{ user.lastname }}"></td>
+                        <td><input name="email" value="{{ user.email }}"></td>
+                        <td><input name="currentemployer" value="{{ user.currentemployer }}"></td>
+                        <td><input name="username" value="{{ user.username }}"></td>
+                        <td><input name="password" value="{{ user.password }}"></td>
+                            {% if user.admin == 1 %}
+                                <td><p>Gebruiker</p></td>
+                            {% elseif user.admin == 2 %}
+                                <td><p>Admin</p></td>
+                            {% endif %}
+                        <td>
+                            <button type="submit" name="updaterow" value="{{ user.id }}">Update Gebruiker</button>
+                        <td>
+                            <button type="submit" name="deleterow" value="{{ user.id }}">Delete Gebruiker</button></br>
+                        </td>
+                    </form>
                 </tr>
             {% endfor %}
         </table>
@@ -40,14 +48,14 @@
 
 {% block text %}
     <h1>See all visitors</h1>
-    {{ dump(visitors[1]) }}
 {% endblock%}
 {% block promotion %}
     <div class="tablealignment">
         <table class="table">
             <tr>
-                <th>Id</th>
+                <th>ID</th>
                 <th>Randomid</th>
+                <th>Inviter ID</th>
                 <th>Firstname</th>
                 <th>Lastname</th>
                 <th>Email</th>
@@ -59,6 +67,7 @@
                 <tr>
                     <td>{{ visitor.id }}</td>
                     <td>{{ visitor.randomid }}</td>
+                    <td>{{ visitor.inviteid }}</td>
                     <td>{{ visitor.firstname }}</td>
                     <td>{{ visitor.lastname }}</td>
                     <td>{{ visitor.email }}</td>
@@ -67,6 +76,42 @@
                     <td>
                         <form method="post" action="">
                             <button type="submit" name="deletevisitor" value="{{ visitor.id }}" >Delete Visitor</button>
+                        </form>
+                    </td>
+                    <td></td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+{% endblock %}
+
+{% block recentprojects %}
+     <div class="tablealignment">
+        <table class="table">
+            <tr>
+                <th>ID</th>
+                <th>Randomid</th>
+                <th>Inviter ID</th>
+                <th>Firstname</th>
+                <th>Lastname</th>
+                <th>Email</th>
+                <th>Date created</th>
+                <th>Expire date</th>
+                <th>Action</th>
+            </tr>
+            {% for myVis in myVisitors %}
+                <tr>
+                    <td>{{ myVis.id }}</td>
+                    <td>{{ myVis.randomid }}</td>
+                    <td>{{ myVis.inviteid }}</td>
+                    <td>{{ myVis.firstname }}</td>
+                    <td>{{ myVis.lastname }}</td>
+                    <td>{{ myVis.email }}</td>
+                    <td>{{ myVis.datecreated }}</td>
+                    <td>{{ myVis.expiredate }}</td>
+                    <td>
+                        <form method="post" action="">
+                            <button type="submit" name="deletevisitor" value="{{ myVis.id }}" >Delete Visitor</button>
                         </form>
                     </td>
                     <td></td>

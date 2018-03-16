@@ -281,9 +281,18 @@ footer #telephone {
   text-align: center;
 }
 
-/* css for adminpanel */
+/* css for admin/user panel */
 
 .table table, th, td {
     border: 1px solid black;
+}
+.adminalignment{
+    width: 100%;
+    table-layout: fixed;
+}
+.table input {
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
 }
 
