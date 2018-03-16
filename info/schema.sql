@@ -19,11 +19,12 @@ CREATE SEQUENCE visitors_id_seq;
 CREATE TABLE visitors (
     id BIGINT NOT NULL PRIMARY KEY DEFAULT NEXTVAL('visitors_id_seq'::regclass),
     randomid UUID DEFAULT gen_random_uuid(),
+    inviteid BIGINT NOT NULL,
     firstname VARCHAR(255) DEFAULT NULL,
     lastname VARCHAR(255) DEFAULT NULL,
     email VARCHAR(255) DEFAULT NULL,
-    datecreated TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT NOW(),
-    expiredate TIMESTAMP WITH TIME ZONE DEFAULT NOW() + interval '7 days'
+    datecreated DATE NOT NULL DEFAULT NOW(),
+    expiredate DATE DEFAULT NOW() + interval '7 days'
 );
 
 CREATE UNIQUE INDEX ON visitors(email);
@@ -60,4 +61,5 @@ CREATE TABLE projects (
 );
 
 ALTER TABLE projects ADD FOREIGN key(companyid) REFERENCES affiliatedcompanys(id) ON DELETE CASCADE;
+ALTER TABLE visitors ADD FOREIGN key(inviteid) REFERENCES users(id) ON DELETE CASCADE;
 
