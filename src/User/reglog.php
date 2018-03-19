@@ -1,7 +1,7 @@
 <?php
 
 include 'function.php';
-
+include '../src/Visitor/function.php';
 global $pdo;
 
 $userData = "";
@@ -42,4 +42,15 @@ if(isset($_REQUEST['loginsubmit'])) {
         echo 'Invalid login';
     }
 }
+
+if(isset($_REQUEST['visitorsubmit'])) {
+    $visitor = getVisitor($_REQUEST['visitorcode']);
+    if($_REQUEST['visitorcode'] == $visitor['randomid'])
+    {
+        var_dump($visitor);
+        $_SESSION['visitorlogin'] = $visitor['id'];
+    }
+}
+
+
 

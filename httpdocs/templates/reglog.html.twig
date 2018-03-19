@@ -36,3 +36,17 @@
         </div>
     </div>
 {% endblock %}
+
+{% block text %}
+    <h2>Visitor login</h2>
+{% endblock %}
+
+{% block promotion %}
+    <div class="visitorlogin">
+        <form action="/register" method="post">
+            <label for="username">Enter your visitor code to get entry</label></br>
+            <input type="text" name="visitorcode" placeholder="enter Visitor Code" required></br>
+            <input type="submit" name="visitorsubmit" value="Submit"></br>
+        </form>
+    </div>
+{% endblock %}

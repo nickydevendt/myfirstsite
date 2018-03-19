@@ -281,6 +281,18 @@ footer #telephone {
   text-align: center;
 }
 
+.visitorlogin {
+    width: 20%;
+    display: flex;
+    margin: 0 40% 10%;
+}
+.visitorlogin form {
+    width: 100%;
+}
+.visitorlogin input {
+    width: 95%;
+}
+
 /* css for admin/user panel */
 
 .table table, th, td {

@@ -23,7 +23,7 @@ class Users
         return $this->firstname;
     }
 
-    public function set_firstname()
+    public function set_firstname($value)
     {
         $this->firstname = $value;
     }
