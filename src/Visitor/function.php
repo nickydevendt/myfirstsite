@@ -2,13 +2,15 @@
 
 include_once 'visitor.php';
 
-function getVisitor($value)
+// deze functie haalt de visitor op vanuit de database waarbij de uuid's overeenkomen
+
+function getVisitor($visitorcode)
 {
     try {
         $pdo = connection();
         $stmt = $pdo->prepare('select * from visitors where randomid = ?');
         $stmt->setFetchMode(PDO::FETCH_CLASS, 'Visitor');
-        $stmt->execute(array($value));
+        $stmt->execute(array($visitorcode));
         return $stmt->fetch(PDO::FETCH_ASSOC);
     } catch(PDOException $e) {
         die('error!: '. $e->getMessage());

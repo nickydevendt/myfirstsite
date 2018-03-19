@@ -49,7 +49,7 @@
         default:
             include '../src/User/reglog.php';
             $template = 'page.html.twig';
-            echo $twig->render($template, ['session' => $_SESSION]);
+            echo $twig->render($template, ['session' => $_SESSION, 'visitor' => $visitor]);
             break;
     }
 

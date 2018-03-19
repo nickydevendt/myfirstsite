@@ -2,9 +2,12 @@
 
 include 'function.php';
 include '../src/Visitor/function.php';
+
 global $pdo;
 
 $userData = "";
+$visitor = "";
+
 // if statement voor registratie formulier:
 if(isset($_REQUEST['registersubmit']))
 {
@@ -25,6 +28,7 @@ if(isset($_REQUEST['registersubmit']))
 if(isset($_REQUEST['logoutnow']))
 {
     session_destroy();
+    unset($visitor);
     header( "refresh:0;url=/login" );
 }
 
@@ -44,11 +48,11 @@ if(isset($_REQUEST['loginsubmit'])) {
 }
 
 if(isset($_REQUEST['visitorsubmit'])) {
-    $visitor = getVisitor($_REQUEST['visitorcode']);
-    if($_REQUEST['visitorcode'] == $visitor['randomid'])
-    {
-        var_dump($visitor);
-        $_SESSION['visitorlogin'] = $visitor['id'];
+    $visitorcheck = getVisitor($_REQUEST['visitorcode']);
+    if($_REQUEST['visitorcode'] == $visitorcheck['randomid'] && strtotime($visitorcheck['expiredate']) > time()){
+        return $visitor = $visitorcheck;
+    } elseif(strtotime($visitorcheck['expiredate']) < time()) {
+        echo 'Your Visitor code has expired. It was created on:  '. date("d,m,Y",strtotime($visitorcheck['datecreated']));
     }
 }
 
