@@ -17,39 +17,39 @@
         case '/login':
             include '../src/User/reglog.php';
             $template = 'reglog.html.twig';
-            echo $twig->render($template, ['session' => $_SESSION]);
+            echo $twig->render($template);
             break;
         case '/workprojects':
             $template = 'workhistory.html.twig';
-            echo $twig->render($template, ['session' => $_SESSION]);
+            echo $twig->render($template);
             break;
         case '/about':
             $template = 'about.html.twig';
-            echo $twig->render($template, ['session' => $_SESSION]);
+            echo $twig->render($template);
             break;
         case '/resume':
             $template = 'resume.html.twig';
-            echo $twig->render($template, ['session' => $_SESSION]);
+            echo $twig->render($template);
             break;
         case '/contact':
             $template = 'contact.html.twig';
-            echo $twig->render($template, ['session' => $_SESSION]);
+            echo $twig->render($template);
             break;
         case '/adminpanel':
             include '../src/Admin/function.php';
             $template = 'adminpanel.html.twig';
-            echo $twig->render($template, ['session' => $_SESSION, 'users' => getAllUsers(), 'visitors' => getAllVisitors(), 'myVisitors' => getMyVisitors()]);
+            echo $twig->render($template, ['users' => getAllUsers(), 'visitors' => getAllVisitors(), 'myVisitors' => getMyVisitors(), checkLogin()]);
             break;
         case '/userpanel':
             include '../src/User/userpanel.php';
             $template = 'userpanel.html.twig';
-            echo $twig->render($template, ['session' => $_SESSION, 'currentUser' => getCurrentUser(), 'myVisitors' => getMyVisitors()]);
+            echo $twig->render($template, ['currentUser' => getCurrentUser(), 'myVisitors' => getMyVisitors(), checkLogin()]);
             break;
 
         default:
             include '../src/User/reglog.php';
             $template = 'page.html.twig';
-            echo $twig->render($template, ['session' => $_SESSION, 'visitor' => $visitor]);
+            echo $twig->render($template, ['session' => $_SESSION, 'visitor' => $visitor, 'user' => $userData]);
             break;
     }
 

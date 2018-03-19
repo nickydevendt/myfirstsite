@@ -37,9 +37,11 @@ if(isset($_REQUEST['loginsubmit'])) {
     if($user = $userService->login()) {
         $userData = $userService->getUser();
         if($user['id'] == 2) {
+            $_SESSION['login'] = 2;
             header( "refresh:0;url=/adminpanel" );
         }
         else{
+            $_SESSION['login'] = 1;
             header( "refresh:0;url=/userpanel" );
         }
     } else {
@@ -50,11 +52,10 @@ if(isset($_REQUEST['loginsubmit'])) {
 if(isset($_REQUEST['visitorsubmit'])) {
     $visitorcheck = getVisitor($_REQUEST['visitorcode']);
     if($_REQUEST['visitorcode'] == $visitorcheck['randomid'] && strtotime($visitorcheck['expiredate']) > time()){
+        $_SESSION['login'] = 1;
         return $visitor = $visitorcheck;
     } elseif(strtotime($visitorcheck['expiredate']) < time()) {
         echo 'Your Visitor code has expired. It was created on:  '. date("d,m,Y",strtotime($visitorcheck['datecreated']));
     }
 }
-
-
 

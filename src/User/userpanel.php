@@ -2,6 +2,8 @@
 
 include_once '../src/Admin/function.php';
 
+unset($_SESSION['login']);
+
 if(isset($_POST['updaterow'])) {
     updateUser();
 }
@@ -12,7 +14,10 @@ if(isset($_POST['deletevisitor'])) {
 if(isset($_POST['updatevisitor'])) {
     updateVisitor();
 }
-
+if(isset($_POST['addVisitor']))
+{
+    addVisitor($_POST['inviteid'], $_POST['firstname'], $_POST['lastname'], $_POST['email']);
+}
 function getCurrentUser() : array{
     $pdo = connection();
     try {
@@ -52,6 +57,12 @@ function getMyVisitors() : array {
     }
 }
 
+function checkLogin() {
+    if(!isset($_SESSION['login'])) {
+        header("refresh=0;url=/login");
+    }
+}
+
 function deleteVisitor() {
     $pdo = connection();
     try{
@@ -72,6 +83,15 @@ function updateVisitor() {
             $_POST['email'],
             $_POST['updatevisitor']
         ));
+    } catch (PDOException $e) {
+        die('error!: ' . $e->getMessage());
+    }
+}
+function addVisitor($inviteid, $firstname, $lastname, $email) {
+    $pdo = connection();
+    try{
+        $statement = $pdo->prepare('INSERT INTO visitors (inviteid, firstname, lastname, email) VALUES(?,?,?,?)');
+        $statement->execute(array($inviteid, $firstname, $lastname, $email));
     } catch (PDOException $e) {
         die('error!: ' . $e->getMessage());
     }

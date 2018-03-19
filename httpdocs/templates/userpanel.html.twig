@@ -47,7 +47,6 @@
     <div class="tablealignment">
         <table class="table">
             <tr>
-                <th>ID</th>
                 <th>Randomid</th>
                 <th>Firstname</th>
                 <th>Lastname</th>
@@ -55,26 +54,41 @@
                 <th>Expire date</th>
                 <th>Action</th>
             </tr>
-            {{ dump(myVisitors[1]) }}
             {% for myVis in myVisitors %}
             <tr>
                 <form method="post" action="">
-                    <td>{{ myVis.id }}</td>
                     <td>{{ myVis.randomid }}</td>
-                    <td><input name="firstname" value="{{ myVis.firstname }}"></td>
-                    <td><input name="lastname" value="{{ myVis.lastname }}"></td>
-                    <td><input name="email" value="{{ myVis.email }}"></td>
+                    <td>{{ myVis.firstname }}</td>
+                    <td>{{ myVis.lastname }}</td>
+                    <td>{{ myVis.email }}</td>
                     <td>{{ myVis.expiredate }}</td>
                     <td>
                         <button type="submit" name="deletevisitor" value="{{ myVis.id }}" >Delete Visitor</button>
-                    </td>
-                    <td>
-                        <button type="submit" name="updatevisitor" value="{{ myVis.id }}" >Update Visitor</button>
                     </td>
                 </form>
             </tr>
             {% endfor %}
         </table>
+        <h3>Add a visitor</h3>
+        <table class="table">
+                    <tr>
+                        <th>Firstname</th>
+                        <th>Lastname</th>
+                        <th>Email</th>
+                        <th>Action</th>
+                    </tr>
+                    <tr>
+                        <form method="post" action="">
+                            <input name ="inviteid" value="{{ currentUser.id }}" hidden>
+                            <td><input name="firstname" value=""></td>
+                            <td><input name="lastname" value=""></td>
+                            <td><input name="email" value="" required></td>
+                            <td>
+                                <button type="submit" name="addVisitor" value="" >Add visitor</button>
+                            </td>
+                        </form>
+                    </tr>
+                </table>
     </div>
 {% endblock %}
 
