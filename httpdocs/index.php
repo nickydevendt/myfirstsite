@@ -38,18 +38,18 @@
         case '/adminpanel':
             include '../src/Admin/function.php';
             $template = 'adminpanel.html.twig';
-            echo $twig->render($template, ['users' => getAllUsers(), 'visitors' => getAllVisitors(), 'myVisitors' => getMyVisitors(), checkLogin()]);
+            echo $twig->render($template, ['session' => $_SESSION, 'users' => getAllUsers(), 'visitors' => getAllVisitors(), 'myVisitors' => getMyVisitors(), checkLogin()]);
             break;
         case '/userpanel':
             include '../src/User/userpanel.php';
             $template = 'userpanel.html.twig';
-            echo $twig->render($template, ['currentUser' => getCurrentUser(), 'myVisitors' => getMyVisitors(), checkLogin()]);
+            echo $twig->render($template, ['session' => $_SESSION, 'currentUser' => getCurrentUser(), 'myVisitors' => getMyVisitors(), 'checkLogin' => checkLogin()]);
             break;
 
         default:
             include '../src/User/reglog.php';
             $template = 'page.html.twig';
-            echo $twig->render($template, ['session' => $_SESSION, 'visitor' => $visitor, 'user' => $userData]);
+            echo $twig->render($template, ['session' => $_SESSION, 'visitor' => $visitor, 'user' => $userData, 'redirect' => redirect()]);
             break;
     }
 

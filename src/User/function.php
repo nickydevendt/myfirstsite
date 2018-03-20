@@ -9,20 +9,25 @@ class UserService
     protected $pdo;
     protected $_user;
 
-    public function __construct($username, $password)
+    public function __construct()
     {
         $this->pdo = $this->connection();
-        $this->_username = $username;
-        $this->_password = $password;
     }
 
-    public function login()
+    public function login($username, $password)
     {
+        $this->_username = $username;
+        $this->_password = $password;
         $user = $this->checkCredentials();
         if($user) {
             $this->_user = $user;
             $_SESSION['admin'] = $user['admin'];
             $_SESSION['userid'] = $user['id'];
+            if($user['admin'] = 1) {
+                $_SESSION['login'] = 1;
+            } elseif ($user['admin'] = 2) {
+                $_SESSION['login'] = 2;
+            }
             return $user;
         }
         return false;
@@ -52,6 +57,16 @@ class UserService
         $pdo = new PDO('pgsql:host=localhost;dbname=nicky;', 'nicky', 'blarps');
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         return $pdo;
+    }
+
+    public function createUser(array $data)
+    {
+        try {
+            $stmt = $this->pdo->prepare('INSERT INTO users(firstname,lastname,email,currentemployer,username,password) VALUES(?,?,?,?,?,?)');
+            $stmt->execute($data);
+        } catch (PDOException $e) {
+            die('error!: '. $e->getMessage());
+        }
     }
 }
 

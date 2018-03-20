@@ -2,17 +2,31 @@
 
 include_once '../src/User/function.php';
 include_once '../src/User/userpanel.php';
+var_dump($_SESSION);
 
 function getAllUsers() : array
 {
     $pdo = connection();
+
+    if(!isset($_SESSION['admin'])) {
+        return [];
+    } else {
+        if ($_SESSION['admin'] != 2) {
+            return [];
+        }
+    }
+
     try {
-        $statement = $pdo->prepare('SELECT * FROM users');
-        $statement->execute();
-        return $statement->fetchAll(PDO::FETCH_CLASS);
+        if($_SESSION['admin'] == 2) {
+            $statement = $pdo->prepare('SELECT * FROM users');
+            $statement->execute();
+            return $statement->fetchAll(PDO::FETCH_CLASS);
+        }
     } catch (PDOException $e) {
         die('error!: ' . $e->getMessage());
     }
+
+    return [];
 }
 
 if(isset($_POST['deleterow'])) {

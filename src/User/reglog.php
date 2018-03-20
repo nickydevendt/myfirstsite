@@ -19,9 +19,10 @@ if(isset($_REQUEST['registersubmit']))
         $_REQUEST['username'],
         md5($_REQUEST['password'])
         );
-    $registerresult = insert($pdo, $data);
+    $userService = new UserService();
+    $registerresult = $userService->createUser($data);
     if ($registerresult == true ){
-        $_SESSION['register'] = true;
+        header( "refresh:0;url=/login" );
     }
 }
 
@@ -33,15 +34,13 @@ if(isset($_REQUEST['logoutnow']))
 }
 
 if(isset($_REQUEST['loginsubmit'])) {
-    $userService = new UserService($_POST['username'], $_POST['password']);
-    if($user = $userService->login()) {
+    $userService = new UserService();
+    if($user = $userService->login($_POST['username'], $_POST['password'])) {
         $userData = $userService->getUser();
-        if($user['id'] == 2) {
-            $_SESSION['login'] = 2;
+        if(isset($user) && $user['admin'] == 2) {
             header( "refresh:0;url=/adminpanel" );
         }
         else{
-            $_SESSION['login'] = 1;
             header( "refresh:0;url=/userpanel" );
         }
     } else {
@@ -52,7 +51,6 @@ if(isset($_REQUEST['loginsubmit'])) {
 if(isset($_REQUEST['visitorsubmit'])) {
     $visitorcheck = getVisitor($_REQUEST['visitorcode']);
     if($_REQUEST['visitorcode'] == $visitorcheck['randomid'] && strtotime($visitorcheck['expiredate']) > time()){
-        $_SESSION['login'] = 1;
         return $visitor = $visitorcheck;
     } elseif(strtotime($visitorcheck['expiredate']) < time()) {
         echo 'Your Visitor code has expired. It was created on:  '. date("d,m,Y",strtotime($visitorcheck['datecreated']));
