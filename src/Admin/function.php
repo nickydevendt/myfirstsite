@@ -2,7 +2,6 @@
 
 include_once '../src/User/function.php';
 include_once '../src/User/userpanel.php';
-var_dump($_SESSION);
 
 function getAllUsers() : array
 {
@@ -35,6 +34,13 @@ if(isset($_POST['deleterow'])) {
 
 function deleteUser($id)
 {
+    if(!isset($_SESSION['admin'])) {
+        return [];
+    } else {
+        if ($_SESSION['admin'] != 2) {
+            return [];
+        }
+    }
     $pdo = connection();
     try {
         $statement = $pdo->prepare('delete from users where id = ?');
@@ -47,6 +53,13 @@ function deleteUser($id)
 
 function getAllVisitors() : array
 {
+    if(!isset($_SESSION['admin'])) {
+        return [];
+    } else {
+        if ($_SESSION['admin'] != 2) {
+            return [];
+        }
+    }
     $pdo = connection();
     try {
         $statement = $pdo->prepare('select * from visitors');
@@ -59,13 +72,25 @@ function getAllVisitors() : array
 
 if(isset($_POST['deletevisitor']))
 {
+    if(!isset($_SESSION['admin'])) {
+        return [];
+    } else {
+        if ($_SESSION['admin'] != 2) {
+            return [];
+        }
+    }
     deleteVisitor($_POST['deletevisitor']);
 }
 
 function connection()
 {
-    $pdo = new PDO('pgsql:host=localhost;dbname=nicky;', 'nicky', 'blarps');
-    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    return $pdo;
+    if(isset($_SESSION['admin']) || isset($_SESSION['userid']))
+    {
+        $pdo = new PDO('pgsql:host=localhost;dbname=nicky;', 'nicky', 'blarps');
+        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        return $pdo;
+    }else {
+        header( "refresh:0;url=/login" );;
+    }
 }
 

@@ -240,7 +240,6 @@ footer #telephone {
 
 .reglog {
     display:flex;
-    margin: 10% 0;
     padding: 4% 0%;
     color: #fff;
 }
@@ -256,8 +255,9 @@ footer #telephone {
     padding: 0% 3%;
 }
 .login form {
-    padding: 30% 5px;
+    padding: 5%;
     background-color: rgb(46, 49, 54);
+    border-radius: 5%;
 }
 .login form input {
     margin-bottom: 15% !important;
@@ -271,26 +271,43 @@ footer #telephone {
 
     padding: 0% 3%;
 }
-.registerform {
-  padding: 5px 5px;
+.register form {
+    padding: 5%;
+    border-radius: 5%;
 }
 .loginh3{
-  text-align: center;
+    text-align: center;
 }
 .registerh3{
-  text-align: center;
+    text-align: center;
 }
-
+.visitorarea {
+    margin:0 auto;
+    width:50%;
+}
+.kleurtjes {
+    background-color: rgb(46,49,54);
+    border-radius: 10%;
+    width: 100%;
+    margin-bottom: 15%;
+}
+.visitorarea h2 {
+    margin-left: 40%;
+}
 .visitorlogin {
-    width: 20%;
     display: flex;
-    margin: 0 40% 10%;
+    margin: 0 10%;
+    padding: 5%;
 }
 .visitorlogin form {
     width: 100%;
 }
 .visitorlogin input {
-    width: 95%;
+    width: 96%;
+    margin: 10px 0;
+}
+.visitorlogin button {
+    width:100%;
 }
 
 /* css for admin/user panel */

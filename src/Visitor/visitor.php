@@ -1,6 +1,6 @@
 <?php
 
-class Visitor {
+class VisitorService {
 
     private $id;
     private $randomid;
@@ -10,81 +10,55 @@ class Visitor {
     private $email;
     private $datecreated;
     private $expiredate;
+    private $pdo;
 
-    public function __construct($id, $randomid, $inviteid, $firstname, $lastname, $email, $datecreated, $expiredate) {
-        $this->set_id($id);
-        $this->set_randomid($randomid);
-        $this->set_inviteid($inviteid);
-        $this->set_firstname($firstname);
-        $this->set_lastname($lastname);
-        $this->set_email($email);
-        $this->set_datecreated($datecreated);
-        $this->set_expiredate($expiredate);
-    }
-    
-    public function set_id($value)
-    {
-        $this->id = $value;
-    }
-    public function get_id()
-    {
-        return $this->id;
-    }
-    public function set_randomid($value)
-    {
+    public function login($value) {
         $this->randomid = $value;
+        $this->pdo = $this->connection();
+        try {
+            if(isset($value)) {
+                $stmt = $this->pdo->prepare('select * from visitors where randomid = ?');
+                $stmt->setFetchMode(PDO::FETCH_CLASS, 'VisitorService');
+                $stmt->execute(array($value));
+                $visitorarray = $stmt->fetch(PDO::FETCH_ASSOC);
+                if($value == $visitorarray['randomid']) {
+                    $expiredVisitor = $this->expiredVisitor($visitorarray);
+                    if($expiredVisitor == false) {
+                            $_SESSION['visitor'] = true;
+                            $this->id = $visitorarray['id'];
+                            $this->inviteid = $visitorarray['inviteid'];
+                            $this->firstname = $visitorarray['firstname'];
+                            $this->lastname = $visitorarray['lastname'];
+                            $this->email = $visitorarray['email'];
+                            $this->datecreated = $visitorarray['datecreated'];
+                            $this->expiredate = $visitorarray['expiredate'];
+                            return $visitorarray;
+                    }elseif ($expiredVisitor == true) {
+                           echo 'user was expired and now deleted make contact with your inviter to get a new code';
+                           $stmt = $this->pdo->prepare('DELETE FROM visitors where randomid = ?');
+                           $stmt->execute(array($visitorarray['randomid']));
+                    }
+                }
+                else {
+                    echo 'Wrong code try again!';
+                }
+            }
+        } catch(PDOException $e) {
+            echo 'error!: '. $e->getMessage();
+        }
     }
-    public function get_randomid()
-    {
-        return $this->randomid;
+    public function expiredVisitor($array){
+        if($array['datecreated'] <= $array['expiredate']) {
+            return false;
+        } elseif($array['datecreated'] > $array['expiredate'])  {
+            return true;
+        }
     }
-    public function set_inviteid($value)
+    function connection()
     {
-        $this->inviteid = $value;
-    }
-    public function get_inviteid()
-    {
-        return $this->inviteid;
-    }
-    public function set_firstname($value)
-    {
-        $this->firstname = $value;
-    }
-    public function get_firstname()
-    {
-        return $this->inviteid;
-    }
-    public function set_lastname($value)
-    {
-        $this->lastname = $value;
-    }
-    public function get_lastname()
-    {
-        return $this->lastname;
-    }
-    public function set_email($value)
-    {
-        $this->email = $value;
-    }
-    public function get_email()
-    {
-        return $this->email;
-    }
-    public function set_datecreated($value)
-    {
-        $this->datecreated = $value;
-    }
-    public function get_datecreated()
-    {
-        return $this->datecreated;
-    }
-    public function set_expiredate($value)
-    {
-        $this->expiredate = $value;
-    }
-    public function get_expiredate()
-    {
-        return $this->expiredate;
+        $pdo = new PDO('pgsql:host=localhost;dbname=nicky;', 'nicky', 'blarps');
+        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        return $pdo;
     }
 }
 

@@ -1,7 +1,7 @@
 <?php
 
 include 'function.php';
-include '../src/Visitor/function.php';
+include '../src/Visitor/visitor.php';
 
 global $pdo;
 
@@ -49,11 +49,7 @@ if(isset($_REQUEST['loginsubmit'])) {
 }
 
 if(isset($_REQUEST['visitorsubmit'])) {
-    $visitorcheck = getVisitor($_REQUEST['visitorcode']);
-    if($_REQUEST['visitorcode'] == $visitorcheck['randomid'] && strtotime($visitorcheck['expiredate']) > time()){
-        return $visitor = $visitorcheck;
-    } elseif(strtotime($visitorcheck['expiredate']) < time()) {
-        echo 'Your Visitor code has expired. It was created on:  '. date("d,m,Y",strtotime($visitorcheck['datecreated']));
-    }
+    $visitorService = new VisitorService();
+    $visitorcheck = $visitorService->login($_REQUEST['visitorcode']);
 }
 
