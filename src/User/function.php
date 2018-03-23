@@ -42,6 +42,8 @@ class UserService
             $submitted_pass = md5($this->_password);
             if($submitted_pass == $user['password']) {
                 return $user;
+            }else{
+            return false;
             }
         }
         return false;

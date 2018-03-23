@@ -28,9 +28,8 @@ if(isset($_REQUEST['registersubmit']))
 
 if(isset($_REQUEST['logoutnow']))
 {
-    session_destroy();
-    unset($visitor);
     header( "refresh:0;url=/login" );
+    session_destroy();
 }
 
 if(isset($_REQUEST['loginsubmit'])) {

@@ -22,7 +22,7 @@ class VisitorService {
                 $stmt->execute(array($value));
                 $visitorarray = $stmt->fetch(PDO::FETCH_ASSOC);
                 if($value == $visitorarray['randomid']) {
-                    $expiredVisitor = $this->expiredVisitor($visitorarray);
+                    $expiredVisitor = $this->expiredVisitor($visitorarray['expiredate']);
                     if($expiredVisitor == false) {
                             $_SESSION['visitor'] = true;
                             $this->id = $visitorarray['id'];
@@ -47,10 +47,10 @@ class VisitorService {
             echo 'error!: '. $e->getMessage();
         }
     }
-    public function expiredVisitor($array){
-        if($array['datecreated'] <= $array['expiredate']) {
+    public function expiredVisitor($value){
+        if( strtotime(date('Y-m-d')) <= strtotime($value)) {
             return false;
-        } elseif($array['datecreated'] > $array['expiredate'])  {
+        } elseif(strtotime(date('Y-m-d')) > $value)  {
             return true;
         }
     }

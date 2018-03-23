@@ -48,8 +48,9 @@
 
         default:
             include '../src/User/reglog.php';
+            include '../src/Homepage/home.php';
             $template = 'page.html.twig';
-            echo $twig->render($template, ['session' => $_SESSION, 'visitor' => $visitor, 'user' => $userData]);
+            echo $twig->render($template, ['session' => $_SESSION, 'visitor' => $visitor, 'user' => $userData, 'companys' => getCompanys()]);
             break;
     }
 
