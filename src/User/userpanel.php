@@ -24,7 +24,7 @@ function getCurrentUser() : array{
             $statement->execute(array($_SESSION['userid']));
             return $statement->fetch(PDO::FETCH_ASSOC);
         } else {
-            echo "<script>alert('You are not logged in or are doing shady stuff you are redirected!');document.location='/login'</script>";
+    //        echo "<script>alert('You are not logged in or are doing shady stuff you are redirected!');document.location='/login'</script>";
             session_destroy();
         }
     } catch (PDOException $e) {
@@ -67,7 +67,7 @@ function getMyVisitors() : array {
 
 function checkLogin() {
     if(!isset($_SESSION['admin']) || !isset($_SESSION['userid'])) {
-        echo "<script>alert('You are not logged in and you are redirected!');document.location='/login'</script>";
+  //      echo "<script>alert('You are not logged in and you are redirected!');document.location='/login'</script>";
     }
 }
 
@@ -106,7 +106,7 @@ function addVisitor($inviteid, $firstname, $lastname, $email) {
 }
 
 function redirect() {
-    header( "refresh:0;url=/login" );
+//    header( "refresh:0;url=/login" );
     session_destroy();
 }
 

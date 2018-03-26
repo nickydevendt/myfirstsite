@@ -94,7 +94,7 @@ function connection()
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         return $pdo;
     }else {
-        header( "refresh:0;url=/login" );;
+        //header( "refresh:0;url=/login" );;
     }
 }
 

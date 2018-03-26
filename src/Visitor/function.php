@@ -2,8 +2,6 @@
 
 include_once 'visitor.php';
 
-// deze functie haalt de visitor op vanuit de database waarbij de uuid's overeenkomen
-
 function getVisitor()
 {
     try {
