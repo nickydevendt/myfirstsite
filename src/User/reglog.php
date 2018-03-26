@@ -22,28 +22,29 @@ if(isset($_REQUEST['registersubmit']))
     $userService = new UserService();
     $registerresult = $userService->createUser($data);
     if ($registerresult == true ){
-     //   echo "<script>alert('Registration compleet, try to login');</script>";
+        echo "<script>alert('Registration compleet, try to login');</script>";
     }
 }
 
 if(isset($_REQUEST['logoutnow']))
 {
-    //header( "refresh:0;url=/login" );
+    header( "refresh:0;url=/login" );
     session_destroy();
 }
 
 if(isset($_REQUEST['loginsubmit'])) {
     $userService = new UserService();
-    if($user = $userService->login($_POST['username'], $_POST['password'])) {
+    $user = $userService->login($_POST['username'], $_POST['password']);
+    if(isset($user)) {
         $userData = $userService->getUser();
-        if(isset($user) && $user['admin'] == 2) {
-            //header( "refresh:0;url=/adminpanel" );
+        if($userData['admin'] == 2) {
+            header( "refresh:0;url=/adminpanel" );
         }
-        elseif(isset($user) && $user['admin'] == 1) {
-            //header( "refresh:0;url=/userpanel" );
+        elseif($userData['admin'] == 1) {
+            header( "refresh:0;url=/userpanel" );
         }
     } else {
-        //echo "<script>alert('failed to login!, try again');document.location='/login'</script>";
+        echo "<script>alert('failed to login!, try again');document.location='/login'</script>";
     }
 }
 

@@ -85,38 +85,3 @@
     </div>
 {% endblock %}
 
-{% block recentprojects %}
-     <div class="tablealignment">
-        <table class="table">
-            <tr>
-                <th>ID</th>
-                <th>Randomid</th>
-                <th>Inviter ID</th>
-                <th>Firstname</th>
-                <th>Lastname</th>
-                <th>Email</th>
-                <th>Date created</th>
-                <th>Expire date</th>
-                <th>Action</th>
-            </tr>
-            {% for myVis in myVisitors %}
-                <tr>
-                    <td>{{ myVis.id }}</td>
-                    <td>{{ myVis.randomid }}</td>
-                    <td>{{ myVis.inviteid }}</td>
-                    <td>{{ myVis.firstname }}</td>
-                    <td>{{ myVis.lastname }}</td>
-                    <td>{{ myVis.email }}</td>
-                    <td>{{ myVis.datecreated }}</td>
-                    <td>{{ myVis.expiredate }}</td>
-                    <td>
-                        <form method="post" action="">
-                            <button type="submit" name="deletevisitor" value="{{ myVis.id }}" >Delete Visitor</button>
-                        </form>
-                    </td>
-                    <td></td>
-                </tr>
-            {% endfor %}
-        </table>
-    </div>
-{% endblock %}

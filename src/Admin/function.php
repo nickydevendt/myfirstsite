@@ -43,9 +43,11 @@ function deleteUser($id)
     }
     $pdo = connection();
     try {
-        $statement = $pdo->prepare('delete from users where id = ?');
-        $statement->execute(array($id));
-        return $statement->fetch(PDO::FETCH_ASSOC);
+        if($_SESSION['admin'] == 2) {
+            $statement = $pdo->prepare('delete from users where id = ?');
+            $statement->execute(array($id));
+            return $statement->fetch(PDO::FETCH_ASSOC);
+        }
     } catch (PDOException $e) {
         die('error!: ' . $e->getMessage());
     }
@@ -78,10 +80,6 @@ if(isset($_POST['deletevisitor']))
 {
     if(!isset($_SESSION['admin'])) {
         return [];
-    } else {
-        if ($_SESSION['admin'] != 2) {
-            return [];
-        }
     }
     deleteVisitor($_POST['deletevisitor']);
 }
