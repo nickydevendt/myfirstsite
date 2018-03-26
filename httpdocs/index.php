@@ -38,12 +38,12 @@
         case '/adminpanel':
             include '../src/Admin/function.php';
             $template = 'adminpanel.html.twig';
-            echo $twig->render($template, ['session' => $_SESSION, 'users' => getAllUsers(), 'visitors' => getAllVisitors(), 'myVisitors' => getMyVisitors()]);
+            echo $twig->render($template, ['session' => $_SESSION, 'users' => getAllUsers(), 'visitors' => getAllVisitors(), 'myVisitors' => getMyVisitors(), checkLogin()]);
             break;
         case '/userpanel':
             include '../src/User/userpanel.php';
             $template = 'userpanel.html.twig';
-            echo $twig->render($template, ['session' => $_SESSION, 'currentUser' => getCurrentUser(), 'myVisitors' => getMyVisitors()]);
+            echo $twig->render($template, ['session' => $_SESSION, 'currentUser' => getCurrentUser(), 'myVisitors' => getMyVisitors(), 'checkLogin' => checkLogin()]);
             break;
 
         default:
