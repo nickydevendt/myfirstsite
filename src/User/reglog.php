@@ -22,7 +22,7 @@ if(isset($_REQUEST['registersubmit']))
     $userService = new UserService();
     $registerresult = $userService->createUser($data);
     if ($registerresult == true ){
-        header( "refresh:0;url=/login" );
+        echo "<script>alert('Registration compleet, try to login');</script>";
     }
 }
 
@@ -39,11 +39,11 @@ if(isset($_REQUEST['loginsubmit'])) {
         if(isset($user) && $user['admin'] == 2) {
             header( "refresh:0;url=/adminpanel" );
         }
-        else{
+        elseif(isset($user) && $user['admin'] == 1) {
             header( "refresh:0;url=/userpanel" );
         }
     } else {
-        echo 'Invalid login';
+        echo "<script>alert('failed to login!, try again');document.location='/login'</script>";
     }
 }
 

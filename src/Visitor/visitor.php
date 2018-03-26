@@ -34,13 +34,13 @@ class VisitorService {
                             $this->expiredate = $visitorarray['expiredate'];
                             return $visitorarray;
                     }elseif ($expiredVisitor == true) {
-                           echo 'user was expired and now deleted make contact with your inviter to get a new code';
+                           echo "<script>alert('Your login code was made 7 days ago make contact with your inviter to get a new code');</script>";
                            $stmt = $this->pdo->prepare('DELETE FROM visitors where randomid = ?');
                            $stmt->execute(array($visitorarray['randomid']));
                     }
                 }
                 else {
-                    echo 'Wrong code try again!';
+                echo "<script>alert('Wrong code try again');</script>";
                 }
             }
         } catch(PDOException $e) {

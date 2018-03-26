@@ -62,12 +62,16 @@ function getAllVisitors() : array
     }
     $pdo = connection();
     try {
-        $statement = $pdo->prepare('select * from visitors');
-        $statement->execute();
-        return $statement->fetchAll(PDO::FETCH_CLASS);
+        if($_SESSION['admin'] == 2) {
+            $statement = $pdo->prepare('select * from visitors');
+            $statement->execute();
+            return $statement->fetchAll(PDO::FETCH_CLASS);
+        }
     } catch (PDOException $e) {
         die('error!: ' . $e->getMessage());
     }
+
+    return [];
 }
 
 if(isset($_POST['deletevisitor']))

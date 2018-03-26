@@ -23,10 +23,8 @@ class UserService
             $this->_user = $user;
             $_SESSION['admin'] = $user['admin'];
             $_SESSION['userid'] = $user['id'];
-            if($user['admin'] = 1) {
-                $_SESSION['login'] = 1;
-            } elseif ($user['admin'] = 2) {
-                $_SESSION['login'] = 2;
+            if($user['admin'] = 1 || $user['admin'] = 2) {
+                $_SESSION['login'] = $user['admin'];
             }
             return $user;
         }
