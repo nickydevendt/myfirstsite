@@ -4,7 +4,10 @@
     require_once '../vendor/autoload.php';
     session_start();
 
-    $loader = new Twig_Loader_Filesystem(__DIR__.'/templates');
+    //$loader = new Twig_Loader_Filesystem(__DIR__.'/templates');
+    //above $loader is loading into public directory so needed to customize the path towards a non public directory where templates are loaded. see the loader below with custom path to folder templates!
+
+    $loader = new Twig_Loader_Filesystem('/home/nicky/sites/projects/sensi/nicky/src/templates');
     $twig = new Twig_Environment($loader, array(
         'debug' => true
     ));
@@ -15,42 +18,101 @@
     switch ($_SERVER['REQUEST_URI']) {
        // $template = substr($_SERVER['REQUEST_URI'], 1);
         case '/login':
-            include '../src/User/reglog.php';
-            $template = 'reglog.html.twig';
-            echo $twig->render($template);
+            try {
+                include '../src/User/reglog.php';
+                $template = 'reglog.html.twig';
+                echo $twig->render($template);
+            }catch(Exception $e) {
+                $template = 'error.html.twig';
+                echo $twig->render($template, ['error' => $e]);
+            }
             break;
         case '/workprojects':
-            $template = 'workhistory.html.twig';
-            echo $twig->render($template);
+            try {
+                $template = 'workhistory.html.twig';
+                echo $twig->render($template);
+            }catch(Exception $e) {
+                $template = 'error.html.twig';
+                echo $twig->render($template, ['error' => $e]);
+            }
             break;
         case '/about':
-            $template = 'about.html.twig';
-            echo $twig->render($template);
+            try {
+                $template = 'about.html.twig';
+                echo $twig->render($template);
+            }catch(Exception $e) {
+                $template = 'error.html.twig';
+                echo $twig->render($template, ['error' => $e]);
+            }
             break;
         case '/resume':
-            $template = 'resume.html.twig';
-            echo $twig->render($template);
+            try {
+                $template = 'resume.html.twig';
+                echo $twig->render($template);
+            }catch(Exception $e) {
+                $template = 'error.html.twig';
+                echo $twig->render($template, ['error' => $e]);
+            }
             break;
         case '/contact':
-            $template = 'contact.html.twig';
-            echo $twig->render($template);
+            try {
+                $template = 'contact.html.twig';
+                echo $twig->render($template);
+            }catch(Exception $e) {
+                $template = 'error.html.twig';
+                echo $twig->render($template, ['error' => $e]);
+            }
             break;
         case '/adminpanel':
-            include '../src/Admin/function.php';
-            $template = 'adminpanel.html.twig';
-            echo $twig->render($template, ['session' => $_SESSION, 'users' => getAllUsers(), 'visitors' => getAllVisitors(), 'myVisitors' => getMyVisitors(), checkLogin()]);
+            try {
+                include '../src/Admin/function.php';
+                $template = 'adminpanel.html.twig';
+                echo $twig->render($template, ['session' => $_SESSION, 'users' => getAllUsers(), 'visitors' => getAllVisitors(), 'myVisitors' => getMyVisitors(), checkLogin()]);
+            }catch(Exception $e) {
+                $template = 'error.html.twig';
+                echo $twig->render($template, ['error' => $e]);
+            }
             break;
         case '/userpanel':
-            include '../src/User/userpanel.php';
-            $template = 'userpanel.html.twig';
-            echo $twig->render($template, ['session' => $_SESSION, 'currentUser' => getCurrentUser(), 'myVisitors' => getMyVisitors(), 'checkLogin' => checkLogin()]);
+            try {
+                include '../src/User/userpanel.php';
+                $template = 'userpanel.html.twig';
+                echo $twig->render($template, ['session' => $_SESSION, 'currentUser' => getCurrentUser(), 'myVisitors' => getMyVisitors(), 'checkLogin' => checkLogin()]);
+            }catch(Exception $e) {
+                $template = 'error.html.twig';
+                echo $twig->render($template, ['error' => $e]);
+            }
+            break;
+
+        case '/error':
+            try {
+                $template = 'error.html.twig';
+                echo $twig->render($template);
+            }catch(Exception $e) {
+                $template = 'error.html.twig';
+                echo $twig->render($template, ['error' => $e]);
+            }
+            break;
+
+        case '/':
+            try {
+                include '../src/User/reglog.php';
+                include '../src/Homepage/home.php';
+                $template = 'page.html.twig';
+                echo $twig->render($template, ['session' => $_SESSION, 'visitor' => $visitor, 'user' => $userData, 'companys' => getCompanys(), 'projects' => getProjects()]);
+            }catch(Exception $e) {
+                $template = 'error.html.twig';
+                echo $twig->render($template, ['error' => $e]);
+            }
             break;
 
         default:
-            include '../src/User/reglog.php';
-            include '../src/Homepage/home.php';
-            $template = 'page.html.twig';
-            echo $twig->render($template, ['session' => $_SESSION, 'visitor' => $visitor, 'user' => $userData, 'companys' => getCompanys()]);
-            break;
-    }
+            try {
+                $template = 'error.html.twig';
+                echo $twig->render($template);
+            }catch(Exception $e) {
+                $template = 'error.html.twig';
+                echo $twig->render($template, ['error' => $e]);
+            }
+            break;    }
 

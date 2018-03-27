@@ -28,17 +28,7 @@ CREATE TABLE visitors (
 );
 
 CREATE UNIQUE INDEX ON visitors(email);
-
-CREATE SEQUENCE employers_id_seq;
-
-CREATE TABLE employers (
-    id BIGINT NOT NULL PRIMARY KEY DEFAULT NEXTVAL('employers_id_seq'::regclass),
-    userid BIGINT NOT NULL,
-    name VARCHAR(255) NOT NULL,
-    workyears BIGINT NOT NULL DEFAULT 0
-);
-
-ALTER TABLE employers ADD FOREIGN KEY(userid) REFERENCES users(id) ON DELETE CASCADE;
+ALTER TABLE visitors ADD FOREIGN key(inviteid) REFERENCES users(id) ON DELETE CASCADE;
 
 CREATE SEQUENCE affiliatedcompanys_id_seq;
 
@@ -46,8 +36,7 @@ CREATE TABLE affiliatedcompanys (
     id BIGINT NOT NULL PRIMARY KEY DEFAULT NEXTVAL('affiliatedcompanys_id_seq'::regclass),
     name VARCHAR(255) NOT NULL,
     website VARCHAR(255) NOT NULL,
-    datecreated TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT NOW(),
-    datemodified TIMESTAMP WITH TIME ZONE
+    datecreated TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT NOW()
 );
 
 CREATE SEQUENCE projects_id_seq;
@@ -55,11 +44,10 @@ CREATE SEQUENCE projects_id_seq;
 CREATE TABLE projects (
     id BIGINT NOT NULL PRIMARY KEY DEFAULT NEXTVAL('projects_id_seq'::regclass),
     developer BIGINT,
-    name VARCHAR(255) NOT NULL,
-    companyname VARCHAR(255) NOT NULL,
-    companyid BIGINT NOT NULL
+    name VARCHAR(255) DEFAULT NULL,
+    companyname VARCHAR(255) DEFAULT NULL,
+    companywebsite varchar(255)
 );
 
-ALTER TABLE projects ADD FOREIGN key(companyid) REFERENCES affiliatedcompanys(id) ON DELETE CASCADE;
-ALTER TABLE visitors ADD FOREIGN key(inviteid) REFERENCES users(id) ON DELETE CASCADE;
+ALTER TABLE projects ADD FOREIGN key(developer) REFERENCES users(id) ON DELETE CASCADE;
 

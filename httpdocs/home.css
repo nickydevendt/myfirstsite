@@ -99,30 +99,22 @@ body h2 {
 
 body .project {
     display: inline-block;
-    width: 80%;
+    width: 30%;
     margin-left: 1.5%;
     margin-right: 1.5%;
     margin-bottom: 25%;
-}
-body .project:hover {
-    opacity: 0.5;
-    transition: ease-in 0.5s;
 }
 body .project img {
     width:100%;
     height: 300px;
 }
-body #project1 {
-    width: 30%;
-    height: 100px;
+body .project img:hover {
+    opacity: 0.5;
+    transition: ease-in 0.5s;
 }
-body #project2 {
+body #project {
     width: 30%;
-    height: 100px;
-}
-body #project3 {
-    width: 30%;
-    height: 100px;
+    height: 300px;
 }
 footer {
     background-color: rgb(23,32,51);
@@ -212,7 +204,7 @@ footer #telephone {
 #divwidth {
     border: 1px solid #000;
 }
-
+/* hier onder staat de css van de eerste carousel voor de affiliated companys */
 /**
 * Carousel.sass
 * @author: Dang Van Thanh
@@ -387,7 +379,7 @@ margin: 0 .125%;
 width: 20px;
 height: 20px;
 }
-
+/* dit is het einde van affiliated companys carousel! */
 /* css for Resume page */
 .section_row_3 {
     width:100%;
