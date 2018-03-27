@@ -1,0 +1,87 @@
+{% extends 'index.html.twig' %}
+
+{% block name %}
+    <h1>See all users & admins</h1>
+{% endblock %}
+
+{% block main %}
+    <div class="adminalignment">
+        <table class="table">
+            <tr>
+                <th>Id</th>
+                <th>Firstname</th>
+                <th>Lastname</th>
+                <th>Email</th>
+                <th>Current employer</th>
+                <th>Username</th>
+                <th>Password</th>
+                <th>Role</th>
+                <th>Action</th>
+                <th></th>
+            </tr>
+            {% for user in users %}
+                <tr>
+                    <form method="post" action="">
+                        <td><input name="id" value="{{ user.id }}"></td>
+                        <td><input name="firstname" value="{{ user.firstname }}"></td>
+                        <td><input name="lastname" value="{{ user.lastname }}"></td>
+                        <td><input name="email" value="{{ user.email }}"></td>
+                        <td><input name="currentemployer" value="{{ user.currentemployer }}"></td>
+                        <td><input name="username" value="{{ user.username }}"></td>
+                        <td><input name="password" value="{{ user.password }}"></td>
+                            {% if user.admin == 1 %}
+                                <td><p>Gebruiker</p></td>
+                            {% elseif user.admin == 2 %}
+                                <td><p>Admin</p></td>
+                            {% endif %}
+                        <td>
+                            <button type="submit" name="updaterow" value="{{ user.id }}">Update Gebruiker</button>
+                        <td>
+                            <button type="submit" name="deleterow" value="{{ user.id }}">Delete Gebruiker</button></br>
+                        </td>
+                    </form>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+{% endblock%}
+
+{% block text %}
+    <h1>See all visitors</h1>
+{% endblock%}
+{% block promotion %}
+    <div class="tablealignment">
+        <table class="table">
+            <tr>
+                <th>ID</th>
+                <th>Randomid</th>
+                <th>Inviter ID</th>
+                <th>Firstname</th>
+                <th>Lastname</th>
+                <th>Email</th>
+                <th>Date created</th>
+                <th>Expire date</th>
+                <th>Action</th>
+            </tr>
+            {% for visitor in visitors %}
+                <tr>
+                    <td>{{ visitor.id }}</td>
+                    <td>{{ visitor.randomid }}</td>
+                    <td>{{ visitor.inviteid }}</td>
+                    <td>{{ visitor.firstname }}</td>
+                    <td>{{ visitor.lastname }}</td>
+                    <td>{{ visitor.email }}</td>
+                    <td>{{ visitor.datecreated }}</td>
+                    <td>{{ visitor.expiredate }}</td>
+                    <td>
+                        <form method="post" action="">
+                            <button type="submit" name="deletevisitor" value="{{ visitor.id }}" >Delete Visitor</button>
+                        </form>
+                    </td>
+                    <td></td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+{% endblock %}
+

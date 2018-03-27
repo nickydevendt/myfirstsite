@@ -1,0 +1,93 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content=" width=device-width, initial-scale=1">
+        <link rel="stylesheet" type="text/css" href="./home.css">
+       {# <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+        <script defer src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script> #}
+        <script src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
+        <title>Portfolio</title>
+    </head>
+    <body>
+        {% block header %}
+            <div class="topnav">
+                <ul>
+                    <li><a class="active" href="/">Home</a></li>
+                    <li><a href="/workprojects">Work & projects</a></li>
+                    <li><a href="/about">About</a></li>
+                    <li><a href="/resume">Resume</a></li>
+                    <li><a href="/contact">Contact</a></li>
+                    {% if session.admin == 2 and session.userid is defined %}
+                        <li><a href="/userpanel">User panel</a></li>
+                        <li><a href="/adminpanel">Admin panel</a></li>
+                         <li>
+                            <form action="/login" method="post">
+                                <button type="submit" name="logoutnow" value="logoutnow">Admin log out</button>
+                            </form>
+                        </li>
+                    {% elseif session.admin == 1 and session.userid is defined %}
+                        <li><a href="/userpanel">User panel</a></li>
+                        <li>
+                            <form action="/login" method="post">
+                                <button type="submit" name="logoutnow" value="logoutnow">User log out</button>
+                            </form>
+                        </li>
+                    {% elseif session.visitor is defined %}
+                        <li>
+                            <form action="/login" method="post">
+                                <button type="submit" name="logoutnow" value="logoutnow">Visitor log out</button>
+                            </form>
+                        </li>
+                    {% else %}
+                        <li><a href="/login">Inloggen & registeren</a></li>
+                    {% endif %}
+                </ul>
+            </div>
+        {% endblock %}
+
+        {% block name %}
+        {% endblock %}
+
+        {% block main %}
+        {% endblock %}
+
+        {% block text %}
+        {% endblock %}
+
+        {% block promotion %}
+        {% endblock %}
+
+        {% block recentprojects %}
+        {% endblock %}
+
+        {% block footer %}
+            <footer>
+                <div class="footer">
+                  <div class="footerlayout">
+                    <div class="footercontact" id="creative">
+                        <h3>CREATIVE</h3>
+                        <h4>FREEBIES</h4>
+                        <p>pellentesque in ipsum id orci porta dapibus. Praesent sapien massa convallis</p>
+                    </div>
+                    <div class="footercontact" id="mail">
+                          <i class="far fa-envelope" id="svg"></i>
+                          <h4>Mail</h4>
+                          <p>info@yourmail.com</p>
+                    </div>
+                    <div class="footercontact" id="call">
+                          <i class="fas fa-phone-volume" id="svg"></i>
+                          <h4>Call me</h4>
+                          <p>+0255 123 456 789</p>
+                    </div>
+                    <div class="footercontact" id="findus">
+                          <i class="fas fa-globe" id="svg"></i>
+                          <h4>Find me</h4>
+                          <p>My adress,city</p>
+                    </div>
+                  </div>
+                </div>
+            </footer>
+        {% endblock %}
+    </body>
+</html>

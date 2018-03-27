@@ -1,0 +1,14 @@
+{% extends 'index.html.twig' %}
+
+{% block main %}
+    <h1>You landed on a non existing page you are redirected in 20 seconds or you can navigate using the navigation bar</h1>
+    <h2>If there is a error your error ===> {{ error }}</h2>
+    <h3>If this problem persists can you please send me a email so I can give it a look and work on the solution!</h3>
+    <script>setTimeout(function(){
+    window.location.href = "/";
+    }, 20000)</script>
+
+{% endblock %}
+
+
+
