@@ -95,45 +95,49 @@ function updateVisitor() {
         die('error!: ' . $e->getMessage());
     }
 }
+
 function addVisitor($inviteid, $firstname, $lastname, $email) {
     $pdo = connection();
     try{
         $statement = $pdo->prepare('INSERT INTO visitors (inviteid, firstname, lastname, email) VALUES(?,?,?,?)');
         $statement->execute(array($inviteid, $firstname, $lastname, $email));
         $lastid = $pdo->lastInsertId();
-/*
         if(isset($lastid)) {
             $stmt = $pdo->prepare('SELECT email,randomid FROM visitors where id = ?');
             $stmt->execute(array($lastid));
             $value = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-            var_dump($value['email']);
-            $email = $value['email'];
-            $randomid = $value['randomid'];
-            die();
+            $email = $value[0]['email'];
+            $randomid = $value[0]['randomid'];
 
             if(isset($email) && !empty($email) && isset($randomid) && !empty($randomid)) {
                 emailNewVisitor($email, $randomid);
+            }else {
+                echo 'Boem er is iets niet gezet';
             }
         }
-        */
     } catch (PDOException $e) {
         die('error!: ' . $e->getMessage());
     }
 }
-/*
+
 function emailNewVisitor($email, $randomid) {
     $to = $email;
     $subject = "Your Visitor code";
     $message = 'Welcome you are invited to My first website I would really like it if you gave it a look your code is: ' .$randomid . 'you can use this on the login page and scroll down where there is a personalize section for your visitor code!';
+    $message = wordwrap($message, 70);
     $headers = array(
-        'from' => 'Nickydevendt@hotmail.com',
-        'Reply-To' => 'nickydevendt@hotmail.com',
-        'X-Mailer' => 'PHP/' . phpversion()
+        'from' => 'nicky@sensimedia.nl',
+        'Reply-To' => 'nicky@sensimedia.nl'
     );
-    mail($to,$subject,$message, $headers);
+    $mail = mail($to,$subject,$message, implode("\r\n", $headers));
+    if($mail){
+        echo 'mail was send!';
+    }else {
+        echo 'there went something wrong!';
+    }
 }
-*/
+
 function redirect() {
     header( "refresh:0;url=/login" );
     session_destroy();
