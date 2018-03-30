@@ -53,7 +53,7 @@ class VisitorService {
                     $this->randomid = [];
                     $message =  '<div class="alert">
                         <span class="closebtn">&times;</span>
-                        Hmmmm <strong>Error!</strong> I think you entered the wrong Code please try again or get in contact with the sender.
+                        Hmmmm <strong>Error!</strong> I think you entered the wrong Code please try again or get in contact with the sender
                         </div>';
                     echo $message;
                 }
