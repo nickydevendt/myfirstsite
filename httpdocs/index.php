@@ -21,7 +21,7 @@
             try {
                 include '../src/User/reglog.php';
                 $template = 'reglog.html.twig';
-                echo $twig->render($template);
+                echo $twig->render($template, ['session' => $_SESSION]);
             }catch(Exception $e) {
                 $template = 'error.html.twig';
                 echo $twig->render($template, ['error' => $e]);
@@ -30,7 +30,7 @@
         case '/workprojects':
             try {
                 $template = 'workhistory.html.twig';
-                echo $twig->render($template);
+                echo $twig->render($template, ['session' => $_SESSION]);
             }catch(Exception $e) {
                 $template = 'error.html.twig';
                 echo $twig->render($template, ['error' => $e]);
@@ -39,7 +39,7 @@
         case '/about':
             try {
                 $template = 'about.html.twig';
-                echo $twig->render($template);
+                echo $twig->render($template, ['session' => $_SESSION]);
             }catch(Exception $e) {
                 $template = 'error.html.twig';
                 echo $twig->render($template, ['error' => $e]);
@@ -48,7 +48,7 @@
         case '/resume':
             try {
                 $template = 'resume.html.twig';
-                echo $twig->render($template);
+                echo $twig->render($template, ['session' => $_SESSION]);
             }catch(Exception $e) {
                 $template = 'error.html.twig';
                 echo $twig->render($template, ['error' => $e]);
@@ -56,8 +56,9 @@
             break;
         case '/contact':
             try {
+                include '../src/Contact/contact.php';
                 $template = 'contact.html.twig';
-                echo $twig->render($template);
+                echo $twig->render($template, ['session' => $_SESSION]);
             }catch(Exception $e) {
                 $template = 'error.html.twig';
                 echo $twig->render($template, ['error' => $e]);
@@ -87,7 +88,7 @@
         case '/error':
             try {
                 $template = 'error.html.twig';
-                echo $twig->render($template);
+                echo $twig->render($template, ['session' => $_SESSION]);
             }catch(Exception $e) {
                 $template = 'error.html.twig';
                 echo $twig->render($template, ['error' => $e]);

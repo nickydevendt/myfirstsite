@@ -50,6 +50,9 @@ if(isset($_REQUEST['loginsubmit'])) {
 
 if(isset($_REQUEST['visitorsubmit'])) {
     $visitorService = new VisitorService();
-    $visitorcheck = $visitorService->login($_REQUEST['visitorcode']);
+    $visitorcheck = $visitorService->login($_POST['visitorcode']);
+    if(isset($visitorcheck)) {
+        header( "refresh:0;url=/about" );
+    }
 }
 

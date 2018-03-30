@@ -112,29 +112,44 @@ function addVisitor($inviteid, $firstname, $lastname, $email) {
 
             if(isset($email) && !empty($email) && isset($randomid) && !empty($randomid)) {
                 emailNewVisitor($email, $randomid);
+
             }else {
                 echo 'Boem er is iets niet gezet';
             }
         }
-    } catch (PDOException $e) {
-        die('error!: ' . $e->getMessage());
+    } catch (Exception $e) {
+        //die('error!: ' . $e->getMessage());
+        $message =  '<div class="alert">
+            <span class="closebtn">&times;</span>
+            <strong>Danger!</strong> something went wrong maybe this user is already in the database.
+            </div>';
+        echo $message;
+
     }
 }
 
 function emailNewVisitor($email, $randomid) {
-    $to = $email;
-    $subject = "Your Visitor code";
-    $message = 'Welcome you are invited to My first website I would really like it if you gave it a look your code is: ' .$randomid . 'you can use this on the login page and scroll down where there is a personalize section for your visitor code!';
-    $message = wordwrap($message, 70);
-    $headers = array(
-        'from' => 'nicky@sensimedia.nl',
-        'Reply-To' => 'nicky@sensimedia.nl'
-    );
-    $mail = mail($to,$subject,$message, implode("\r\n", $headers));
-    if($mail){
-        echo 'mail was send!';
-    }else {
-        echo 'there went something wrong!';
+    try{
+        $to = $email;
+        $subject = "Your Visitor code";
+        $message = 'Welcome you are invited to My first website I would really like it if you gave it a look your code is: ' .$randomid . ' you can use this on the login page and scroll down where there is a personalize section for your visitor code!';
+        $message = wordwrap($message, 70);
+        $headers = 'From: nicky@sensimedia.nl';
+        $mail = mail($to,$subject,$message, $headers);
+        if($mail){
+            //$message =  '<div class="alert">Visitor added and email was send!.</div> ';
+        $message = '<div class="alert succes">
+            <span class="closebtn">&times;</span>
+            <strong>Succes!</strong> Visitor was added and E-mail was send your email will soon arive! tell ur visitor to check their spam.
+            </div>';
+         echo $message;
+        }
+    } catch(Exception $e) {
+        $message =  '<div class="alert">
+            <span class="closebtn">&times;</span>
+            <strong>Danger!</strong> Nothing happend because user was already in the database.
+            </div>';
+        echo $message;
     }
 }
 

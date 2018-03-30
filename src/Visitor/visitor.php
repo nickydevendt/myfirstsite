@@ -21,7 +21,7 @@ class VisitorService {
                 $stmt->setFetchMode(PDO::FETCH_CLASS, 'VisitorService');
                 $stmt->execute(array($value));
                 $visitorarray = $stmt->fetch(PDO::FETCH_ASSOC);
-                if($value == $visitorarray['randomid']) {
+                if($this->randomid == $visitorarray['randomid']) {
                     $expiredVisitor = $this->expiredVisitor($visitorarray['expiredate']);
                     if($expiredVisitor == false) {
                             $_SESSION['visitor'] = true;
@@ -32,15 +32,30 @@ class VisitorService {
                             $this->email = $visitorarray['email'];
                             $this->datecreated = $visitorarray['datecreated'];
                             $this->expiredate = $visitorarray['expiredate'];
+                            $message =  '<div class="alert succes">
+                                <span class="closebtn">&times;</span>
+                                <strong>Welcome</strong> You succesfully logged in.
+                                </div>';
+                            echo $message;
                             return $visitorarray;
+
                     }elseif ($expiredVisitor == true) {
-//                           echo "<script>alert('Your login code was made 7 days ago make contact with your inviter to get a new code');</script>";
+                            $message =  '<div class="alert">
+                                <span class="closebtn">&times;</span>
+                                <strong>Danger!</strong> Visitor code was expired and now deleted it was created on: '. date('d/m/Y', strtotime($visitorarray['datecreated'])) .' .</div>';
+                            echo $message;
                            $stmt = $this->pdo->prepare('DELETE FROM visitors where randomid = ?');
                            $stmt->execute(array($visitorarray['randomid']));
+                           session_destroy();
                     }
                 }
                 else {
-  //              echo "<script>alert('Wrong code try again');</script>";
+                    $this->randomid = [];
+                    $message =  '<div class="alert">
+                        <span class="closebtn">&times;</span>
+                        Hmmmm <strong>Error!</strong> I think you entered the wrong Code please try again or get in contact with the sender.
+                        </div>';
+                    echo $message;
                 }
             }
         } catch(PDOException $e) {
