@@ -3,12 +3,18 @@ CREATE SEQUENCE users_id_seq;
 CREATE TABLE users (
     id BIGINT NOT NULL PRIMARY KEY DEFAULT NEXTVAL('users_id_seq'::regclass),
     firstname VARCHAR(255) NOT NULL,
+    prefix VARCHAR(255),
     lastname VARCHAR(255) NOT NULL,
     email VARCHAR(255) NOT NULL,
     currentemployer VARCHAR(255) NOT NULL,
     username VARCHAR(255) NOT NULL,
     password VARCHAR(255) NOT NULL,
-    admin BIGINT NOT NULL DEFAULT 1
+    admin BIGINT NOT NULL DEFAULT 1,
+    adres VARCHAR(255),
+    phone BIGINT,
+    datebirth VARCHAR(255),
+    gender VARCHAR(255),
+    nationality VARCHAR(255)
 );
 
 CREATE UNIQUE INDEX ON users(username);
@@ -43,11 +49,27 @@ CREATE SEQUENCE projects_id_seq;
 
 CREATE TABLE projects (
     id BIGINT NOT NULL PRIMARY KEY DEFAULT NEXTVAL('projects_id_seq'::regclass),
-    developer BIGINT,
+    developer BIGINT DEFAULT 0,
     name VARCHAR(255) DEFAULT NULL,
     companyname VARCHAR(255) DEFAULT NULL,
-    companywebsite varchar(255)
+    companywebsite varchar(255) DEFAULT NULL
 );
 
 ALTER TABLE projects ADD FOREIGN key(developer) REFERENCES users(id) ON DELETE CASCADE;
+
+CREATE SEQUENCE resume_id_seq;
+
+CREATE TABLE resume (
+    id BIGINT NOT NULL PRIMARY KEY DEFAULT NEXTVAL('resume_id_seq'::regclass),
+    usersid BIGINT DEFAULT 0,
+    educations VARCHAR[] DEFAULT NULL,
+    workexperience VARCHAR[] DEFAULT NULL,
+    courses VARCHAR[] DEFAULT NULL,
+    internships VARCHAR[] DEFAULT NULL,
+    skills VARCHAR[] DEFAULT NULL,
+    languages VARCHAR[] DEFAULT NULL,
+    reference VARCHAR[] DEFAULT NULL
+);
+
+ALTER TABLE resume ADD FOREIGN key(usersid) REFERENCES users(id) ON DELETE CASCADE;
 

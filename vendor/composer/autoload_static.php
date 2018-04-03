@@ -15,7 +15,7 @@ class ComposerStaticInit5ea77fcb1d7c8a693db58eab8dc0a165
         array (
             'Twig\\' => 5,
         ),
-        'S' => 
+        'S' =>
         array (
             'Symfony\\Polyfill\\Mbstring\\' => 26,
         ),
@@ -39,9 +39,13 @@ class ComposerStaticInit5ea77fcb1d7c8a693db58eab8dc0a165
     public static $prefixesPsr0 = array (
         'T' => 
         array (
-            'Twig_' => 
+            'Twig_' =>
             array (
                 0 => __DIR__ . '/..' . '/twig/twig/lib',
+            ),
+            'TCPDF' =>
+            array (
+                0 => __DIR__ . '/..' . '/laurentbrieu/tcpdf/src',
             ),
         ),
     );

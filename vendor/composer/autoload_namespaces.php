@@ -7,4 +7,5 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'Twig_' => array($vendorDir . '/twig/twig/lib'),
+    'TCPDF' => array($vendorDir . '/laurentbrieu/tcpdf/src'),
 );

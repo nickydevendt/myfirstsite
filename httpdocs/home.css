@@ -588,12 +588,6 @@ html,body {
 ::-moz-placeholder{color: #768ED2;font-family: 'Ubuntu';font-size: 20px;opacity: 1;}
 ::-webkit-input-placeholder {color: #7CB342; font-family: 'Ubuntu';font-size: 20px;}
 *:focus {outline: none;}
-input:focus:invalid,textarea:focus:invalid {
-/* when a field is considered invalid by the browser */
-    background: #fff url(images/invalid.png) no-repeat 98% center;
-    box-shadow: 0 0 5px #d45252;
-    border:1px solid #b03535;
-}
 input:required:valid,textarea:required:valid {
 /* when a field is considered valid by the browser */
     background: #fff url(images/valid.png) no-repeat 98% center;

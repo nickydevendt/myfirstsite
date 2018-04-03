@@ -17,7 +17,7 @@ INSERT INTO users (firstname, lastname, email, currentemployer, username, passwo
         'admin@admin.com',
         'sensimedia',
         'admin',
-        'blarps'
+        'e395dcc68bfaf68a07f55dbcc9b05884'
     ),
     (
         'nickyadmin',
@@ -25,7 +25,7 @@ INSERT INTO users (firstname, lastname, email, currentemployer, username, passwo
         'nicky@sensimedia.nl',
         'sensimedia',
         'nicky',
-        'blarps'
+        'e395dcc68bfaf68a07f55dbcc9b05884'
     );
 
 INSERT INTO affiliatedcompanys (name, website) VALUES
@@ -73,6 +73,19 @@ INSERT INTO projects (developer, name, companyname, companywebsite) VALUES
         'hema',
         'www.hema.nl'
     );
+
+INSERT INTO resume (usersid, educations, workexperience, internships, courses, skills, languages, reference) VALUES
+    (
+        '1',
+        '{"nova college","7 years","it was hard work but now its finally over!"}',
+        '{{army},{20 years},{het was erg leuk en spannend}}',
+        '{{"sensimedia"},{"defensie"}}',
+        '{"VCA"}',
+        '{{winner},{victor}}',
+        '{{Dutch},{English},{Spanish}}',
+        '{{the army},{nova college},{sensimedia}}'
+    );
+
 GRANT ALL PRIVILEGES ON database nicky TO nicky;
 GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO nicky;
 GRANT ALL PRIVILEGES ON ALL SEQUENCES IN SCHEMA public TO nicky;

@@ -4,9 +4,6 @@
     require_once '../vendor/autoload.php';
     session_start();
 
-    //$loader = new Twig_Loader_Filesystem(__DIR__.'/templates');
-    //above $loader is loading into public directory so needed to customize the path towards a non public directory where templates are loaded. see the loader below with custom path to folder templates!
-
     $loader = new Twig_Loader_Filesystem('/home/nicky/sites/projects/sensi/nicky/src/templates');
     $twig = new Twig_Environment($loader, array(
         'debug' => true
@@ -16,7 +13,6 @@
     ($_SERVER['REQUEST_URI']);
 
     switch ($_SERVER['REQUEST_URI']) {
-       // $template = substr($_SERVER['REQUEST_URI'], 1);
         case '/login':
             try {
                 include '../src/User/reglog.php';
@@ -47,8 +43,9 @@
             break;
         case '/resume':
             try {
+                include '../src/resume/resume.php';
                 $template = 'resume.html.twig';
-                echo $twig->render($template, ['session' => $_SESSION]);
+                echo $twig->render($template, ['session' => $_SESSION, 'showData' => getResume()]);
             }catch(Exception $e) {
                 $template = 'error.html.twig';
                 echo $twig->render($template, ['error' => $e]);

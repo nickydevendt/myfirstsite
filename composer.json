@@ -10,7 +10,8 @@
         }
     ],
     "require": {
-        "twig/twig": "*"
+        "twig/twig": "*",
+         "laurentbrieu/tcpdf": "dev-master"
     },
     "autoload": {
         "psr-4": {

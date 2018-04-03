@@ -35,7 +35,7 @@ if(isset($_REQUEST['logoutnow']))
 if(isset($_REQUEST['loginsubmit'])) {
     $userService = new UserService();
     $user = $userService->login($_POST['username'], $_POST['password']);
-    if(isset($user)) {
+    if($user == true) {
         $userData = $userService->getUser();
         if($userData['admin'] == 2) {
             header( "refresh:0;url=/adminpanel" );
@@ -44,7 +44,12 @@ if(isset($_REQUEST['loginsubmit'])) {
             header( "refresh:0;url=/userpanel" );
         }
     } else {
-        echo "<script>alert('failed to login!, try again');document.location='/login'</script>";
+       // echo "<script>alert('failed to login!, try again');document.location='/login'</script>"
+        $message =  '<div class="alert">
+        <span class="closebtn">&times;</span>
+        <strong>Error</strong> Wrong credentials try again, <strong>Trust me its worth it.</strong>
+        </div>';
+        echo $message;
     }
 }
 
