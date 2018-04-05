@@ -64,11 +64,13 @@
 
 {% block recentprojects %}
     <div><h2>Most recent projects</h2></div>
-    {% for project in projects %}
-    <div class="project" id="{{ project.id }}">
-        <a href="{{ project.companywebsite }}" ><img src="./img/{{ project.name }}.jpg" alt="{{ project.name }}"></a>
-        <p>Project: {{ project.name }} from {{ project.companyname }} </p>
+    <div class="projectgrouping">
+        {% for project in projects %}
+        <div class="project" id="{{ project.id }}">
+            <a href="{{ project.companywebsite }}" ><img src="./img/{{ project.name }}.jpg" alt="{{ project.name }}"></a>
+            <p>Project: {{ project.name }} from {{ project.companyname }} </p>
+        </div>
+        {% endfor %}
     </div>
-    {% endfor %}
 {% endblock %}
 
