@@ -11,9 +11,7 @@ function getResume() {
     $statement = $pdo->prepare('select id, usersid, unnest(educations) from resume where usersid = 1');
     $statement->execute();
 
-    $resume = $statement->fetchAll(PDO::FETCH_ASSOC);
-    var_dump($resume);
-    return $resume;
+    return $statement->fetchAll(PDO::FETCH_ASSOC);
 }
 
 function pdfviewer() {
