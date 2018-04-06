@@ -206,9 +206,10 @@ footer h4 {
 footer .footerlayout {
     margin: 0% 10%;
     padding: 5% 0;
-  }
+    display: flex;
+    flex-direction: row;
+}
 footer .footercontact {
-    display: inline-block;
     width: 20%;
 }
 footer #mail {
@@ -739,14 +740,26 @@ html,body {
     transition:.35s;
 }
 
-::-moz-placeholder{color: #768ED2;font-family: 'Ubuntu';font-size: 20px;opacity: 1;}
-::-webkit-input-placeholder {color: #7CB342; font-family: 'Ubuntu';font-size: 20px;}
-*:focus {outline: none;}
+::-moz-placeholder{
+    color: #768ED2;
+    font-family: 'Ubuntu';
+    font-size: 10px;
+    opacity: 1;
+}
+::-webkit-input-placeholder {
+    color: #7CB342;
+    font-family: 'Ubuntu';
+    font-size: 10px;
+}
+*:focus {
+    outline: none;
+}
 input:required:valid,textarea:required:valid {
 /* when a field is considered valid by the browser */
-    background: #fff url(images/valid.png) no-repeat 98% center;
-    box-shadow: 0 0 5px #5cd053;
+    background: #fff url(./img/valid.png) no-repeat 98% center;
+    box-shadow: 0 0 5px #87f67e;
     border-color: #28921f;
+    background-size: 20px;
 }
 
 @-webkit-keyframes message_animation {
@@ -803,54 +816,70 @@ input:required:valid,textarea:required:valid {
 }
 .reglog form {
   width: 100%;
-  background-color: rgb(46, 49, 54);
 }
-.login {
+.reglog .login {
     display: flex;
     flex-direction: column;
-    margin: 0 10%;
-
-    padding: 0% 3%;
 }
-.login form {
+.loginbtn {
+    width: 55%;
+    border-bottom: gray !important;
+    background: #5addd3b3 url(./img/login.png) no-repeat 98% center;
+    background-position: 25px 8px;
+    background-size: 20px;
+}
+.loginbtn:hover {
+    background-color: #75bcddcc;
+    transition: 0.8s ease-in-out;
+}
+.loginbtn::after{
+
+}
+.reglog .login form {
     padding: 5%;
-    background-color: rgb(46, 49, 54);
     border-radius: 5%;
 }
-.login form input {
+.reglog .login form input {
     margin-bottom: 15% !important;
 }
 .reglog form input {
     margin-bottom: 5%;
+    border-radius: 3px;
+    border-bottom: solid 1px #000;
+    border-left: none;
+    border-right: none;
+    border-top: none;
+    height: 35px;
 }
-.register {
+.reglog .register {
     flex-direction: column;
-    margin:0 10%;
-
-    padding: 0% 3%;
 }
 .register form {
     padding: 5%;
     border-radius: 5%;
 }
-.loginh3{
+.reglog .login h3{
     text-align: center;
 }
-.registerh3{
+.reglog.register h3{
     text-align: center;
+}
+#formstyling {
+    width: 40%;
+    height: auto;
+    margin: 50px auto 0;
+    padding: 50px;
+    background-color: #EEE;
+    color: #333;
+    border: 2px solid #C2D6FF;
+    border-radius: 40px 0 40px 0
 }
 .visitorarea {
     margin:0 auto;
     width:50%;
 }
-.kleurtjes {
-    background-color: rgb(46,49,54);
-    border-radius: 10%;
-    width: 100%;
-    margin-bottom: 15%;
-}
 .visitorarea h2 {
-    margin-left: 40%;
+    margin: 0 auto;
 }
 .visitorlogin {
     display: flex;
@@ -889,7 +918,7 @@ input:required:valid,textarea:required:valid {
     background-color: #f44336;
     color: white;
     opacity: 1;
-    transition: opacity 0.6s;
+    transition: opacity 1s;
 }
 
 .alert.succes {background-color: #4CAF50;} /* Green */
@@ -916,6 +945,18 @@ input:required:valid,textarea:required:valid {
 
 /* Extra small devices (portrait phones, less than 576px) */
 @media (max-width: 575.98px) {
+    .name{
+        width: 90%;
+    }
+    .overheaddiv {
+        width: 100%;
+    }
+    .text {
+        width: 80%;
+    }
+    body .project {
+        width: 90% !important;
+    }
     .topnav ul {
         flex-direction: column;
     }
@@ -923,9 +964,12 @@ input:required:valid,textarea:required:valid {
         height: 150px;
     }
 }
+/* Special sizing for contact page*/
+/* Contact page needs some thinking for responsive design!*/
 
 /* Small devices (landscape phones, less than 768px) */
 @media (max-width: 767.98px) {
+/* home page css styling */
     body .projectgrouping {
         flex-direction: column;
     }
@@ -933,6 +977,28 @@ input:required:valid,textarea:required:valid {
         width: 50%;
         margin: 0 auto;
     }
+    footer .footerlayout {
+        padding: 5% 2%;
+        flex-direction: column;
+        margin: 0 10%;
+    }
+    footer .footercontact {
+        width: 80%;
+        margin: 0 10%;
+    }
+/* work & projects page styling */
+    .overallineup {
+        flex-direction: column;
+    }
+    .worklineup {
+        width: 100%;
+
+    }
+    .textlineup {
+        width: 100%;
+        margin-left: 0;
+    }
+
 }
 
 /* Medium devices (tablets, less than 992px) */
@@ -946,12 +1012,21 @@ input:required:valid,textarea:required:valid {
     .carousel__nav {
         position: relative;
     }
+    .carousel__item img {
+        height: 300px;
+    }
 }
 
 /* Large devices (desktops, less than 1200px) */
 @media (max-width: 1199.98px) {
     footer .footerlayout {
+        width: 100%;
+        padding: 5% 5%;
         margin: 0;
+    }
+    .imggallery img {
+        width: 100%;
+        height: 100%;
     }
 }
 
