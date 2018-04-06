@@ -8,16 +8,17 @@
 
 {% block main %}
     <div class="reglog">
-        <div class="login">
+        <div class="login" id="formstyling">
             <form action="" method="post">
                 <label for="username">Fill in your username</label></br>
                 <input type="text" name="username" placeholder="username" required></br>
                 <label for="password">Fill in your password</label></br>
                 <input type="password" name="password" placeholder="password" required></br>
-                <input type="submit" name="loginsubmit" value="Log in"></br>
+                <input type="submit" name="loginsubmit" value="Log in" class="loginbtn"></br>
+                <button id="register">Create new user</button>
             </form>
         </div>
-        <div class="register">
+        <div class="register" id="formstyling">
             <form action="" method="post">
                 <label for="firstname">What is your firstname?</label></br>
                 <input type="text" name="firstname" value="" required></br>
@@ -32,13 +33,32 @@
                 <label for="employer">What is your current employer?</label></br>
                 <input type="text" name="currentemployer" value="" required></br>
                 <input type="submit" name="registersubmit" value="Register">
+                <input class="loginbtn" id="login"type="submit" value="Back to login" style="padding-left: 80px;">
             </form>
         </div>
     </div>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $('.register').hide();
+            $('#login').hide();
+            $('#register').click(function() {
+                $('.login').slideUp('slow');
+                $('.register').slideDown('slow');
+                $('#register').hide();
+                $('#login').show();
+            });
+            $('#login').click(function() {
+                $('.register').slideUp('slow');
+                $('.login').slideDown('slow');
+                $('#login').hide();
+                $('#register').show();
+            });
+        });
+    </script>
 {% endblock %}
 
 {% block promotion %}
-    <div class="visitorarea">
+    <div class="visitorarea" id="formstyling">
         <div class="kleurtjes">
             <h2>Visitor login</h2>
             <div class="visitorlogin">
@@ -51,3 +71,4 @@
         </div>
     </div>
 {% endblock %}
+
