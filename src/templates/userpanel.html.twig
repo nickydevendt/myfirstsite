@@ -1,11 +1,9 @@
 {% extends 'index.html.twig' %}
 
-{% block name %}
-    <h1>My account</h1>
-{% endblock %}
 
 {% block main %}
     <div class="adminalignment">
+        <h1>My account</h1>
         <table class="table">
             <tr>
                 <th>Firstname</th>
@@ -63,32 +61,34 @@
                     <td>{{ myVis.email }}</td>
                     <td>{{ myVis.expiredate }}</td>
                     <td>
-                        <button type="submit" name="deletevisitor" value="{{ myVis.id }}" >Delete Visitor</button>
+                        <button type="submit" name="deletevisitor" value="{{ myVis.id }}">Delete</button>
                     </td>
                 </form>
             </tr>
             {% endfor %}
         </table>
+    </div>
+    <div class="addvisitoralignment">
         <h3>Add a visitor</h3>
         <table class="table">
-                    <tr>
-                        <th>Firstname</th>
-                        <th>Lastname</th>
-                        <th>Email</th>
-                        <th>Action</th>
-                    </tr>
-                    <tr>
-                        <form method="post" action="">
-                            <input name ="inviteid" value="{{ currentUser.id }}" hidden>
-                            <td><input name="firstname" value=""></td>
-                            <td><input name="lastname" value=""></td>
-                            <td><input name="email" value="" required></td>
-                            <td>
-                                <button type="submit" name="addVisitor" value="" >Add visitor</button>
-                            </td>
-                        </form>
-                    </tr>
-                </table>
+            <tr>
+                <th>Firstname</th>
+                <th>Lastname</th>
+                <th>Email</th>
+                <th>Action</th>
+            </tr>
+            <tr>
+                <form method="post" action="">
+                    <input name ="inviteid" value="{{ currentUser.id }}" hidden>
+                    <td><input name="firstname" value=""></td>
+                    <td><input name="lastname" value=""></td>
+                    <td><input name="email" value="" required></td>
+                    <td>
+                        <button type="submit" name="addVisitor" value="" >Add visitor</button>
+                    </td>
+                </form>
+            </tr>
+        </table>
     </div>
 {% endblock %}
 

@@ -28,7 +28,6 @@ if(isset($_REQUEST['registersubmit']))
 
 if(isset($_REQUEST['logoutnow']))
 {
-    header( "refresh:0;url=/login" );
     session_destroy();
 }
 
@@ -57,7 +56,7 @@ if(isset($_REQUEST['visitorsubmit'])) {
     $visitorService = new VisitorService();
     $visitorcheck = $visitorService->login($_POST['visitorcode']);
     if(isset($visitorcheck)) {
-        header( "refresh:0;url=/about" );
+        header( "refresh:0;url=/" );
     }
 }
 

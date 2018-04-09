@@ -210,8 +210,11 @@ footer .footerlayout {
     flex-direction: row;
 }
 footer .footercontact {
-    width: 20%;
+    width: 25%;
 }
+footer .footercontact img {
+    height: 70px;
+    }
 footer #mail {
     border-left: 1px #fff;
     border-right: 1px #fff;
@@ -456,7 +459,7 @@ height: 20px;
 
 .backgroundclassresume {
     width: 100%;
-    background-color: gray;
+    background-color: #dde0e1;
     color: #fff;
     margin: 0 auto;
     padding: 3% 0 5%;
@@ -470,14 +473,14 @@ height: 20px;
     position: absolute;
     height: 100px;
     width: 100%;
-    top: 240px;
-    margin: 0 auto;
+    margin: -4% 0 0 0;
+    z-index: 1;
 }
 .personalimage img {
     height: 100px;
     border-radius: 50%;
-    position: absolute;
-    margin: 0 -4% auto;
+    position: relative;
+    margin: 0 auto;
     border: 2px solid #fff;
 }
 .resumeintro {
@@ -486,8 +489,12 @@ height: 20px;
     padding: 5% 0 2% 0;
     box-shadow: 1px 1px 1px 1px gray;
 }
+.resumeintro img {
+    height: 100px;
+    border-radius: 40%;
+}
 .resumeintro p {
-    margin: 5% 0;
+    margin: 3% 0;
     padding: 0 5%;
 }
 .socialresume button {
@@ -496,7 +503,7 @@ height: 20px;
     border-radius: 50%;
 }
 .socialresume {
-    margin: 4% 0;
+    margin: 4% 0 0;
 }
 .timeline {
     width: 80%;
@@ -524,8 +531,8 @@ height: 20px;
 .timelinerow .workexperience:first-child:before {
     width: 0;
     height: 0;
-    border-top: 2.5em solid gray;
-    border-right: 2.5em solid transparent;
+    border-top: 1.5em solid #089DE3;
+    border-right: 1.5em solid transparent;
     content: '';
     left: 44%;
     position: absolute;
@@ -534,8 +541,8 @@ height: 20px;
 .workexperience:last-child:before {
     width: 0;
     height: 0;
-    border-top: 2.5em solid gray;
-    border-left: 2.5em solid transparent;
+    border-top: 1.5em solid #089DE3;
+    border-left: 1.5em solid transparent;
     content: '';
     right: 44%;
     position: absolute;
@@ -544,7 +551,7 @@ height: 20px;
 .workexperience {
     width: 50%;
     height: 30%;
-    border: 1px solid gray;
+    border: 1px solid #089DE3;
 }
 .workexperience p {
     padding: 0 5%;
@@ -552,23 +559,25 @@ height: 20px;
 .workexperience .titleworkexperience {
     padding: 2%;
     text-align: center;
-    background-color: gray;
+    background-color: #089DE3;
+    color: #fff;
 }
 .timelinerow .workexperience i {
     position: absolute;
-    left: 49.4%;
+    left: 50%;
     width: 18px;
     height: 18px;
     background-color: #00bcd4;
     border-radius:50%;
     margin-top: -8px;
+    margin-left: -8px;
 }
 
 .skillsrow {
     display: flex;
 }
 .skills {
-    background-color: gray;
+    background-color: #7fa2c0;
     margin: 0 auto;
     padding: 50px;
     width: 30%;
@@ -597,16 +606,10 @@ progress::-webkit-progress-bar { background: #fff; }
 progress::-webkit-progress-value { background: #0063a6; }
 progress[value]::-moz-progress-bar {
     background-image:
-        -webkit-linear-gradient(-45deg,
-                                transparent 33%, rgba(0, 0, 0, .1) 33%,
-                                rgba(0,0, 0, .1) 66%, transparent 66%),
-        -webkit-linear-gradient(top,
-                                rgba(255, 255, 255, .25),
-                                rgba(0, 0, 0, .25)),
-        -webkit-linear-gradient(right, #09c, #f44);
-
-border-radius: 2px;
-background-size: 35px 20px, 100% 100%, 100% 100%;
+        -webkit-linear-gradient(-45deg, transparent 33%, rgba(0, 0, 0, .1) 33%, rgba(0,0, 0, .1) 66%, transparent 66%),
+        -webkit-linear-gradient(right, rgba(9, 206, 15, 1), rgba(0, 0, 0, .25)),
+        -webkit-linear-gradient(right, #09c, #0993ce);
+    border-radius: 2px;
 }
 
 /* css for contact page */
@@ -825,8 +828,11 @@ input:required:valid,textarea:required:valid {
     width: 55%;
     border-bottom: gray !important;
     background: #5addd3b3 url(./img/login.png) no-repeat 98% center;
-    background-position: 25px 8px;
+    background-position: 12px 8px;
     background-size: 20px;
+    height: 35px;
+    border: none;
+    border-radius: 3px;
 }
 .loginbtn:hover {
     background-color: #75bcddcc;
@@ -845,7 +851,7 @@ input:required:valid,textarea:required:valid {
 .reglog form input {
     margin-bottom: 5%;
     border-radius: 3px;
-    border-bottom: solid 1px #000;
+    border-bottom: solid 2px #6972da;
     border-left: none;
     border-right: none;
     border-top: none;
@@ -890,26 +896,84 @@ input:required:valid,textarea:required:valid {
     width: 100%;
 }
 .visitorlogin input {
-    width: 96%;
+    width: 100%;
     margin: 10px 0;
+    height: 35px;
 }
-.visitorlogin button {
-    width:100%;
-}
-
 /* css for admin/user panel */
 
 .table table, th, td {
     border: 1px solid black;
-}
-.adminalignment{
-    width: 100%;
     table-layout: fixed;
+}
+.adminalignment .table table, .adminalignment .table th, .adminalignment .table td {
+    display: flex;
+    height: 35px;
+}
+.adminalignment .table tbody {
+    display: flex;
+}
+.adminalignment .table tr {
+    word-wrap: break-word;
+    word-break: break-all;
+    white-space: normal;
+}
+.adminalignment .table button {
+    width: inherit;
+}
+.adminalignment {
+    width: 100%;
+    padding-left: 10%;
+}
+
+.adminalignment h1 {
+    text-align: left;
 }
 .table input {
     width: 100%;
     padding: 10px;
     box-sizing: border-box;
+}
+.tabelalignment {
+    width: 100%;
+    position: relative;
+}
+.tablealignment table {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    table-layout: fixed;
+}
+.tablealignment tr {
+    display: flex;
+    flex-direction: row;
+}
+.tablealignment tr td button {
+    width: -moz-available;
+}
+.tablealignment tr td, .tablealignment tr th {
+    display: flex;
+    width: 20%;
+    word-wrap: break-word;
+    word-break: break-all;
+    white-space: normal;
+}
+.addvisitoralignment {
+    margin-left: 10%;
+}
+.addvisitoralignment h3 {
+    text-align: left;
+}
+.addvisitoralignment tbody {
+    display: flex;
+}
+.addvisitoralignment tr {
+    display: flex;
+    flex-direction: column;
+}
+.addvisitoralignment tr th, .addvisitoralignment tr td {
+    display: flex;
+    height: 35px;
 }
 /* hieronder komen de alert box messages */
 
@@ -957,11 +1021,76 @@ input:required:valid,textarea:required:valid {
     body .project {
         width: 90% !important;
     }
+    .topnav {
+        height: 25%;
+    }
     .topnav ul {
         flex-direction: column;
     }
     .carousel__items {
         height: 150px;
+    }
+    .personalimage img {
+        height: 40px !important;
+    }
+    .resumeintro {
+        width: 100%;
+    }
+    .timeline {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+    }
+    .timelinerow {
+        flex-direction: column;
+    }
+    .workexperience {
+        width: 100%;
+        height: 100%;
+    }
+    .timeline::before {
+        display: none;
+    }
+    .timelinerow .workexperience i {
+        display: none;
+    }
+    .timelinerow .workexperience:first-child {
+        margin-right: 0;
+    }
+    .timelinerow .workexperience:last-child {
+        margin-top: 0;
+    }
+    .timelinerow .workexperience:first-child::before {
+        display: none;
+    }
+    .timelinerow .workexperience:last-child::before {
+        display: none;
+    }
+    .skilltext {
+        margin-top: 5%;
+    }
+    .skillsrow {
+        flex-direction: column;
+    }
+    .skills {
+        padding: 10px;
+        width: 90%;
+    }
+    #formstyling {
+        width: 100% !important;
+    }
+    .visitorlogin {
+        margin: 0;
+        padding: 0;
+    }
+    .loginbtn {
+        width: 100% !important;
+    }
+    .adminalignment {
+        padding: 0;
+    }
+    .tablealignment tr th:nth-child(2),.tablealignment tr th:nth-child(3), .tablealignment tr td:nth-child(2), .tablealignment tr td:nth-child(3) {
+        display: none;
     }
 }
 /* Special sizing for contact page*/
@@ -970,6 +1099,9 @@ input:required:valid,textarea:required:valid {
 /* Small devices (landscape phones, less than 768px) */
 @media (max-width: 767.98px) {
 /* home page css styling */
+    .topnav a {
+        margin: 10px 10px 0 20px;
+    }
     body .projectgrouping {
         flex-direction: column;
     }
@@ -986,19 +1118,37 @@ input:required:valid,textarea:required:valid {
         width: 80%;
         margin: 0 10%;
     }
+    .personalimage {
+        margin: -5% 0 0 0;
+        height: 50px;
+    }
+    .personalimage img {
+        height: 70px;
+    }
 /* work & projects page styling */
     .overallineup {
         flex-direction: column;
     }
     .worklineup {
         width: 100%;
-
     }
     .textlineup {
         width: 100%;
         margin-left: 0;
     }
-
+    .timeline::before {
+        height: 110%;
+        left: 50.5%;
+    }
+    .timelinerow .workexperience i {
+        margin-left: -4px;
+    }
+    #formstyling {
+        width: 70%;
+    }
+    .loginbtn {
+        width: 50%;
+    }
 }
 
 /* Medium devices (tablets, less than 992px) */
@@ -1028,6 +1178,7 @@ input:required:valid,textarea:required:valid {
         width: 100%;
         height: 100%;
     }
+
 }
 
 
