@@ -13,11 +13,12 @@ if(isset($_REQUEST['registersubmit']))
 {
     $data = array( 
         $_REQUEST['firstname'],
+        $_REQUEST['prefix'],
         $_REQUEST['lastname'],
         $_REQUEST['email'],
         $_REQUEST['currentemployer'],
         $_REQUEST['username'],
-        md5($_REQUEST['password'])
+        password_hash($_REQUEST['password'], PASSWORD_DEFAULT)
         );
     $userService = new UserService();
     $registerresult = $userService->createUser($data);
@@ -42,11 +43,14 @@ if(isset($_REQUEST['loginsubmit'])) {
         elseif($userData['admin'] == 1) {
             header( "refresh:0;url=/userpanel" );
         }
+        elseif($userData['admin'] == 0) {
+            session_destroy();
+        }
     } else {
        // echo "<script>alert('failed to login!, try again');document.location='/login'</script>"
         $message =  '<div class="alert">
         <span class="closebtn">&times;</span>
-        <strong>Error</strong> Wrong credentials try again, <strong>Trust me its worth it.</strong>
+        <strong>Error</strong> Wrong credentials try again, <strong>Or get in contact with the admin <a href="mailto:nicky@sensimedia.nl">Admin</a>.</strong>
         </div>';
         echo $message;
     }

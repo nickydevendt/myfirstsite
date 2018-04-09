@@ -37,8 +37,9 @@ class UserService
         $statement->execute(array($this->_username));
         if($statement->rowCount() > 0) {
             $user = $statement->fetch(PDO::FETCH_ASSOC);
-            $submitted_pass = md5($this->_password);
-            if($submitted_pass == $user['password']) {
+            $submitted_pass = $this->_password;
+            if(password_verify($submitted_pass,$user['password'])) {
+                echo 'aapjes hebben banenen';
                 return $user;
             }else{
             return false;
@@ -62,7 +63,7 @@ class UserService
     public function createUser(array $data)
     {
         try {
-            $stmt = $this->pdo->prepare('INSERT INTO users(firstname,lastname,email,currentemployer,username,password) VALUES(?,?,?,?,?,?)');
+            $stmt = $this->pdo->prepare('INSERT INTO users(firstname, prefix ,lastname,email,currentemployer,username,password) VALUES(?,?,?,?,?,?,?)');
             $stmt->execute($data);
         } catch (PDOException $e) {
             die('error!: '. $e->getMessage());

@@ -22,7 +22,7 @@
                     <td><input name="email" value="{{ currentUser.email }}"></td>
                     <td><input name="currentemployer" value="{{ currentUser.currentemployer }}"></td>
                     <td><input name="username" value="{{ currentUser.username }}"></td>
-                    <td><input name="password" value="{{ currentUser.password }}"></td>
+                    <td><input name="password" type="password" value="{{ currentUser.password }}"></td>
                         {% if currentUser.admin == 1 %}
                             <td><p>Gebruiker</p></td>
                         {% elseif currentUser.admin == 2 %}

@@ -42,7 +42,7 @@ function updateUser() {
             $_POST['email'],
             $_POST['currentemployer'],
             $_POST['username'],
-            md5($_POST['password']),
+            password_hash($_POST['password'], PASSWORD_DEFAULT),
             $_POST['updaterow']
         ));
     } catch (PDOException $e) {
@@ -115,10 +115,14 @@ function addVisitor($inviteid, $firstname, $lastname, $email) {
 
             }else {
                 echo 'Boem er is iets niet gezet';
+                $message =  '<div class="alert warning">
+            <span class="closebtn">&times;</span>
+            <strong>Warning!</strong> something went wrong try again.
+            </div>';
+        echo $message;
             }
         }
     } catch (Exception $e) {
-        //die('error!: ' . $e->getMessage());
         $message =  '<div class="alert">
             <span class="closebtn">&times;</span>
             <strong>Danger!</strong> something went wrong maybe this user is already in the database.

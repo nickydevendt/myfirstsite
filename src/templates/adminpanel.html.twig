@@ -28,16 +28,16 @@
                         <td><input name="email" value="{{ user.email }}"></td>
                         <td><input name="currentemployer" value="{{ user.currentemployer }}"></td>
                         <td><input name="username" value="{{ user.username }}"></td>
-                        <td><input name="password" value="{{ user.password }}"></td>
+                        <td><input name="password" type="password" value="{{ user.password }}"></td>
                             {% if user.admin == 1 %}
                                 <td><p>Gebruiker</p></td>
                             {% elseif user.admin == 2 %}
                                 <td><p>Admin</p></td>
                             {% endif %}
                         <td>
-                            <button type="submit" name="updaterow" value="{{ user.id }}">Update Gebruiker</button>
+                            <button type="submit" name="updaterow" value="{{ user.id }}">Update</button>
                         <td>
-                            <button type="submit" name="deleterow" value="{{ user.id }}">Delete Gebruiker</button></br>
+                            <button type="submit" name="deleterow" value="{{ user.id }}">Delete</button></br>
                         </td>
                     </form>
                 </tr>
