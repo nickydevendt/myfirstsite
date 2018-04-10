@@ -429,37 +429,9 @@ margin: 0 .125%;
 width: 20px;
 height: 20px;
 }
-
-
-
-
-
-
-
-
-
-
-/* dit is het einde van affiliated companys carousel! */
-/* css for Resume page */
-/*.section_row_3 {
-    width:100%;
-    display: flex;
-}
-.learngoals {
-    width: 50%;
-}
-.imggallery {
-    display: inline-block;
-    width: 50%;
-}
-.imggallery img {
-    width:49%;
-}
-*/
-
 .backgroundclassresume {
     width: 100%;
-    background-color: #dde0e1;
+    background-color: #bddde7;
     color: #fff;
     margin: 0 auto;
     padding: 3% 0 5%;
@@ -738,7 +710,7 @@ html,body {
     letter-spacing: 1px;
 }
 #send:hover{
-    background: #f32a06;
+    background: #0db90f;
     color: #fff;
     transition:.35s;
 }
@@ -834,6 +806,49 @@ input:required:valid,textarea:required:valid {
     border: none;
     border-radius: 3px;
 }
+
+.updatebtn {
+    width: 100%;
+    border-bottom: green !important;
+    background: green url(./img/update.png) no-repeat 98% center;
+    background-position: 12px 5px;
+    background-size: 20px;
+    height: 30px;
+    border: none;
+    border-radius: 3px;
+}
+.deletebtn {
+    width: 100%;
+    border-bottom: red !important;
+    background: red url(./img/delete.png) no-repeat 98% center;
+    background-position: 12px 5px;
+    background-size: 20px;
+    height: 30px;
+    border: none;
+    border-radius: 3px;
+}
+.registerbtn {
+    width: 55%;
+    border-bottom: gray !important;
+    background: #5addd3b3 url(./img/register.png) no-repeat 98% center;
+    background-position: 12px 3px;
+    background-size: 30px;
+    height: 35px;
+    border: none;
+    border-radius: 3px;
+}
+.logoutbtn {
+    width: 100%;
+    border-bottom: gray !important;
+    background: #5addd3b3 url(./img/logout.png) no-repeat 98% center;
+    background-position: 12px 8px;
+    background-size: 20px;
+    height: 35px;
+    border: none;
+    border-radius: 3px;
+    color: #fff;
+    padding-left: 40px;
+}
 .loginbtn:hover {
     background-color: #75bcddcc;
     transition: 0.8s ease-in-out;
@@ -918,9 +933,6 @@ input:required:valid,textarea:required:valid {
     word-break: break-all;
     white-space: normal;
 }
-.adminalignment .table button {
-    width: inherit;
-}
 .adminalignment {
     width: 100%;
     padding-left: 10%;
@@ -953,13 +965,23 @@ input:required:valid,textarea:required:valid {
 }
 .tablealignment tr td, .tablealignment tr th {
     display: flex;
-    width: 20%;
+    width: 25%;
     word-wrap: break-word;
     word-break: break-all;
     white-space: normal;
 }
 .addvisitoralignment {
     margin-left: 10%;
+}
+.addvisitoralignment h4 {
+    margin-top: 5% !important;
+    margin-bottom: 3%;
+    text-align: left;
+}
+
+.addvisitoralignment table tr td button {
+    width: 100%;
+    height:35px !important;
 }
 .addvisitoralignment h3 {
     text-align: left;
@@ -973,7 +995,7 @@ input:required:valid,textarea:required:valid {
 }
 .addvisitoralignment tr th, .addvisitoralignment tr td {
     display: flex;
-    height: 35px;
+    height: 40px;
 }
 /* hieronder komen de alert box messages */
 
@@ -1009,6 +1031,9 @@ input:required:valid,textarea:required:valid {
 
 /* Extra small devices (portrait phones, less than 576px) */
 @media (max-width: 575.98px) {
+    .topnav ul {
+        padding-left: 10% !important;
+    }
     .name{
         width: 90%;
     }
@@ -1022,7 +1047,7 @@ input:required:valid,textarea:required:valid {
         width: 90% !important;
     }
     .topnav {
-        height: 25%;
+        height: 50%;
     }
     .topnav ul {
         flex-direction: column;
@@ -1092,6 +1117,9 @@ input:required:valid,textarea:required:valid {
     .tablealignment tr th:nth-child(2),.tablealignment tr th:nth-child(3), .tablealignment tr td:nth-child(2), .tablealignment tr td:nth-child(3) {
         display: none;
     }
+    .addvisitoralignment {
+        margin: 0;
+    }
 }
 /* Special sizing for contact page*/
 /* Contact page needs some thinking for responsive design!*/
@@ -1101,6 +1129,9 @@ input:required:valid,textarea:required:valid {
 /* home page css styling */
     .topnav a {
         margin: 10px 10px 0 20px;
+    }
+    .topnav ul {
+        padding-left: 0;
     }
     body .projectgrouping {
         flex-direction: column;

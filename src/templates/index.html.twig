@@ -31,20 +31,20 @@
                         <li><a href="/adminpanel">Admin panel</a></li>
                          <li>
                             <form action="/login" method="post">
-                                <button type="submit" name="logoutnow" value="logoutnow">Admin log out</button>
+                                <button class="logoutbtn" type="submit" name="logoutnow" value="logoutnow">Log out</button>
                             </form>
                         </li>
                     {% elseif session.admin == 1 and session.userid is defined %}
                         <li><a href="/userpanel">User panel</a></li>
                         <li>
                             <form action="/login" method="post">
-                                <button type="submit" name="logoutnow" value="logoutnow">User log out</button>
+                                <button class="logoutbtn" type="submit" name="logoutnow" value="logoutnow">Log out</button>
                             </form>
                         </li>
                     {% elseif session.visitor is defined %}
                         <li>
                             <form action="/login" method="post">
-                                <button type="submit" name="logoutnow" value="logoutnow">Visitor log out</button>
+                                <button class="logoutbtn" type="submit" name="logoutnow" value="logoutnow">Log out</button>
                             </form>
                         </li>
                     {% else %}

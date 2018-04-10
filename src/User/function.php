@@ -39,7 +39,6 @@ class UserService
             $user = $statement->fetch(PDO::FETCH_ASSOC);
             $submitted_pass = $this->_password;
             if(password_verify($submitted_pass,$user['password'])) {
-                echo 'aapjes hebben banenen';
                 return $user;
             }else{
             return false;

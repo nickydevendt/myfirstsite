@@ -11,7 +11,6 @@
                 <th>Email</th>
                 <th>Current employer</th>
                 <th>Username</th>
-                <th>Password</th>
                 <th>Role</th>
                 <th>Action</th>
             </tr>
@@ -21,15 +20,14 @@
                     <td><input name="lastname" value="{{ currentUser.lastname }}"></td>
                     <td><input name="email" value="{{ currentUser.email }}"></td>
                     <td><input name="currentemployer" value="{{ currentUser.currentemployer }}"></td>
-                    <td><input name="username" value="{{ currentUser.username }}"></td>
-                    <td><input name="password" type="password" value="{{ currentUser.password }}"></td>
+                    <td><input name="username" value="{{ currentUser.username }}" readonly></td>
                         {% if currentUser.admin == 1 %}
                             <td><p>Gebruiker</p></td>
                         {% elseif currentUser.admin == 2 %}
                             <td><p>Admin</p></td>
                         {% endif %}
                     <td>
-                        <button type="submit" name="updaterow" value="{{ currentUser.id }}">Update Gebruiker</button>
+                        <button class="updatebtn" type="submit" name="updaterow" value="{{ currentUser.id }}">Update Gebruiker</button>
                     </td>
                 </form>
             </tr>
@@ -41,7 +39,7 @@
 <h1>See my visitors</h1>
 {% endblock %}
 
-{% block recentprojects %}
+{% block promotion %}
     <div class="tablealignment">
         <table class="table">
             <tr>
@@ -61,7 +59,7 @@
                     <td>{{ myVis.email }}</td>
                     <td>{{ myVis.expiredate }}</td>
                     <td>
-                        <button type="submit" name="deletevisitor" value="{{ myVis.id }}">Delete</button>
+                        <button class="deletebtn" type="submit" name="deletevisitor" value="{{ myVis.id }}">Delete</button>
                     </td>
                 </form>
             </tr>
@@ -84,11 +82,33 @@
                     <td><input name="lastname" value=""></td>
                     <td><input name="email" value="" required></td>
                     <td>
-                        <button type="submit" name="addVisitor" value="" >Add visitor</button>
+                        <button class="registerbtn" type="submit" name="addVisitor" value="" >Add visitor</button>
                     </td>
                 </form>
             </tr>
         </table>
+    <h4>Get new password</h4>
+    <table class="table">
+        <tr>
+            <th>Old password</th>
+            <th>New password</th>
+            <th>Confirm new password</th>
+            <th>Confirm</th>
+        </tr>
+        <tr>
+            <form method="post" action="">
+                <input name ="userid" value="{{ currentUser.id }}" hidden>
+                <td><input type="password" pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" name="oldpw" value="" required></td>
+                <td><input type="password" pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" name="newpw" value="" required></td>
+                <td><input type="password" pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" name="confirmnewpw" value="" required></td>
+                <td>
+                    <button class="updatebtn" type="submit" name="updateuserpassword" value="">Update</button>
+                </td>
+            </form>
+        </tr>
+    </table>
     </div>
 {% endblock %}
+{% block recentprojects %}
+{% endblock%}
 

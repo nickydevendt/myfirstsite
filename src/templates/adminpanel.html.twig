@@ -14,7 +14,6 @@
                 <th>Email</th>
                 <th>Current employer</th>
                 <th>Username</th>
-                <th>Password</th>
                 <th>Role</th>
                 <th>Action</th>
                 <th></th>
@@ -28,16 +27,15 @@
                         <td><input name="email" value="{{ user.email }}"></td>
                         <td><input name="currentemployer" value="{{ user.currentemployer }}"></td>
                         <td><input name="username" value="{{ user.username }}"></td>
-                        <td><input name="password" type="password" value="{{ user.password }}"></td>
                             {% if user.admin == 1 %}
                                 <td><p>Gebruiker</p></td>
                             {% elseif user.admin == 2 %}
                                 <td><p>Admin</p></td>
                             {% endif %}
                         <td>
-                            <button type="submit" name="updaterow" value="{{ user.id }}">Update</button>
+                            <button class="updatebtn" type="submit" name="updaterow" value="{{ user.id }}">Update</button>
                         <td>
-                            <button type="submit" name="deleterow" value="{{ user.id }}">Delete</button></br>
+                            <button class="deletebtn" type="submit" name="deleterow" value="{{ user.id }}">Delete</button></br>
                         </td>
                     </form>
                 </tr>
@@ -78,7 +76,6 @@
                             <button type="submit" name="deletevisitor" value="{{ visitor.id }}" >Delete Visitor</button>
                         </form>
                     </td>
-                    <td></td>
                 </tr>
             {% endfor %}
         </table>

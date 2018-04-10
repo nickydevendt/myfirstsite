@@ -12,9 +12,32 @@ if(isset($_POST['deletevisitor'])) {
 if(isset($_POST['updatevisitor'])) {
     updateVisitor();
 }
-if(isset($_POST['addVisitor']))
-{
+if(isset($_POST['addVisitor'])) {
     addVisitor($_POST['inviteid'], $_POST['firstname'], $_POST['lastname'], $_POST['email']);
+}
+if(isset($_POST['updateuserpassword'])) {
+    $oldpw = $_POST['oldpw'];
+    $newpw = $_POST['newpw'];
+    $confirmpw = $_POST['confirmnewpw'];
+
+    if($newpw == $confirmpw) {
+        if(preg_match("^\S*(?=\S{8,})(?=\S*[a-z])(?=\S*[A-Z])(?=\S*[\d])\S*$^",$confirmpw)) {
+            $password = $confirmpw;
+            updateUserPassword($oldpw, $password, $_POST['userid']);
+        }else {
+            $message = '<div class="alert">
+                <span class="closebtn">&times;</span>
+                <strong>Warning!</strong> passwords need to contain atleast: a Upper character, a lower case character, a number and atleast 8 characters long.
+                </div>';
+             echo $message;
+        }
+    }else {
+        $message = '<div class="alert">
+            <span class="closebtn">&times;</span>
+            <strong>Warning!</strong> New passwords did not match, make sure they are the same!
+                </div>';
+         echo $message;
+    }
 }
 function getCurrentUser() : array{
     $pdo = connection();
@@ -35,18 +58,88 @@ function getCurrentUser() : array{
 function updateUser() {
     $pdo = connection();
     try{
-        $statement = $pdo->prepare('UPDATE users SET firstname = ?, lastname = ?, email = ?, currentemployer = ?, username = ?, password = ? WHERE id = ?');
+        $statement = $pdo->prepare('UPDATE users SET firstname = ?, lastname = ?, email = ?, currentemployer = ?, username = ? WHERE id = ?');
         $statement->execute(
             array($_POST['firstname'],
             $_POST['lastname'],
             $_POST['email'],
             $_POST['currentemployer'],
             $_POST['username'],
-            password_hash($_POST['password'], PASSWORD_DEFAULT),
             $_POST['updaterow']
         ));
+        $count = $statement->rowCount();
+            if($count == '0') {
+                $message = '<div class="alert">
+                    <span class="closebtn">&times;</span>
+                    <strong>Warning!</strong> nothing was changed!.
+                    </div>';
+                echo $message;
+            }else {
+                $message = '<div class="alert succes">
+                    <span class="closebtn">&times;</span>
+                    <strong>Succes!</strong> account info was updated.
+                    </div>';
+                echo $message;
+            }
     } catch (PDOException $e) {
         die('error!: ' . $e->getMessage());
+    }
+}
+function updateUserPassword($oldpw, $password, $userid) {
+    $pdo = connection();
+    try {
+        if(isset($userid) && isset($password) && isset($oldpw)) {
+            $statement = $pdo->prepare('SELECT password FROM users WHERE id = ?');
+            $statement->execute(array($userid));
+            $currentpassword = $statement->fetch(PDO::FETCH_ASSOC);
+            $currentpwcheck = password_verify($oldpw, $currentpassword['password']);
+            if($currentpwcheck == true) {
+                if(isset($password) && !empty($password)) {
+                    $statement = $pdo->prepare('UPDATE users set password = ? WHERE id = ?');
+                    $statement->execute(array(
+                        password_hash($password, PASSWORD_DEFAULT),
+                        $userid
+                    ));
+                    $count = $statement->rowCount();
+                    if($count == '0') {
+                        $message = '<div class="alert">
+                            <span class="closebtn">&times;</span>
+                            <strong>Warning!</strong> the update went wrong try again.
+                            </div>';
+                        echo $message;
+                    }else {
+                        $message = '<div class="alert succes">
+                            <span class="closebtn">&times;</span>
+                            <strong>Succes!</strong> password is updated.
+                            </div>';
+                        echo $message;
+                    }
+                }
+                else {
+                    $message = '<div class="alert">
+                        <span class="closebtn">&times;</span>
+                        <strong>Warning!</strong> new password is not valid or empty? try again.
+                        </div>';
+                    echo $message;
+                }
+            }else {
+                $message = '<div class="alert">
+                    <span class="closebtn">&times;</span>
+                    <strong>Warning!</strong> Invalid password.
+                    </div>';
+                 echo $message;
+            }
+        }else {
+            $message = '<div class="alert">
+                <span class="closebtn">&times;</span>
+                <strong>Warning!</strong> Something is not set, make sure your containers with passwords are filled and correct!
+                </div>';
+             echo $message;
+            return "<script>alert('$e');document.location='/userpanel'</script>";
+        }
+    } catch(PDOException $e) {
+        echo "<script>alert('$e');document.location='/login'</script>";
+        session_destroy();
     }
 }
 function getMyVisitors() : array {
@@ -76,6 +169,14 @@ function deleteVisitor() {
     try{
             $statement = $pdo->prepare('DELETE FROM visitors WHERE id = ?');
             $statement->execute(array($_POST['deletevisitor']));
+            $count = $statement->rowCount();
+                if($count == 1) {
+                    $message = '<div class="alert succes">
+                        <span class="closebtn">&times;</span>
+                        <strong>Succes!</strong> Visitor deleted.
+                        </div>';
+                    echo $message;
+                }
         } catch (PDOException $e) {
             die('error!: ' . $e->getMessage());
         }
