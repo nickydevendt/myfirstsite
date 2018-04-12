@@ -797,7 +797,7 @@ input:required:valid,textarea:required:valid {
     flex-direction: column;
 }
 .loginbtn {
-    width: 55%;
+    width: 80%;
     border-bottom: gray !important;
     background: #5addd3b3 url(./img/login.png) no-repeat 98% center;
     background-position: 12px 8px;
@@ -828,7 +828,7 @@ input:required:valid,textarea:required:valid {
     border-radius: 3px;
 }
 .registerbtn {
-    width: 55%;
+    width: 80%;
     border-bottom: gray !important;
     background: #5addd3b3 url(./img/register.png) no-repeat 98% center;
     background-position: 12px 3px;
@@ -836,6 +836,7 @@ input:required:valid,textarea:required:valid {
     height: 35px;
     border: none;
     border-radius: 3px;
+    padding-left: 25px;
 }
 .logoutbtn {
     width: 100%;
@@ -1111,6 +1112,11 @@ input:required:valid,textarea:required:valid {
     .loginbtn {
         width: 100% !important;
     }
+    .registerbtn {
+        width: 100% !important;
+        background-position: 6px 5px;
+        background-size: 25px;
+    }
     .adminalignment {
         padding: 0;
     }
@@ -1119,6 +1125,9 @@ input:required:valid,textarea:required:valid {
     }
     .addvisitoralignment {
         margin: 0;
+    }
+    .skills {
+        margin-top:5px;
     }
 }
 /* Special sizing for contact page*/
@@ -1176,9 +1185,6 @@ input:required:valid,textarea:required:valid {
     }
     #formstyling {
         width: 70%;
-    }
-    .loginbtn {
-        width: 50%;
     }
 }
 
