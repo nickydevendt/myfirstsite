@@ -11,7 +11,8 @@
     ],
     "require": {
         "twig/twig": "*",
-         "laurentbrieu/tcpdf": "dev-master"
+         "laurentbrieu/tcpdf": "dev-master",
+        "tijsverkoyen/css-to-inline-styles": "^2.2"
     },
     "autoload": {
         "psr-4": {

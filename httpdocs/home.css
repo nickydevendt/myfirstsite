@@ -805,6 +805,7 @@ input:required:valid,textarea:required:valid {
     height: 35px;
     border: none;
     border-radius: 3px;
+    -webkit-appearance: none;
 }
 
 .updatebtn {
@@ -816,6 +817,7 @@ input:required:valid,textarea:required:valid {
     height: 30px;
     border: none;
     border-radius: 3px;
+    -webkit-appearance: none;
 }
 .deletebtn {
     width: 100%;
@@ -826,10 +828,12 @@ input:required:valid,textarea:required:valid {
     height: 30px;
     border: none;
     border-radius: 3px;
+    -webkit-appearance: none;
 }
 .registerbtn {
     width: 80%;
     border-bottom: gray !important;
+    background-color: red;
     background: #5addd3b3 url(./img/register.png) no-repeat 98% center;
     background-position: 12px 3px;
     background-size: 30px;
@@ -837,6 +841,9 @@ input:required:valid,textarea:required:valid {
     border: none;
     border-radius: 3px;
     padding-left: 25px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
 }
 .logoutbtn {
     width: 100%;

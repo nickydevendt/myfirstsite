@@ -1,6 +1,7 @@
 <?php
 
 include_once '../src/Admin/function.php';
+use TijsVerkoyen\CssToInlineStyles\CssToInlineStyles;
 
 if(isset($_POST['updaterow'])) {
     updateUser();
@@ -215,10 +216,9 @@ function addVisitor($inviteid, $firstname, $lastname, $email) {
                 emailNewVisitor($email, $randomid);
 
             }else {
-                echo 'Boem er is iets niet gezet';
                 $message =  '<div class="alert warning">
             <span class="closebtn">&times;</span>
-            <strong>Warning!</strong> something went wrong try again.
+            <strong>Warning!</strong> nothing inserted try again.
             </div>';
         echo $message;
             }
@@ -237,17 +237,19 @@ function emailNewVisitor($email, $randomid) {
     try{
         $to = $email;
         $subject = "Your Visitor code";
-        $message = 'Welcome you are invited to My first website I would really like it if you gave it a look your code is: ' .$randomid . ' you can use this on the login page and scroll down where there is a personalize section for your visitor code!';
-        $message = wordwrap($message, 70);
+        $cssToInlineStyles = new CssToInlineStyles();
+        $html = file_get_contents(__DIR__ . '/email.html');
+        $css = file_get_contents(__DIR__ . '/email.css');
+        $message = $cssToInlineStyles->convert($html, $css);
+
         $headers = 'From: nicky@sensimedia.nl';
         $mail = mail($to,$subject,$message, $headers);
         if($mail){
-            //$message =  '<div class="alert">Visitor added and email was send!.</div> ';
-        $message = '<div class="alert succes">
-            <span class="closebtn">&times;</span>
-            <strong>Succes!</strong> Visitor was added and E-mail was send your email will soon arive! tell ur visitor to check their spam.
-            </div>';
-         echo $message;
+            $message = '<div class="alert succes">
+                <span class="closebtn">&times;</span>
+                <strong>Succes!</strong> Visitor was added and E-mail was send your email will soon arive! tell ur visitor to check their spam.
+                </div>';
+            echo $message;
         }
     } catch(Exception $e) {
         $message =  '<div class="alert">
