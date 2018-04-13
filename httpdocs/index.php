@@ -65,7 +65,7 @@
             try {
                 include '../src/Admin/function.php';
                 $template = 'adminpanel.html.twig';
-                echo $twig->render($template, ['session' => $_SESSION, 'users' => getAllUsers(), 'visitors' => getAllVisitors(), 'myVisitors' => getMyVisitors(), checkLogin()]);
+                echo $twig->render($template, ['session' => $_SESSION, 'users' => getAllUsers(), 'visitors' => getAllVisitors(), 'myVisitors' => getMyVisitors(), checkAdminLog()]);
             }catch(Exception $e) {
                 $template = 'error.html.twig';
                 echo $twig->render($template, ['error' => $e]);

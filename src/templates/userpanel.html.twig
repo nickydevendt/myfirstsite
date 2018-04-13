@@ -7,6 +7,7 @@
         <table class="table">
             <tr>
                 <th>Firstname</th>
+                <th>Prefix</th>
                 <th>Lastname</th>
                 <th>Email</th>
                 <th>Current employer</th>
@@ -17,6 +18,7 @@
             <tr>
                 <form method="post" action="">
                     <td><input name="firstname" value="{{ currentUser.firstname }}"></td>
+                    <td><input name="prefix" value="{{ currentUser.prefix }}"></td>
                     <td><input name="lastname" value="{{ currentUser.lastname }}"></td>
                     <td><input name="email" value="{{ currentUser.email }}"></td>
                     <td><input name="currentemployer" value="{{ currentUser.currentemployer }}"></td>

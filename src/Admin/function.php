@@ -3,6 +3,14 @@
 include_once '../src/User/function.php';
 include_once '../src/User/userpanel.php';
 
+function checkAdminLog()
+{
+    if($_SESSION['admin'] != 2) {
+        header('refresh:0;url=/login');
+        session_destroy();
+    }
+}
+
 function getAllUsers() : array
 {
     $pdo = connection();

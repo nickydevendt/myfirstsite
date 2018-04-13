@@ -59,9 +59,10 @@ function getCurrentUser() : array{
 function updateUser() {
     $pdo = connection();
     try{
-        $statement = $pdo->prepare('UPDATE users SET firstname = ?, lastname = ?, email = ?, currentemployer = ?, username = ? WHERE id = ?');
+        $statement = $pdo->prepare('UPDATE users SET firstname = ?, prefix = ?,lastname = ?, email = ?, currentemployer = ?, username = ? WHERE id = ?');
         $statement->execute(
             array($_POST['firstname'],
+            $_POST['prefix'],
             $_POST['lastname'],
             $_POST['email'],
             $_POST['currentemployer'],
@@ -179,7 +180,11 @@ function deleteVisitor() {
                     echo $message;
                 }
         } catch (PDOException $e) {
-            die('error!: ' . $e->getMessage());
+            $message =  '<div class="alert warning">
+            <span class="closebtn">&times;</span>
+            <strong>Warning!</strong> ' . $e . '.
+            </div>';
+            echo $message;
         }
 }
 
@@ -194,7 +199,11 @@ function updateVisitor() {
             $_POST['updatevisitor']
         ));
     } catch (PDOException $e) {
-        die('error!: ' . $e->getMessage());
+        $message =  '<div class="alert warning">
+        <span class="closebtn">&times;</span>
+        <strong>Warning!</strong> ' . $e . '.
+        </div>';
+        echo $message;
     }
 }
 
