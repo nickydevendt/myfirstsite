@@ -36,7 +36,6 @@ body h2 {
 .navBrand {
     position: relative;
     margin-left: 50px;
-    margin-top: 10px;
 }
 
 .navBrand img:first-child {
@@ -45,6 +44,7 @@ body h2 {
     height: 60px;
     width: 60px;
     border-radius: 50%;
+    margin-top: 10px;
 }
 .navBrand img:last-child {
     position: absolute;
@@ -53,6 +53,7 @@ body h2 {
     height: 40px;
     border-radius: 50%;
     width: 40px;
+    margin-top: 10px;
 }
 .topnav a {
     text-decoration: none;
