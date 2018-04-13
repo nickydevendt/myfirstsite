@@ -4,7 +4,7 @@
 {% block main %}
     <div class="adminalignment">
         <h1>My account</h1>
-        <table class="table">
+        <table class="table blueTable">
             <tr>
                 <th>Firstname</th>
                 <th>Prefix</th>
@@ -24,7 +24,7 @@
                     <td><input name="currentemployer" value="{{ currentUser.currentemployer }}"></td>
                     <td><input name="username" value="{{ currentUser.username }}" readonly></td>
                         {% if currentUser.admin == 1 %}
-                            <td><p>Gebruiker</p></td>
+                            <td><p>User</p></td>
                         {% elseif currentUser.admin == 2 %}
                             <td><p>Admin</p></td>
                         {% endif %}
@@ -43,7 +43,7 @@
 
 {% block promotion %}
     <div class="tablealignment">
-        <table class="table">
+        <table class="table blueTable">
             <tr>
                 <th>Randomid</th>
                 <th>Firstname</th>
@@ -70,7 +70,7 @@
     </div>
     <div class="addvisitoralignment">
         <h3>Add a visitor</h3>
-        <table class="table">
+        <table class="table blueTable">
             <tr>
                 <th>Firstname</th>
                 <th>Lastname</th>
@@ -90,7 +90,7 @@
             </tr>
         </table>
     <h4>Get new password</h4>
-    <table class="table">
+    <table class="table blueTable">
         <tr>
             <th>Old password</th>
             <th>New password</th>

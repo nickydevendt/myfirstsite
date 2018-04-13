@@ -1,7 +1,6 @@
 <?php
 
 include_once '../src/Admin/function.php';
-use TijsVerkoyen\CssToInlineStyles\CssToInlineStyles;
 
 if(isset($_POST['updaterow'])) {
     updateUser();
@@ -223,7 +222,6 @@ function addVisitor($inviteid, $firstname, $lastname, $email) {
 
             if(isset($email) && !empty($email) && isset($randomid) && !empty($randomid)) {
                 emailNewVisitor($email, $randomid);
-
             }else {
                 $message =  '<div class="alert warning">
             <span class="closebtn">&times;</span>
@@ -245,12 +243,8 @@ function addVisitor($inviteid, $firstname, $lastname, $email) {
 function emailNewVisitor($email, $randomid) {
     try{
         $to = $email;
-        $subject = "Your Visitor code";
-        $cssToInlineStyles = new CssToInlineStyles();
-        $html = file_get_contents(__DIR__ . '/email.html');
-        $css = file_get_contents(__DIR__ . '/email.css');
-        $message = $cssToInlineStyles->convert($html, $css);
-
+        $subject = "Welcome to my personal website";
+        $message = 'Welcome you are invited to my personal website I would really like it if you gave it a look your code is: <br/></br><strong>' .$randomid . '</strong> <br/><br/><br/><p>you can use this on the login page and scroll down where there is a visitor section for your visitor code!</p>';
         $headers = 'From: nicky@sensimedia.nl';
         $mail = mail($to,$subject,$message, $headers);
         if($mail){

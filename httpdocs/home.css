@@ -32,14 +32,36 @@ body h2 {
     padding: 0;
     font-family: 'Ubuntu';
 }
+
+.navBrand {
+    position: relative;
+    margin-left: 50px;
+    margin-top: 10px;
+}
+
+.navBrand img:first-child {
+    position: absolute;
+    left: 0;
+    height: 60px;
+    width: 60px;
+    border-radius: 50%;
+}
+.navBrand img:last-child {
+    position: absolute;
+    left: 10px;
+    top: 10px;
+    height: 40px;
+    border-radius: 50%;
+    width: 40px;
+}
 .topnav a {
     text-decoration: none;
     margin:10px 20px 0 20px;
     color: #fff;
 }
 .topnav a:hover {
-    color: #000;
-    transition: ease-in 0.5s;
+    color: #5addd3b3;
+    transition: ease-in-out .8s;
 }
 .name {
     text-align: left;
@@ -214,7 +236,13 @@ footer .footercontact {
 }
 footer .footercontact img {
     height: 70px;
-    }
+    -webkit-transition: -webkit-transform .8s ease-in-out;
+    transition: transform .8s ease-in-out;
+}
+footer .footercontact img:hover {
+    transform: rotate(50deg);
+    transition: 1s;
+}
 footer #mail {
     border-left: 1px #fff;
     border-right: 1px #fff;
@@ -806,18 +834,20 @@ input:required:valid,textarea:required:valid {
     border: none;
     border-radius: 3px;
     -webkit-appearance: none;
+    cursor: pointer;
 }
 
 .updatebtn {
     width: 100%;
     border-bottom: green !important;
     background: green url(./img/update.png) no-repeat 98% center;
-    background-position: 12px 5px;
+    background-position: 8px 8px;
     background-size: 20px;
-    height: 30px;
+    height: 35px;
     border: none;
     border-radius: 3px;
     -webkit-appearance: none;
+    cursor: pointer;
 }
 .deletebtn {
     width: 100%;
@@ -829,6 +859,7 @@ input:required:valid,textarea:required:valid {
     border: none;
     border-radius: 3px;
     -webkit-appearance: none;
+    cursor: pointer;
 }
 .registerbtn {
     width: 80%;
@@ -844,6 +875,7 @@ input:required:valid,textarea:required:valid {
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
+    cursor: pointer;
 }
 .logoutbtn {
     width: 100%;
@@ -856,6 +888,11 @@ input:required:valid,textarea:required:valid {
     border-radius: 3px;
     color: #fff;
     padding-left: 40px;
+    cursor: pointer;
+}
+.logoutbtn:hover {
+    background-color: red;
+    transition: .8s;
 }
 .loginbtn:hover {
     background-color: #75bcddcc;
@@ -926,9 +963,71 @@ input:required:valid,textarea:required:valid {
 /* css for admin/user panel */
 
 .table table, th, td {
-    border: 1px solid black;
     table-layout: fixed;
 }
+.table tbody {
+    padding: 5%;
+}
+table.blueTable {
+    border: 1px solid #1C6EA4;
+    background-color: #EEEEEE;
+    text-align: left;
+    border-collapse: collapse;
+    padding: 5%;
+}
+table.blueTable td, table.blueTable th {
+}
+table.blueTable tbody td {
+    font-size: 13px;
+}
+table.blueTable tbody td form {
+    width: 100%;
+}
+table.blueTable tr:nth-child(even) {
+    background: #D0E4F5;
+}
+table.blueTable thead {
+    background: #1C6EA4;
+    background: -moz-linear-gradient(top, #5592bb 0%, #327cad 66%, #1C6EA4 100%);
+    background: -webkit-linear-gradient(top, #5592bb 0%, #327cad 66%, #1C6EA4 100%);
+    background: linear-gradient(to bottom, #5592bb 0%, #327cad 66%, #1C6EA4 100%);
+    border-bottom: 2px solid #444444;
+}
+table.blueTable thead th {
+    font-size: 15px;
+    font-weight: bold;
+    color: #FFFFFF;
+    border-left: 2px solid #D0E4F5;
+}
+table.blueTable thead th:first-child {
+    border-left: none;
+}
+
+table.blueTable tfoot {
+    font-size: 14px;
+    font-weight: bold;
+    color: #FFFFFF;
+    background: #D0E4F5;
+    background: -moz-linear-gradient(top, #dcebf7 0%, #d4e6f6 66%, #D0E4F5 100%);
+    background: -webkit-linear-gradient(top, #dcebf7 0%, #d4e6f6 66%, #D0E4F5 100%);
+    background: linear-gradient(to bottom, #dcebf7 0%, #d4e6f6 66%, #D0E4F5 100%);
+    border-top: 2px solid #444444;
+}
+table.blueTable tfoot td {
+    font-size: 14px;
+}
+table.blueTable tfoot .links {
+    text-align: right;
+}
+table.blueTable tfoot .links a{
+    display: inline-block;
+    background: #1C6EA4;
+    color: #FFFFFF;
+    padding: 2px 8px;
+    border-radius: 5px;
+}
+
+
 .adminalignment .table table, .adminalignment .table th, .adminalignment .table td {
     display: flex;
     height: 35px;
@@ -943,7 +1042,7 @@ input:required:valid,textarea:required:valid {
 }
 .adminalignment {
     width: 100%;
-    padding-left: 10%;
+    padding: 5% 0% 5% 10%;
 }
 
 .adminalignment h1 {
@@ -951,7 +1050,6 @@ input:required:valid,textarea:required:valid {
 }
 .table input {
     width: 100%;
-    padding: 10px;
     box-sizing: border-box;
 }
 .tabelalignment {
@@ -1042,6 +1140,9 @@ input:required:valid,textarea:required:valid {
     .topnav ul {
         padding-left: 10% !important;
     }
+    .topnav ul li form {
+        margin-left: 20px;
+    }
     .name{
         width: 90%;
     }
@@ -1127,8 +1228,11 @@ input:required:valid,textarea:required:valid {
     .adminalignment {
         padding: 0;
     }
-    .tablealignment tr th:nth-child(2),.tablealignment tr th:nth-child(3), .tablealignment tr td:nth-child(2), .tablealignment tr td:nth-child(3) {
+    .tablealignment tr th:nth-child(1), .tablealignment tr th:nth-child(2),.tablealignment tr th:nth-child(3), .tablealignment tr td:nth-child(2), .tablealignment tr td:nth-child(3), .tablealignment tr td:nth-child(4){
         display: none;
+    }
+    .tablealignment tr td, .tablealignment tr th {
+        width: 35%;
     }
     .addvisitoralignment {
         margin: 0;

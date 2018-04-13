@@ -5,8 +5,8 @@
 {% endblock %}
 
 {% block main %}
-    <div class="adminalignment">
-        <table class="table">
+    <div class="tablealignment">
+        <table class="table blueTable">
             <tr>
                 <th>Id</th>
                 <th>Firstname</th>
@@ -30,7 +30,7 @@
                         <td><input name="currentemployer" value="{{ user.currentemployer }}"></td>
                         <td><input name="username" value="{{ user.username }}"></td>
                             {% if user.admin == 1 %}
-                                <td><p>Gebruiker</p></td>
+                                <td><p>User</p></td>
                             {% elseif user.admin == 2 %}
                                 <td><p>Admin</p></td>
                             {% endif %}
@@ -51,7 +51,7 @@
 {% endblock%}
 {% block promotion %}
     <div class="tablealignment">
-        <table class="table">
+        <table class="table blueTable">
             <tr>
                 <th>ID</th>
                 <th>Randomid</th>
@@ -75,7 +75,7 @@
                     <td>{{ visitor.expiredate }}</td>
                     <td>
                         <form method="post" action="">
-                            <button type="submit" name="deletevisitor" value="{{ visitor.id }}" >Delete Visitor</button>
+                            <button class="deletebtn" type="submit" name="deletevisitor" value="{{ visitor.id }}" >Delete</button>
                         </form>
                     </td>
                 </tr>
