@@ -1,39 +1,24 @@
 {% extends 'index.html.twig' %}
 
 {% block main %}
-<body>
-    <div class="contactpage">
-    <div class = "frame">
-    <div id = "button_open_envelope">
-    Email me
-    </div>
-    <div class = "message">
-        <form method="post" target="_self">
-            <input type="text" name="name" id="name" placeholder=" Name* " required>
-
-            <input type="email" name="email" id="email" placeholder=" Email* " required pattern="^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$">
-
-            <input type="text" name="phone" id="phone" placeholder=" Phone (optional)" autofocus>
-
-            <textarea name="message" id="messarea" placeholder=" Message* " required></textarea>
-
-            <input type="text" name="address" id="address" style="display: none;">
-            <input type="submit" value="Send" id="send" name="contactsend">
-        </form>
-    </div>
-    <div class = "bottom"></div>
-    <div class = "left"></div>
-    <div class = "right"></div>
-    <div class = "top"></div>
-        <script>
-            $(document).ready(function(){
-                $('.frame').click(function(){
-                    $('.top').addClass('open');
-                    $('.message').addClass('pull');
-                });
-            });
-        </script>
-    </div>
-    </div>
-</body>
+    <body>
+        <div class="contactpage">
+            <div class = "frame">
+                <div id = "mailme">
+                    <h1>Email me</h1>
+                </div>
+                <div class = "message">
+                    <form method="post" target="_self">
+                        <input type="text" name="name" id="name" placeholder=" Name* " required>
+                        <input type="email" name="email" id="email" placeholder=" Email* " required pattern="^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$">
+                        <input type="text" name="phone" id="phone" placeholder=" Phone (optional)" pattern="[0-9]{6,}" autofocus>
+                        <textarea name="message" id="messarea" placeholder=" Message* " required></textarea>
+                        <input type="text" name="address" id="address" style="display: none;">
+                        <input type="submit" value="Send" id="send" name="contactsend">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </body>
 {% endblock %}
+

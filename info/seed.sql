@@ -17,7 +17,7 @@ INSERT INTO users (firstname, lastname, email, currentemployer, username, passwo
         'admin@admin.com',
         'sensimedia',
         'admin',
-        'e395dcc68bfaf68a07f55dbcc9b05884'
+        'blarps'
     ),
     (
         'nickyadmin',
@@ -25,7 +25,7 @@ INSERT INTO users (firstname, lastname, email, currentemployer, username, passwo
         'nicky@sensimedia.nl',
         'sensimedia',
         'nicky',
-        'e395dcc68bfaf68a07f55dbcc9b05884'
+        'blarps'
     );
 
 INSERT INTO affiliatedcompanys (name, website) VALUES

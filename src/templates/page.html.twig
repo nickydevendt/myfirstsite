@@ -65,6 +65,7 @@
 {% block recentprojects %}
     <div><h2>Most recent projects</h2></div>
     <div class="projectgrouping">
+        {{ dump(projects) }}
         {% for project in projects %}
         <div class="project" id="{{ project.id }}">
             <a href="{{ project.companywebsite }}" ><img src="./img/{{ project.name }}.jpg" alt="{{ project.name }}"></a>
