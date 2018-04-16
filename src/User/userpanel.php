@@ -50,7 +50,7 @@ function getCurrentUser() : array{
             echo "<script>alert('You are not logged in or are doing shady stuff you are redirected!');document.location='/login'</script>";
             session_destroy();
         }
-    } catch (PDOException $e) {
+    } catch (PDOException $e) { // this die needs to change into something more flowinglee instead of a cold hard die!
         die('error!: ' . $e->getMessage());
         }
 }
