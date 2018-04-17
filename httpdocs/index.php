@@ -45,7 +45,7 @@
             try {
                 include '../src/resume/resume.php';
                 $template = 'resume.html.twig';
-                echo $twig->render($template, ['session' => $_SESSION, 'showData' => getResume()]);
+                echo $twig->render($template, ['session' => $_SESSION, 'showData' => getResume(), 'post' => $_POST]);
             }catch(Exception $e) {
                 $template = 'error.html.twig';
                 echo $twig->render($template, ['error' => $e]);
