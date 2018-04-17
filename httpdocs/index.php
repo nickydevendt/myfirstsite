@@ -4,7 +4,7 @@
     require_once '../vendor/autoload.php';
     session_start();
 
-    $loader = new Twig_Loader_Filesystem('/home/nicky/sites/projects/sensi/nicky/src/templates');
+    $loader = new Twig_Loader_Filesystem(__DIR__.'/../src/templates');
     $twig = new Twig_Environment($loader, array(
         'debug' => true
     ));

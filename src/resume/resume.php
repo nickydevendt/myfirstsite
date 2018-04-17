@@ -3,6 +3,7 @@
 // needs fixing after the page resume is build!
 
 require_once '../src/User/function.php';
+//require_once 'tcpdf_include.php';
 
 function getResume() {
     $userService = new UserService();

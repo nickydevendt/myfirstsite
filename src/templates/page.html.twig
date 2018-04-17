@@ -40,7 +40,7 @@
             {% endfor %}
             <ul class="carousel__items">
                 {% for company in companys %}
-                    <li class="carousel__item"><img src="./img/{{ company.id }}.jpg" alt="{{ company.name }}"></li>
+                    <li class="carousel__item"><img src="/img/{{ company.id }}.jpg" alt="{{ company.name }}"></li>
                 {% endfor %}
             </ul>
         <div class="carousel__prev">
@@ -67,7 +67,7 @@
     <div class="projectgrouping">
         {% for project in projects %}
         <div class="project" id="{{ project.id }}">
-            <a href="https://{{ project.companywebsite }}" target="_blank"><img src="./img/{{ project.name }}.jpg" alt="{{ project.name }}"></a>
+            <a href="https://{{ project.companywebsite }}" target="_blank"><img src="/img/{{ project.name }}.jpg" alt="{{ project.name }}"></a>
             <p>Project: {{ project.name }} from {{ project.companyname }} </p>
         </div>
         {% endfor %}
