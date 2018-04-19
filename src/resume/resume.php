@@ -55,7 +55,7 @@ function pdfviewer($logo) {
     }
     $pdf->SetFont('helvetica', '', 9);
     $pdf->AddPage();
-    $pdf->Image('../httpdocs/img/blackvalid.png', 60, 146, 5,'','','nickydevendt.nl','', false,300, '', false);
+   /* $pdf->Image('../httpdocs/img/blackvalid.png', 60, 146, 5,'','','nickydevendt.nl','', false,300, '', false);
     $pdf->Image('../httpdocs/img/blackvalid.png', 60, 154, 5,'','','nickydevendt.nl','', false,300, '', false);
     $pdf->Image('../httpdocs/img/blackvalid.png', 60, 162, 5,'','','nickydevendt.nl','', false,300, '', false);
 
@@ -67,7 +67,7 @@ function pdfviewer($logo) {
     $pdf->Image('../httpdocs/img/blackvalid.png', 87, 224, 10,'','','nickydevendt.nl','', false,300, '', false);// 2e linker onder
     $pdf->Image('../httpdocs/img/blackvalid.png', 108, 224, 10,'','','nickydevendt.nl','', false,300, '', false);// 3e linker onder
     $pdf->Image('../httpdocs/img/blackvalid.png', 128, 224, 10,'','','nickydevendt.nl','', false,300, '', false);// 4e linker onder
-
+*/
     $html = '
         <style>
             .personalinfo {
@@ -177,7 +177,7 @@ function pdfviewer($logo) {
                                     <tr><td></td></tr>
                                 <tr><td class="h1">Skills</td></tr>
                                     <tr><td></td></tr>
-                                    <tr><td>data can go here</td></tr>
+                                    <tr><td><img src="../httpdocs/img/blackvalid.png"  width="50" height="50">ata can go here</td></tr>
                                     <tr><td></td></tr>
                                     <tr><td>data can go here</td></tr>
                                     <tr><td></td></tr>
