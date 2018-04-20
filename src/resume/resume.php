@@ -3,12 +3,9 @@
 // needs fixing after the page resume is build!
 
 require_once '../src/User/function.php';
-$logo = '../../../../../../../../httpdocs/img/personicon.jpg';
-$skills = '../../../../../../../../httpdocs/img/blackvalid.png';
-var_dump($skills);
 
 if(isset($_POST['showResume'])) {
-    pdfviewer($logo);
+    pdfviewer();
 }
 
 
@@ -22,70 +19,48 @@ function getResume() {
     return $statement->fetchAll(PDO::FETCH_ASSOC);
 }
 
-function pdfviewer($logo) {
+function pdfviewer() {
     // create new pdf document
     $pdf = new TCPDF_TCPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
-    // set document information
-    $pdf->SetCreator(PDF_CREATOR);
-    $pdf->SetAuthor('Nicky de Vendt');
-    $pdf->SetTitle('TCPDF Curriculum vitae');
-    $pdf->SetSubject('TCPDF C.V.');
-    $pdf->SetKeywords('TCPDF, PDF, example, test, guide, C.V., Curriculum vitae, resume');
-
-    // set default header data
-    $pdf->SetHeaderData($logo, PDF_HEADER_LOGO_WIDTH, 'Curriculum vitae','by Nicky de Vendt - nickydevendt.nl',array(0,64,255), array(0,64,128));
-    $pdf->setFooterData(array(0,64,0), array(0,64,128));
-
-    // set header and footer font
-    $pdf->setHeaderFont(Array(PDF_FONT_NAME_MAIN, '', PDF_FONT_SIZE_MAIN));
-    $pdf->setFooterFont(Array(PDF_FONT_NAME_DATA, '', PDF_FONT_SIZE_DATA));
-
-    // set default monospace font
-    $pdf->SetDefaultMonospacedFont(PDF_FONT_MONOSPACED);
-    $pdf->SetAutoPageBreak(TRUE, PDF_MARGIN_BOTTOM);
-
-    // set margins
-    $pdf->SetMargins(PDF_MARGIN_LEFT, PDF_MARGIN_TOP, PDF_MARGIN_RIGHT);
-    $pdf->SetHeaderMargin(PDF_MARGIN_HEADER);
-    $pdf->SetFooterMargin(PDF_MARGIN_FOOTER);
 
     if (@file_exists(dirname(__FILE__).'/lang/eng.php')) {
         require_once(dirname(__FILE__).'/lang/eng.php');
         $pdf->setLanguageArray($l);
     }
     $pdf->SetFont('helvetica', '', 9);
-    $pdf->AddPage();
-   /* $pdf->Image('../httpdocs/img/blackvalid.png', 60, 146, 5,'','','nickydevendt.nl','', false,300, '', false);
-    $pdf->Image('../httpdocs/img/blackvalid.png', 60, 154, 5,'','','nickydevendt.nl','', false,300, '', false);
-    $pdf->Image('../httpdocs/img/blackvalid.png', 60, 162, 5,'','','nickydevendt.nl','', false,300, '', false);
 
-    $pdf->Image('../httpdocs/img/blackvalid.png', 70, 207, 10,'','','nickydevendt.nl','', false,300, '', false);//linksboven
-    $pdf->Image('../httpdocs/img/blackvalid.png', 87, 207, 10,'','','nickydevendt.nl','', false,300, '', false);//2e boven links
-    $pdf->Image('../httpdocs/img/blackvalid.png', 108, 207, 10,'','','nickydevendt.nl','', false,300, '', false);// 3e boven links
-    $pdf->Image('../httpdocs/img/blackvalid.png', 128, 207, 10,'','','nickydevendt.nl','', false,300, '', false);// boven laatste
-    $pdf->Image('../httpdocs/img/blackvalid.png', 70, 224, 10,'','','nickydevendt.nl','', false,300, '', false);//linker onder
-    $pdf->Image('../httpdocs/img/blackvalid.png', 87, 224, 10,'','','nickydevendt.nl','', false,300, '', false);// 2e linker onder
-    $pdf->Image('../httpdocs/img/blackvalid.png', 108, 224, 10,'','','nickydevendt.nl','', false,300, '', false);// 3e linker onder
-    $pdf->Image('../httpdocs/img/blackvalid.png', 128, 224, 10,'','','nickydevendt.nl','', false,300, '', false);// 4e linker onder
-*/
+    $pdf->SetPrintHeader(false);
+    $pdf->SetPrintFooter(false);
+    $pdf->AddPage();
+
     $html = '
         <style>
             .personalinfo {
-                background-color: blue;
+                background-color: none;
                 text-align: right;
             }
             .workinfo {
-                background-color: red;
+                background-color: none;
             }
             .Education {
                 float:right;
                 width: 500;
             }
             .h1 {
-                color: aqua;
+                color: #22a0dd;
             }
             .p {
                 color: black;
+            }
+            .educom {
+                color: gray;
+            }
+            .img {
+                height: 15;
+                width: 15;
+            }
+            .centerline {
+                background-color: #d3cfcf;
             }
         </style>
         <html>
@@ -93,138 +68,264 @@ function pdfviewer($logo) {
             <body>
                 <table class="" width="100%" cellpadding="0" border="0">
                     <tr>
-                        <td class="personalinfo"width="25%">
+                        <td class="personalinfo"width="24%">
                             <table width="100%" border="0">
-                                <tr><td><b>Adres:</b></td></tr>
-                                <tr><td>Ijsselstraat 45, 1972WB ijmuiden</td></tr>
+                                <tr>
+                                    <td>
+                                        <table>
+                                            <tr width="100%">
+                                                <td width="97%"><img class="img" src="../httpdocs/img/personicon.jpg"  width="80" height="80"></td>
+                                                <td width="3%"></td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                                <tr><td><b>Nicky de Vendt</b></td></tr>
                                 <tr><td></td></tr>
-                                <tr><td><b>Phone number:</b></td></tr>
-                                <tr><td>0615503959</td></tr>
+                                <tr width="100">
+                                    <td width="100">Ijsselstraat 45<br> 1972WB ijmuiden</td>
+                                    <td><img class="img" src="../httpdocs/img/home.png" width="15" height="15"></td>
+                                </tr>
                                 <tr><td></td></tr>
-                                <tr><td><b>Email:</b></td></tr>
-                                <tr><td>nickydevendt@hotmail.com</td></tr>
+                                <tr width="100">
+                                    <td width="100"><br>22-07-1994</td>
+                                    <td><img class="img" src="../httpdocs/img/cake.png"  width="15" height="12"></td>
+                                </tr>
                                 <tr><td></td></tr>
-                                <tr><td><b>Birth place:</b></td></tr>
-                                <tr><td>Ijmuiden</td></tr>
-                                <tr><td></td></tr>
-                                <tr><td><b>sex:</b></td></tr>
-                                <tr><td>Male/Man</td></tr>
-                                <tr><td></td></tr>
-                                <tr><td><b>Nationality:</b></td></tr>
-                                <tr><td>Dutch/Nederlandse</td></tr>
-                                <tr><td></td></tr>
-                                <tr><td><b>Drivers license:</b></td></tr>
-                                <tr><td></td></tr>
-                                <tr><td class="h1">Languages</td></tr>
-                                <tr><td>English</td></tr>
-                                <tr><td></td></tr>
-                                <tr><td>Here will be placed round shapes one time</td></tr>
-                                <tr><td></td></tr>
-                                <tr><td>Dutch</td></tr>
-                                <tr><td></td></tr>
-                                <tr><td>HIER KOMEN BOLLETJES</td></tr>
-                                <tr><td></td></tr>
-                                <tr><td>Spanish</td></tr>
-                                <tr><td></td></tr>
-                                <tr><td>round shapes everywhere</td></tr>
-                                <tr><td></td></tr>
-                                <tr><td class="h1">Software skills</td></tr>
-                                <tr><td></td></tr>
-                                <tr><td>Word</td></tr>
-                                <tr><td></td></tr>
-                                <tr><td>Round shapes</td></tr>
-                                <tr><td></td></tr>
-                                <tr><td>PHP</td></tr>
-                                <tr><td></td></tr>
-                                <tr><td>Round shapes</td></tr>
+                                <tr width="100">
+                                    <td width="100">
+                                        0615503959<br>
+                                        nickydevendt@hotmail.com
+                                    </td>
+                                    <td><img class="img" src="../httpdocs/img/contact.png"  width="15" height="15"></td>
+                                </tr>
+                            </table>
+                            <table>
                                 <tr><td></td></tr>
                                 <tr><td></td></tr>
-                                <tr><td>Personality</td></tr>
+                                <tr><td class="h1"><b>Languages</b></td></tr>
                                 <tr><td></td></tr>
-                                <tr><td>Communicative</td></tr>
-                                <tr><td>Punctuality</td></tr>
-                                <tr><td>Creativity</td></tr>
-                                <tr><td>Organized</td></tr>
+                                <tr><td><b>English</b></td></tr>
+                                <tr>
+                                    <td>
+                                        <img class="img" src="../httpdocs/img/blackcircle.png"  width="12" height="12">
+                                        <img class="img" src="../httpdocs/img/blackcircle.png"  width="12" height="12">
+                                        <img class="img" src="../httpdocs/img/blackcircle.png"  width="12" height="12">
+                                        <img class="img" src="../httpdocs/img/whitecircle.png"  width="13" height="13">
+                                        <img class="img" src="../httpdocs/img/whitecircle.png"  width="13" height="13">
+                                    </td>
+                                </tr>
+                                <tr><td></td></tr>
+                                <tr><td><b>Dutch</b></td></tr>
+                                <tr>
+                                    <td>
+                                        <img class="img" src="../httpdocs/img/blackcircle.png"  width="12" height="12">
+                                        <img class="img" src="../httpdocs/img/blackcircle.png"  width="12" height="12">
+                                        <img class="img" src="../httpdocs/img/blackcircle.png"  width="12" height="12">
+                                        <img class="img" src="../httpdocs/img/blackcircle.png"  width="12" height="12">
+                                        <img class="img" src="../httpdocs/img/blackcircle.png"  width="12" height="12">
+                                    </td>
+                                </tr>
+                                <tr><td></td></tr>
+                                <tr><td><b>German</b></td></tr>
+                                <tr>
+                                    <td>
+                                        <img class="img" src="../httpdocs/img/blackcircle.png"  width="12" height="12">
+                                        <img class="img" src="../httpdocs/img/blackcircle.png"  width="12" height="12">
+                                        <img class="img" src="../httpdocs/img/whitecircle.png"  width="13" height="13">
+                                        <img class="img" src="../httpdocs/img/whitecircle.png"  width="13" height="13">
+                                        <img class="img" src="../httpdocs/img/whitecircle.png"  width="13" height="13">
+                                    </td>
+                                </tr>
+                                <tr><td></td></tr>
+                                <tr><td><b>Spanish</b></td></tr>
+                                <tr>
+                                    <td>
+                                        <img class="img" src="../httpdocs/img/blackcircle.png"  width="12" height="12">
+                                        <img class="img" src="../httpdocs/img/whitecircle.png"  width="13" height="13">
+                                        <img class="img" src="../httpdocs/img/whitecircle.png"  width="13" height="13">
+                                        <img class="img" src="../httpdocs/img/whitecircle.png"  width="13" height="13">
+                                        <img class="img" src="../httpdocs/img/whitecircle.png"  width="13" height="13">
+                                    </td>
+                                </tr>
+                                <tr><td></td></tr>
+                                <tr><td class="h1"><b>Software skills</b></td></tr>
+                                <tr><td></td></tr>
+                                <tr><td><b>HTML 5 & CSS 3</b></td></tr>
+                                <tr>
+                                    <td>
+                                        <img class="img" src="../httpdocs/img/blackcircle.png"  width="12" height="12">
+                                        <img class="img" src="../httpdocs/img/blackcircle.png"  width="12" height="12">
+                                        <img class="img" src="../httpdocs/img/blackcircle.png"  width="12" height="12">
+                                        <img class="img" src="../httpdocs/img/whitecircle.png"  width="13" height="13">
+                                        <img class="img" src="../httpdocs/img/whitecircle.png"  width="13" height="13">
+                                    </td>
+                                </tr>
+                                <tr><td></td></tr>
+                                <tr><td><b>PHP (Twig)</b></td></tr>
+                                <tr>
+                                    <td>
+                                        <img class="img" src="../httpdocs/img/blackcircle.png"  width="12" height="12">
+                                        <img class="img" src="../httpdocs/img/blackcircle.png"  width="12" height="12">
+                                        <img class="img" src="../httpdocs/img/blackcircle.png"  width="12" height="12">
+                                        <img class="img" src="../httpdocs/img/whitecircle.png"  width="13" height="13">
+                                        <img class="img" src="../httpdocs/img/whitecircle.png"  width="13" height="13">
+                                    </td>
+                                </tr>
+                                <tr><td></td></tr>
+                                <tr><td><b>MySQL & Postgres</b></td></tr>
+                                <tr>
+                                    <td>
+                                        <img class="img" src="../httpdocs/img/blackcircle.png"  width="12" height="12">
+                                        <img class="img" src="../httpdocs/img/blackcircle.png"  width="12" height="12">
+                                        <img class="img" src="../httpdocs/img/blackcircle.png"  width="12" height="12">
+                                        <img class="img" src="../httpdocs/img/whitecircle.png"  width="13" height="13">
+                                        <img class="img" src="../httpdocs/img/whitecircle.png"  width="13" height="13">
+                                    </td>
+                                </tr>
+                                <tr><td></td></tr>
+                                <tr><td><b>Symfony</b></td></tr>
+                                <tr>
+                                    <td>
+                                        <img class="img" src="../httpdocs/img/blackcircle.png"  width="12" height="12">
+                                        <img class="img" src="../httpdocs/img/whitecircle.png"  width="13" height="13">
+                                        <img class="img" src="../httpdocs/img/whitecircle.png"  width="13" height="13">
+                                        <img class="img" src="../httpdocs/img/whitecircle.png"  width="13" height="13">
+                                        <img class="img" src="../httpdocs/img/whitecircle.png"  width="13" height="13">
+                                    </td>
+                                </tr>
+                                <tr><td></td></tr>
+                                <tr><td class="h1"><b>Personality</b></td></tr>
+                                <tr><td></td></tr>
+                                <tr><td>Communicative<img class="img" src="../httpdocs/img/bvalid.png"  width="10" height="10"></td></tr>
+                                <tr><td>Punctuality<img class="img" src="../httpdocs/img/bvalid.png"  width="10" height="10"></td></tr>
+                                <tr><td>Creativity<img class="img" src="../httpdocs/img/bvalid.png"  width="10" height="10"></td></tr>
+                                <tr><td>Organized<img class="img" src="../httpdocs/img/bvalid.png"  width="10" height="10"></td></tr>
+                                <tr><td>Go-getter<img class="img" src="../httpdocs/img/bvalid.png"  width="10" height="10"></td></tr>
                                 <tr><td></td></tr>
                             </table>
                         </td>
-                        <td width="5"></td>
+                        <td width="2%"></td>
+                        <td class="centerline" width="2"></td>
+                        <td width="2%"></td>
                         <td class="workinfo" width="70%">
                             <table width="70%" border="0">
+                                <tr><td></td></tr>
                                 <tr><td class="h1"><b>Profile</b></td></tr>
                                     <tr><td></td></tr>
                                     <tr><td>Web oriented super motivated developer just out of school trying to make it in the big world. I am currently looking for a web developer job where I can show my skills and hone them gradually.</td></tr>
                                     <tr><td></td></tr>
                                 <tr><td class="h1"><b>Education</b></td></tr>
                                     <tr><td></td></tr>
-                                    <tr><td>2016 - 2018</td></tr>
+                                    <tr><td><i>2016 - 2018</i></td></tr>
                                     <tr><td><b>MBO 4 IT Application developer</b></td></tr>
-                                    <tr><td>IT education about programming and giving the basics to the students so they can grow in future jobs.</td></tr>
+                                    <tr><td>Application development training</td></tr>
                                     <tr><td></td></tr>
-                                    <tr><td>feb 2015 - okt 2015</td></tr>
+                                    <tr><td><i>feb 2015 - okt 2015</i></td></tr>
                                     <tr><td><b>MBO 2 IT collaborator</b></td></tr>
-                                    <tr><td>A education about giving first line support to customers co-workers and alike.</td></tr>
+                                    <tr><td>IT support training</td></tr>
                                     <tr><td></td></tr>
-                                <tr><td class="h1">Experience</td></tr>
+                                <tr><td class="h1"><b>Experience</b></td></tr>
                                     <tr><td></td></tr>
-                                    <tr><td>Jan 2018 - june 2018</td></tr>
-                                    <tr><td>Sensimedia</td></tr>
-                                    <tr><td>internship</td></tr>
+                                    <tr><td><i>Januari 2018 - june 2018</i></td></tr>
+                                    <tr><td><b>Sensimedia</b></td></tr>
+                                    <tr><td>Trainee</td></tr>
                                     <tr>
-                                        <td>I was here as a intern learning programming; Learned alot of different programming languages; honed my skills did mostly <b>HTML(Twig)</b>, <b>CSS</b>, <b>PHP</b>, a little bit of <b>jQuery</b> & <b>symfony</b></td>
+                                        <td>Student honing his skills. Learned alot of different programming languages and honed my skills I did mostly HTML(Twig), CSS, PHP, a little bit of jQuery and worked with symfony.</td>
                                         <td></td>
                                     </tr>
                                     <tr><td></td></tr>
-                                <tr><td class="h1">Skills</td></tr>
+                                    <tr><td><i>December 2016 - februari 2017</i></td></tr>
+                                    <tr><td><b>Premiums.mobi</b> internship</td></tr>
+                                    <tr><td>Trainee</td></tr>
+                                    <tr>
+                                        <td>Student learning the basics. started programming html, css and jQuery and learning to be able to make responsive designs and working togheter with a designer to make beautiful websites.</td>
+                                        <td></td>
+                                    </tr>
                                     <tr><td></td></tr>
-                                    <tr><td><img src="../httpdocs/img/blackvalid.png"  width="50" height="50">ata can go here</td></tr>
+                                <tr><td class="h1"><b>Skills</b></td></tr>
                                     <tr><td></td></tr>
-                                    <tr><td>data can go here</td></tr>
+                                    <tr><td><img class="img" src="../httpdocs/img/bvalid.png"  width="10" height="10">Good communication - written and oral skills</td></tr>
                                     <tr><td></td></tr>
-                                    <tr><td></td></tr>
-                                    <tr><td class="h1">Certification</td></tr>
-                                    <tr><td></td></tr>
-                                    <tr><td>Certified in .....</td></tr>
-                                    <tr><td></td></tr>
-                                    <tr><td>Certified in .....</td></tr>
-                                    <tr><td></td></tr>
-                                    <tr><td>Certified in .....</td></tr>
-                                    <tr><td></td></tr>
-                                    <tr><td></td></tr>
-                                    <tr><td class="h1">Hobbies</td></tr>
+                                    <tr><td><img class="img" src="../httpdocs/img/bvalid.png"  width="10" height="10">Very motivated - with a iron will to learn</td></tr>
                                     <tr><td></td></tr>
                                     <tr><td></td></tr>
+                                    <tr><td class="h1"><b>Technical knowledge</b></td></tr>
+                                    <tr><td></td></tr>
+                                    <tr><td>-Linux/Ubuntu/Debian</td></tr>
+                                    <tr><td>-Windows systems</td></tr>
+                                    <tr><td>-Symfony</td></tr>
+                                    <tr><td>-API (TCPDF/Tinyproxy/css-to-inline-styles)</td></tr>
+                                    <tr><td></td></tr>
+                                    <tr><td class="h1"><b>Hobbies</b></td></tr>
                                     <tr><td></td></tr>
                                     <tr>
                                         <table>
                                             <tr>
-                                                <td>Technology</td>
-                                                <td>Gaming</td>
-                                                <td>My dog</td>
-                                                <td>Airsoft</td>
-                                                <td></td>
+                                                <td>
+                                                    <table>
+                                                        <tr><td align="center"><img class="img" src="../httpdocs/img/techno.png"  width="40" height="40"></td></tr>
+                                                        <tr><td align="center">Technology</td></tr>
+                                                    </table>
+                                                </td>
+                                                <td>
+                                                    <table>
+                                                        <tr><td align="center"><img class="img" src="../httpdocs/img/gaming.png"  width="40" height="40"></td></tr>
+                                                        <tr><td align="center">Gaming</td></tr>
+                                                    </table>
+                                                </td>
+                                                <td>
+                                                    <table>
+                                                        <tr><td align="center"><img class="img" src="../httpdocs/img/dog.png"  width="40" height="40"></td></tr>
+                                                        <tr><td align="center">Pets</td></tr>
+                                                    </table>
+                                                </td>
+                                                <td>
+                                                    <table>
+                                                        <tr><td align="center"><img class="img" src="../httpdocs/img/airsoft.png"  width="40" height="40"></td></tr>
+                                                        <tr><td align="center">Airsoft</td></tr>
+                                                    </table>
+                                                </td>
                                                 <td></td>
                                             </tr>
-                                    <tr><td></td></tr>
-                                    <tr><td></td></tr>
-                                    <tr><td></td></tr>
+                                            <tr><td></td></tr>
                                             <tr>
-                                                <td>Learning</td>
-                                                <td>Motor riding </td>
-                                                <td>Swimming</td>
-                                                <td>Carpenting</td>
+                                                <td>
+                                                    <table>
+                                                        <tr><td align="center"><img class="img" src="../httpdocs/img/learning.png"  width="40" height="40"></td></tr>
+                                                        <tr><td align="center">Learning</td></tr>
+                                                    </table>
+                                                </td>
+                                                <td>
+                                                    <table>
+                                                        <tr><td align="center"><img class="img" src="../httpdocs/img/motor.png"  width="40" height="40"></td></tr>
+                                                        <tr><td align="center">Motorcycling</td></tr>
+                                                    </table>
+                                                </td>
+                                                <td>
+                                                    <table>
+                                                        <tr><td align="center"><img class="img" src="../httpdocs/img/swimming.png"  width="40" height="40"></td></tr>
+                                                        <tr><td align="center">Swimming</td></tr>
+                                                    </table>
+                                                </td>
+                                                <td>
+                                                    <table>
+                                                        <tr><td align="center"><img class="img" src="../httpdocs/img/worker.png"  width="40" height="40"></td></tr>
+                                                        <tr><td align="center">Industrious person</td></tr>
+                                                    </table>
+                                                </td>
                                                 <td></td>
                                                 <td></td>
                                             </tr>
                                         </table>
                                     </tr>
+                                        <tr><td></td></tr>
+                                        <tr><td></td></tr>
                             </table>
                         </td>
                     </tr>
                 </table>
                 <table>
-                    <tr><td></td></tr>
-                    <tr><td></td></tr>
                     <tr><td></td></tr>
                     <tr>
                         <td>  Nulla tenaci infiat est via Nulla tenaci infiat est via Nulla tenaci infiat est via Nulla tenaci infiat est via Nulla tenaci infiat est via Nulla tenaci infiat est via Nulla tenaci infiat est via Nulla tenaci infiat est via Nulla tenaci infiat est viaNulla tenaci infiat est via</td>
@@ -236,7 +337,7 @@ function pdfviewer($logo) {
     $pdf->writeHTML($html, true, 0, true, 0);
     $pdf->lastPage();
     ob_end_clean();
-    $pdf->Output('NickydeVendt.pdf', 'I');
+    $pdf->Output('nickydevendt.pdf', 'I');
 
     // its working needs finetuning
 }
