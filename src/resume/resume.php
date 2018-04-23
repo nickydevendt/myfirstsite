@@ -236,7 +236,7 @@ function pdfviewer() {
                                     </tr>
                                     <tr><td></td></tr>
                                     <tr><td><i>December 2016 - februari 2017</i></td></tr>
-                                    <tr><td><b>Premiums.mobi</b> internship</td></tr>
+                                    <tr><td><b>Premiums.mobi</b></td></tr>
                                     <tr><td>Trainee</td></tr>
                                     <tr>
                                         <td>Student learning the basics. started programming html, css and jQuery and learning to be able to make responsive designs and working togheter with a designer to make beautiful websites.</td>
@@ -328,7 +328,7 @@ function pdfviewer() {
                 <table>
                     <tr><td></td></tr>
                     <tr>
-                        <td>  Nulla tenaci infiat est via Nulla tenaci infiat est via Nulla tenaci infiat est via Nulla tenaci infiat est via Nulla tenaci infiat est via Nulla tenaci infiat est via Nulla tenaci infiat est via Nulla tenaci infiat est via Nulla tenaci infiat est viaNulla tenaci infiat est via</td>
+                        <td>I hereby authorize you to process my personal information to help you with my job application. my personal information may never be changed, sold or made public by any means necessary.</td>
                     </tr>
                 </table>
             </body>
@@ -339,6 +339,5 @@ function pdfviewer() {
     ob_end_clean();
     $pdf->Output('nickydevendt.pdf', 'I');
 
-    // its working needs finetuning
 }
 
