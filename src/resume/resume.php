@@ -4,10 +4,26 @@
 
 require_once '../src/User/function.php';
 
-if(isset($_POST['showResume'])) {
-    pdfviewer();
-}
+$pdfdir = dirname(__DIR__, 2). '/generatedpdf/';
 
+if(isset($_POST['showResume'])) {
+    $file = dirname(__DIR__,2) . '/generatedpdf/' . 'nickydevendt.pdf';
+
+    if (file_exists($file)) {
+        header('Content-Description: File Transfer');
+        header('Content-Type: application/octet-stream');
+        header('Content-Disposition: attachment; filename="'.basename($file).'"');
+        header('Expires: 0');
+        header('Cache-Control: must-revalidate');
+        header('Pragma: public');
+        header('Content-Length: ' . filesize($file));
+        readfile($file);
+        exit;
+    }
+    if(!file_exists($file)) {
+        echo 'er ging wat fout';// needs work
+    }
+}
 
 function getResume() {
     $userService = new UserService();
@@ -337,7 +353,7 @@ function pdfviewer() {
     $pdf->writeHTML($html, true, 0, true, 0);
     $pdf->lastPage();
     ob_end_clean();
-    $pdf->Output('nickydevendt.pdf', 'I');
-
+    $filename = 'nickydevendt.pdf';
+    $pdf->Output(dirname(__DIR__, 2) . '/generatedpdf/' . $filename, 'F');
 }
 

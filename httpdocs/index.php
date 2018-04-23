@@ -45,12 +45,13 @@
             try {
                 include '../src/resume/resume.php';
                 $template = 'resume.html.twig';
-                echo $twig->render($template, ['session' => $_SESSION, 'showData' => getResume(), 'post' => $_POST]);
+                echo $twig->render($template, ['session' => $_SESSION, 'showData' => getResume(), 'post' => $_POST, 'root' => dirname(__DIR__,1) . '/generatedpdf/']);
             }catch(Exception $e) {
                 $template = 'error.html.twig';
                 echo $twig->render($template, ['error' => $e]);
             }
             break;
+
         case '/contact':
             try {
                 include '../src/Contact/contact.php';
@@ -112,5 +113,6 @@
                 $template = 'error.html.twig';
                 echo $twig->render($template, ['error' => $e]);
             }
-            break;    }
+            break;
+    }
 
