@@ -816,7 +816,8 @@ input:required:valid,textarea:required:valid {
     height: auto;
     margin: 50px auto 0;
     padding: 50px;
-    background-color: #EEE;
+    background-color: rgb(82,134,203);
+    background: radial-gradient(circle, rgba(82,134,203,1) 0%, rgba(168,226,224,1) 43%, rgba(178,233,235,0.7693277139957546) 74%);
     color: #333;
     border: 2px solid #C2D6FF;
     border-radius: 40px 0 40px 0
