@@ -2,6 +2,15 @@
 
 include_once '../src/User/function.php';
 include_once '../src/User/userpanel.php';
+include_once '../src/resume/resume.php';
+
+if(isset($_POST['createpdf'])) {
+    pdfcreator($_POST['pdfname']);
+}
+
+if(isset($_POST['deleterow'])) {
+    deleteUser($_POST['deleterow']);
+}
 
 function checkAdminLog()
 {
@@ -36,9 +45,6 @@ function getAllUsers() : array
     return [];
 }
 
-if(isset($_POST['deleterow'])) {
-    deleteUser($_POST['deleterow']);
-}
 
 function deleteUser($id)
 {
@@ -100,7 +106,8 @@ function connection()
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         return $pdo;
     }else {
-        //header( "refresh:0;url=/login" );;
+        header( "refresh:0;url=/login" );
+        session_destroy();
     }
 }
 

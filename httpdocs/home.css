@@ -470,6 +470,15 @@ height: 20px;
     padding: 0;
     color: #fff;
 }
+.languagebtn {
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+.languagebtn img {
+    height: 35px !important;
+    border-radius: 1% !important;
+}
 .personalimage {
     position: absolute;
     height: 100px;
@@ -1020,7 +1029,7 @@ table.blueTable tfoot .links a{
 /* Extra small devices (portrait phones, less than 576px) */
 @media (max-width: 575.98px) {
     .worktextintro {
-        margin: 30% auto 0;
+        margin: 10% auto 0;
         width: 95%;
     }
     .topnav ul {
@@ -1128,6 +1137,9 @@ table.blueTable tfoot .links a{
     }
     .contactpage {
     margin: 30% auto;
+    }
+    .navBrand {
+        display: none;
     }
 }
 /* Special sizing for contact page*/

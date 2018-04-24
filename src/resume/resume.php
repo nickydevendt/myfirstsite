@@ -6,7 +6,31 @@ require_once '../src/User/function.php';
 
 $pdfdir = dirname(__DIR__, 2). '/generatedpdf/';
 
-if(isset($_POST['showResume'])) {
+if(isset($_POST['nlpdf'])) {
+    $file = dirname(__DIR__,2) . '/generatedpdf/' . 'nl-nickydevendt.pdf';
+
+    if (file_exists($file)) {
+        header('Content-Description: File Transfer');
+        header('Content-Type: application/octet-stream');
+        header('Content-Disposition: attachment; filename="'.basename($file).'"');
+        header('Expires: 0');
+        header('Cache-Control: must-revalidate');
+        header('Pragma: public');
+        header('Content-Length: ' . filesize($file));
+        readfile($file);
+        exit;
+    }
+    if(!file_exists($file)) {
+        $message =  '<div class="alert">
+            <span class="closebtn">&times;</span>
+                    <strong>Error</strong> Dutch pdf couldnt load in try again or get in contact with the admin!
+            </div>';
+        echo $message;
+
+    }
+}
+
+if(isset($_POST['ukpdf'])) {
     $file = dirname(__DIR__,2) . '/generatedpdf/' . 'nickydevendt.pdf';
 
     if (file_exists($file)) {
@@ -21,7 +45,34 @@ if(isset($_POST['showResume'])) {
         exit;
     }
     if(!file_exists($file)) {
-        echo 'er ging wat fout';// needs work
+        $message =  '<div class="alert">
+            <span class="closebtn">&times;</span>
+                    <strong>Error</strong> English pdf couldnt load in try again or get in contact with the admin
+            </div>';
+        echo $message;
+    }
+}
+
+if(isset($_POST['germanpdf'])) {
+    $file = dirname(__DIR__,2) . '/generatedpdf/' . 'ger-nickydevendt.pdf';
+
+    if (file_exists($file)) {
+        header('Content-Description: File Transfer');
+        header('Content-Type: application/octet-stream');
+        header('Content-Disposition: attachment; filename="'.basename($file).'"');
+        header('Expires: 0');
+        header('Cache-Control: must-revalidate');
+        header('Pragma: public');
+        header('Content-Length: ' . filesize($file));
+        readfile($file);
+        exit;
+    }
+    if(!file_exists($file)) {
+        $message =  '<div class="alert">
+                <span class="closebtn">&times;</span>
+                        <strong>Error</strong> pdf could not be created try again or send the admin a email he can fix it!
+                    </div>';
+        echo $message;
     }
 }
 
@@ -35,7 +86,7 @@ function getResume() {
     return $statement->fetchAll(PDO::FETCH_ASSOC);
 }
 
-function pdfviewer() {
+function pdfcreator($pdfname) {
     // create new pdf document
     $pdf = new TCPDF_TCPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
 
@@ -353,7 +404,7 @@ function pdfviewer() {
     $pdf->writeHTML($html, true, 0, true, 0);
     $pdf->lastPage();
     ob_end_clean();
-    $filename = 'nickydevendt.pdf';
+    $filename = $pdfname;
     $pdf->Output(dirname(__DIR__, 2) . '/generatedpdf/' . $filename, 'F');
 }
 

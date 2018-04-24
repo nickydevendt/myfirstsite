@@ -84,3 +84,20 @@
     </div>
 {% endblock %}
 
+{% block recentprojects %}
+    <div class="Createpdftable">
+        <table class="table blueTable">
+            <tr>
+                <th>pdf naam</th>
+                <th>Action</th>
+            </tr>
+            <tr>
+                <form method="post" action="">
+                    <td><input name="pdfname" value="{{ user.firstname }}" required></td>
+                    <td><button class="createbtn" type="submit" name="createpdf" value="{{ visitor.id }}" >Create pdf</button></td>
+                </form>
+            </tr>
+        </table>
+    </div>
+{% endblock %}
+
