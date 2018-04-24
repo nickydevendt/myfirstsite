@@ -75,6 +75,7 @@
         case '/userpanel':
             try {
                 include '../src/User/userpanel.php';
+                include '../src/User/panel.js';
                 $template = 'userpanel.html.twig';
                 echo $twig->render($template, ['session' => $_SESSION, 'currentUser' => getCurrentUser(), 'myVisitors' => getMyVisitors(), 'checkLogin' => checkLogin()]);
             }catch(Exception $e) {

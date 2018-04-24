@@ -51,6 +51,11 @@ function getCurrentUser() : array{
             session_destroy();
         }
     } catch (PDOException $e) { // this die needs to change into something more flowinglee instead of a cold hard die!
+        $message = '<div class="alert">
+            <span class="closebtn">&times;</span>
+            <strong>ERROR!</strong>' . $e->getMessage() . '
+                </div>';
+         echo $message;
         die('error!: ' . $e->getMessage());
         }
 }

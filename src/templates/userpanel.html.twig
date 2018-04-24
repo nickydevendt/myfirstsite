@@ -3,8 +3,10 @@
 {% block main %}
     <div class="adminalignment">
         <h1>My account</h1>
+<!-- this is not working anymore fix this with jquery--!>
         <table class="table blueTable">
             <tr>
+                <th>Id</th>
                 <th>Firstname</th>
                 <th>Prefix</th>
                 <th>Lastname</th>
@@ -15,11 +17,12 @@
                 <th>Action</th>
             </tr>
             <tr>
-                <form method="post" action="">
+                <form name="formtest" action="">
+                    <td><input name="id" value="{{ currentUser.id }}" readonly></td>
                     <td><input name="firstname" value="{{ currentUser.firstname }}"></td>
                     <td><input name="prefix" value="{{ currentUser.prefix }}"></td>
                     <td><input name="lastname" value="{{ currentUser.lastname }}"></td>
-                    <td><input name="email" value="{{ currentUser.email }}"></td>
+                    <td><input name="email" value="{{ currentUser.email }}" readonly></td>
                     <td><input name="currentemployer" value="{{ currentUser.currentemployer }}"></td>
                     <td><input name="username" value="{{ currentUser.username }}" readonly></td>
                         {% if currentUser.admin == 1 %}
@@ -28,9 +31,11 @@
                             <td><p>Admin</p></td>
                         {% endif %}
                     <td>
-                        <button class="updatebtn" type="submit" name="updaterow" value="{{ currentUser.id }}">Update Gebruiker</button>
+                        <input class="updatebtn" type="button" name="updaterow" value="update user" onClick="updateUser();" >
                     </td>
                 </form>
+                <div id="test">
+                </div>
             </tr>
         </table>
     </div>
