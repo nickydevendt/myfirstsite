@@ -218,7 +218,7 @@ function pdfcreator($pdfname) {
                                 <tr><td></td></tr>
                                 <tr><td class="h1"><b>Software skills</b></td></tr>
                                 <tr><td></td></tr>
-                                <tr><td><b>HTML 5 & CSS 3</b></td></tr>
+                                <tr><td><b>HTML & CSS</b></td></tr>
                                 <tr>
                                     <td>
                                         <img class="img" src="../httpdocs/img/blackcircle.png"  width="12" height="12">
@@ -229,7 +229,7 @@ function pdfcreator($pdfname) {
                                     </td>
                                 </tr>
                                 <tr><td></td></tr>
-                                <tr><td><b>PHP (Twig)</b></td></tr>
+                                <tr><td><b>PHP</b></td></tr>
                                 <tr>
                                     <td>
                                         <img class="img" src="../httpdocs/img/blackcircle.png"  width="12" height="12">
@@ -240,7 +240,7 @@ function pdfcreator($pdfname) {
                                     </td>
                                 </tr>
                                 <tr><td></td></tr>
-                                <tr><td><b>MySQL & Postgres</b></td></tr>
+                                <tr><td><b>DBO</b></td></tr>
                                 <tr>
                                     <td>
                                         <img class="img" src="../httpdocs/img/blackcircle.png"  width="12" height="12">
