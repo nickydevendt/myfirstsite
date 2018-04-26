@@ -1117,6 +1117,7 @@ table.blueTable tfoot .links a{
     }
     #formstyling {
         width: 100% !important;
+        animation: 4s ease-out bumpy;
     }
     .visitorlogin {
         margin: 0;
@@ -1124,11 +1125,13 @@ table.blueTable tfoot .links a{
     }
     .loginbtn {
         width: 100% !important;
+        animation: 4s ease-out bumpy;
     }
     .registerbtn {
         width: 100% !important;
         background-position: 6px 5px;
         background-size: 25px;
+        animation: 4s ease-out bumpy;
     }
     .adminalignment {
         padding: 0;
