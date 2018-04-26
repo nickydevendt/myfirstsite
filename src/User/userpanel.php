@@ -59,7 +59,7 @@ function getCurrentUser() : array{
         die('error!: ' . $e->getMessage());
         }
 }
-
+/*
 function updateUser() {
     $pdo = connection();
     try{
@@ -68,7 +68,6 @@ function updateUser() {
             array($_POST['firstname'],
             $_POST['prefix'],
             $_POST['lastname'],
-            $_POST['email'],
             $_POST['currentemployer'],
             $_POST['username'],
             $_POST['updaterow']
@@ -91,6 +90,7 @@ function updateUser() {
         die('error!: ' . $e->getMessage());
     }
 }
+*/
 function updateUserPassword($oldpw, $password, $userid) {
     $pdo = connection();
     try {
@@ -266,10 +266,5 @@ function emailNewVisitor($email, $randomid) {
             </div>';
         echo $message;
     }
-}
-
-function redirect() {
-    header( "refresh:0;url=/login" );
-    session_destroy();
 }
 

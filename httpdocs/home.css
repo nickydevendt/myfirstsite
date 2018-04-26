@@ -1004,10 +1004,16 @@ table.blueTable tfoot .links a{
     transition: opacity 1s;
 }
 
-.alert.succes {background-color: #4CAF50;} /* Green */
-.alert.info {background-color: #2196F3;} /* Yellow */
-.alert.warning {background-color: #ff9800;} /* Orange */
-
+.alert.succes {
+    background-color: #4CAF50; /* Green */
+    animation: 4s ease-out bumpy;
+}
+.alert.info {
+    background-color: #2196F3; /* Yellow */
+}
+.alert.warning {
+    background-color: #ff9800;/* Orange */
+}
 /* The close button */
 .closebtn {
     margin-left: 15px;
@@ -1024,7 +1030,11 @@ table.blueTable tfoot .links a{
 .closebtn:hover {
     color: black;
 }
-
+@keyframes bumpy {
+    0% { transform: translateY(100vh)}
+    25% { transform: translateY(-10vh)}
+    100% { transform: translateY(0)}
+}
 
 /* Extra small devices (portrait phones, less than 576px) */
 @media (max-width: 575.98px) {

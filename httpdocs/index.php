@@ -75,13 +75,16 @@
         case '/userpanel':
             try {
                 include '../src/User/userpanel.php';
-                include '../src/User/panel.js';
+                include 'panel.js';
                 $template = 'userpanel.html.twig';
                 echo $twig->render($template, ['session' => $_SESSION, 'currentUser' => getCurrentUser(), 'myVisitors' => getMyVisitors(), 'checkLogin' => checkLogin()]);
             }catch(Exception $e) {
                 $template = 'error.html.twig';
                 echo $twig->render($template, ['error' => $e]);
             }
+            break;
+        case '/updateuser':
+            include 'panel.php';
             break;
 
         case '/error':
