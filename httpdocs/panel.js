@@ -9,5 +9,14 @@
                 $('#succes').html(output).show();
             });
     }
+
+    function updateVisitor() {
+        $.post(
+            '/updatevisitor',
+            { updatevisitor: form.id.value, firstname: form.firstname.value, lastname: form.lastname.value, email: form.email.value},
+            function(output) {
+                //vul hier in wat hij moet doen succes!
+            });
+    }
 </script>
 

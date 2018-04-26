@@ -87,6 +87,10 @@
             include 'panel.php';
             break;
 
+        case '/updatevisitor':
+            include 'panel.php';
+            break;
+
         case '/error':
             try {
                 $template = 'error.html.twig';
