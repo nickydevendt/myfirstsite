@@ -917,7 +917,9 @@ table.blueTable tfoot .links a{
     padding: 2px 8px;
     border-radius: 5px;
 }
-
+#freshinsert {
+    background-color: #81e77f;
+}
 
 .adminalignment .table table, .adminalignment .table th, .adminalignment .table td {
     display: flex;

@@ -46,7 +46,7 @@
 
 {% block promotion %}
     <div class="tablealignment">
-        <table class="table blueTable">
+        <table class="table blueTable" id="visitors">
             <tr>
                 <th>Randomid</th>
                 <th>Firstname</th>
@@ -57,15 +57,16 @@
             </tr>
             {% for myVis in myVisitors %}
             <tr>
-                <form method="post" action="">
+                <form name="allvisitors">
                     <td>{{ myVis.randomid }}</td>
                     <td>{{ myVis.firstname }}</td>
                     <td>{{ myVis.lastname }}</td>
                     <td>{{ myVis.email }}</td>
                     <td>{{ myVis.expiredate }}</td>
                     <td>
-                        <button class="deletebtn" type="submit" name="deletevisitor" value="{{ myVis.id }}">Delete</button>
+                        <input class="deletebtn" type="button" name="deleteVis" value="delete" onClick="deleteVis();">
                     </td>
+                    <input name="deleteid" value="{{ myVis.id }}"hidden>
                 </form>
             </tr>
             {% endfor %}
@@ -82,12 +83,11 @@
             </tr>
             <tr>
                 <form name="updatevisitor" action="">
-                    <td><input name ="inviteid" value="{{ currentUser.id }}" hidden></td>
-                    <td><input name="firstname" value=""></td>
-                    <td><input name="lastname" value=""></td>
-                    <td><input name="email" value="" required></td>
+                    <td><input name="firstname" class="inputfield" value=""></td>
+                    <td><input name="lastname" class="inputfield" value=""></td>
+                    <td><input name="email" class="inputfield" value="" required></td>
                     <td>
-                        <button class="registerbtn" type="submit" name="addVisitor" value="" >Add visitor</button>
+                        <input class="registerbtn" type="button" name="addVisitor" value="Add visitor" onClick="addVis();">
                     </td>
                 </form>
             </tr>

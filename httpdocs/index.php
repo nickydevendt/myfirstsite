@@ -87,7 +87,11 @@
             include 'panel.php';
             break;
 
-        case '/updatevisitor':
+        case '/addvisitor':
+            include 'panel.php';
+            break;
+
+        case '/deletevisitor':
             include 'panel.php';
             break;
 

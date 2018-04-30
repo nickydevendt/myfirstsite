@@ -9,9 +9,9 @@ if(isset($_POST['updaterow'])) {
 if(isset($_POST['deletevisitor'])) {
     deleteVisitor();
 }
-if(isset($_POST['updatevisitor'])) {
+/*if(isset($_POST['updatevisitor'])) {
     updateVisitor();
-}
+}*/
 if(isset($_POST['addVisitor'])) {
     addVisitor($_POST['inviteid'], $_POST['firstname'], $_POST['lastname'], $_POST['email']);
 }
@@ -210,7 +210,7 @@ function updateVisitor() {
         echo $message;
     }
 }
-
+/*
 function addVisitor($inviteid, $firstname, $lastname, $email) {
     $pdo = connection();
     try{
@@ -267,4 +267,4 @@ function emailNewVisitor($email, $randomid) {
         echo $message;
     }
 }
-
+*/

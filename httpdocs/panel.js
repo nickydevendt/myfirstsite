@@ -5,18 +5,27 @@
             '/updateuser', 
             { updateuser: true, firstname: user.firstname.value, prefix:user.prefix.value, lastname: user.lastname.value, currentemployer: user.currentemployer.value, id: user.id.value },
             function(output) {
-                console.log(output);
                 $('#succes').html(output).show();
             });
     }
 
-    function updateVisitor() {
+    function addVis() {
         $.post(
-            '/updatevisitor',
-            { updatevisitor: form.id.value, firstname: form.firstname.value, lastname: form.lastname.value, email: form.email.value},
+            '/addvisitor',
+            { addvisitor: true, inviterid: user.id.value, firstname: updatevisitor.firstname.value, lastname: updatevisitor.lastname.value, email: updatevisitor.email.value },
             function(output) {
-                //vul hier in wat hij moet doen succes!
+                $('#visitors').append(output);
+                $('.inputfield').val('');
             });
+    }
+    function deleteVis() {
+        $.post(
+            '/deleteVisitor',
+            { deletevisitor: true, deleteid: allvisitors.deleteid.value },
+            function(output) {
+                $('#succes').html(output).show();
+            }
+        )
     }
 </script>
 
