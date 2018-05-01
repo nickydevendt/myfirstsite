@@ -999,6 +999,7 @@ table.blueTable tfoot .links a{
 /* hieronder komen de alert box messages */
 
 .alert {
+    display: block;
     padding: 20px;
     background-color: #f44336;
     color: white;
@@ -1045,6 +1046,9 @@ table.blueTable tfoot .links a{
 #loading img {
     width: 50px; /* width of the spinner gif */
     height: 52px; /*hight of the spinner gif +2px to fix IE8 issue */
+}
+#loading.show {
+    display: block;
 }
 @keyframes bumpy {
     0% { transform: translateY(100vh)}

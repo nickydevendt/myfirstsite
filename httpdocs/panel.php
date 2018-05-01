@@ -31,12 +31,6 @@ function updateUser($firstname,$prefix,$lastname,$currentemployer,$id) {
         <strong>Warning!</strong> nothing was changed!.
         </div>';
         echo $message;
-    }else {
-        $message = '<div class="alert succes">
-        <span class="closebtn">&times;</span>
-        <strong>Succes!</strong> account info was updated.
-        </div>';
-        echo $message;
     }
     } catch (PDOException $e) {
         echo 'error!: ' . $e->getMessage();
@@ -93,16 +87,10 @@ function deleteVisit($deleteid) {
         $statement = $pdo->prepare('DELETE FROM visitors WHERE id = ?');
         $statement->execute(array($deleteid));
         $count = $statement->rowCount();
-        if($count == 1) {
-            $message = '<div class="alert succes">
-            <span class="closebtn">&times;</span>
-            <strong>Succes!</strong> Visitor deleted.
-            </div>';
-            echo $message;
-        }else {
+        if($count == 0) {
             $message = '<div class="alert">
             <span class="closebtn">&times;</span>
-            <strong>Danger!</strong> No Deleted rows try again or refresh the page
+            <strong>Danger!</strong> No deleted rows.. please refresh the page and try again.
             </div>';
             echo $message;
         }
