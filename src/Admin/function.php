@@ -89,14 +89,14 @@ function getAllVisitors() : array
 
     return [];
 }
-
+/*
 if(isset($_POST['deletevisitor']))
 {
     if(!isset($_SESSION['admin'])) {
         return [];
     }
     deleteVisitor($_POST['deletevisitor']);
-}
+}*/
 
 function connection()
 {

@@ -46,7 +46,7 @@
 
 {% block promotion %}
     <div class="tablealignment">
-        <table class="table blueTable" id="visitors">
+        <table class="table blueTable" id="visitors" name="visitors">
             <tr>
                 <th>Randomid</th>
                 <th>Firstname</th>
@@ -57,16 +57,15 @@
             </tr>
             {% for myVis in myVisitors %}
             <tr>
-                <form name="allvisitors">
+                <form name="test">
                     <td>{{ myVis.randomid }}</td>
                     <td>{{ myVis.firstname }}</td>
                     <td>{{ myVis.lastname }}</td>
                     <td>{{ myVis.email }}</td>
                     <td>{{ myVis.expiredate }}</td>
                     <td>
-                        <input class="deletebtn" type="button" name="deleteVis" value="delete" onClick="deleteVis();">
+                        <input class="deletebtn remove" type="button" name="deletevisitor" value="delete" onClick="deleteVisit({{ myVis.id }});">
                     </td>
-                    <input name="deleteid" value="{{ myVis.id }}"hidden>
                 </form>
             </tr>
             {% endfor %}

@@ -5,11 +5,11 @@ include_once '../src/Admin/function.php';
 if(isset($_POST['updaterow'])) {
     updateUser();
 }
-
+/*
 if(isset($_POST['deletevisitor'])) {
     deleteVisitor();
 }
-/*if(isset($_POST['updatevisitor'])) {
+if(isset($_POST['updatevisitor'])) {
     updateVisitor();
 }*/
 if(isset($_POST['addVisitor'])) {
@@ -169,7 +169,7 @@ function checkLogin() {
         echo "<script>alert('You are not logged in and you are redirected!');document.location='/login'</script>";
     }
 }
-
+/*
 function deleteVisitor() {
     $pdo = connection();
     try{
@@ -190,7 +190,7 @@ function deleteVisitor() {
             </div>';
             echo $message;
         }
-}
+}*/
 
 function updateVisitor() {
     $pdo = connection();

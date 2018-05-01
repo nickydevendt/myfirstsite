@@ -91,7 +91,7 @@
             include 'panel.php';
             break;
 
-        case '/deletevisitor':
+        case '/deleteVisitor':
             include 'panel.php';
             break;
 

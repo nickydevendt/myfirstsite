@@ -10,7 +10,7 @@ if(isset($_POST['addvisitor'])) {
     addVisitor($_POST['inviterid'], $_POST['firstname'], $_POST['lastname'], $email);
 }
 if(isset($_POST['deletevisitor'])) {
-    deleteVis($_POST['deleteid']);
+    deleteVisit($_POST['deleteid']);
 }
 
 function updateUser($firstname,$prefix,$lastname,$currentemployer,$id) {
@@ -64,7 +64,7 @@ function addVisitor($inviteid, $firstname, $lastname, $email) {
                 echo '<td id="freshinsert">'.$value[0]['lastname'].'</td>';
                 echo '<td id="freshinsert">'.$value[0]['email'].'</td>';
                 echo '<td id="freshinsert">'.$value[0]['expiredate'].'</td>';
-                echo '<td><button class="deletebtn" type="submit" name="deletevisitor" value="' .$value[0]['id'] .' ">Delete</button></td>';
+                echo '<td><button class="deletebtn remove" type="submit" name="deletevisitor" value="' .$value[0]['id'] .' ">Delete</button></td>';
                 echo "</form>";
             echo "</tr>";
 
@@ -87,7 +87,7 @@ function addVisitor($inviteid, $firstname, $lastname, $email) {
     }
 }
 
-function deleteVis($deleteid) {
+function deleteVisit($deleteid) {
     $pdo = connection();
     try{
         $statement = $pdo->prepare('DELETE FROM visitors WHERE id = ?');
@@ -97,6 +97,12 @@ function deleteVis($deleteid) {
             $message = '<div class="alert succes">
             <span class="closebtn">&times;</span>
             <strong>Succes!</strong> Visitor deleted.
+            </div>';
+            echo $message;
+        }else {
+            $message = '<div class="alert">
+            <span class="closebtn">&times;</span>
+            <strong>Danger!</strong> No Deleted rows try again or refresh the page
             </div>';
             echo $message;
         }

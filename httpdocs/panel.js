@@ -1,5 +1,7 @@
 <script>
 // this needs alot of fine tuning!!!!!! and its not working....
+$(document).ajaxStart(function(){ $('#loading').show(); }).ajaxStop(function(){ $('#loading').hide(); });
+
     function updateUser() {
         $.post(
             '/updateuser', 
@@ -18,14 +20,18 @@
                 $('.inputfield').val('');
             });
     }
-    function deleteVis() {
+    function deleteVisit(id) {
         $.post(
             '/deleteVisitor',
-            { deletevisitor: true, deleteid: allvisitors.deleteid.value },
+            { deletevisitor: true, deleteid: id },
             function(output) {
                 $('#succes').html(output).show();
             }
-        )
+        );
+        $("table").on('click', '.remove', function (e) {
+                    e.preventDefault();
+                    $(this).closest('tr').remove();
+                });
     }
 </script>
 
