@@ -1,6 +1,5 @@
 <script>
 // this needs alot of fine tuning!!!!!! and its not working....
-$(document).ajaxStart(function(){ $('#loading').show(); }).ajaxStop(function(){ $('#loading').hide(); });
 
     function updateUser() {
         $.post(
@@ -33,5 +32,6 @@ $(document).ajaxStart(function(){ $('#loading').show(); }).ajaxStop(function(){ 
                     $(this).closest('tr').remove();
                 });
     }
+//$(document).ajaxStart(function(){ $('#loading').show(); }).ajaxStop(function(){ $('#loading').hide(); });
 </script>
 

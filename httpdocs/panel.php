@@ -64,7 +64,7 @@ function addVisitor($inviteid, $firstname, $lastname, $email) {
                 echo '<td id="freshinsert">'.$value[0]['lastname'].'</td>';
                 echo '<td id="freshinsert">'.$value[0]['email'].'</td>';
                 echo '<td id="freshinsert">'.$value[0]['expiredate'].'</td>';
-                echo '<td><button class="deletebtn remove" type="submit" name="deletevisitor" value="' .$value[0]['id'] .' ">Delete</button></td>';
+                echo '<td><input class="deletebtn remove" type="button" name="deletevisitor" value="delete" onClick="deleteVisit('.$value[0]['id'].');"></td>';
                 echo "</form>";
             echo "</tr>";
 
