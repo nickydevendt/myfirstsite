@@ -39,7 +39,7 @@ if(isset($_POST['updateuserpassword'])) {
          echo $message;
     }
 }
-function getCurrentUser() : array{
+function getCurrentUser() {
     $pdo = connection();
     try {
         if(isset($_SESSION['userid'])) {

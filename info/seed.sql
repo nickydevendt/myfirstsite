@@ -17,15 +17,15 @@ INSERT INTO users (firstname, lastname, email, currentemployer, username, passwo
         'admin@admin.com',
         'sensimedia',
         'admin',
-        'blarps'
+        'Blarps!1'
     ),
     (
-        'nickyadmin',
+        'nicky',
         'adminvendt',
         'nicky@sensimedia.nl',
         'sensimedia',
         'nicky',
-        'blarps'
+        'Blarps!1'
     );
 
 INSERT INTO affiliatedcompanys (name, website) VALUES
@@ -63,7 +63,7 @@ INSERT INTO projects (developer, name, companyname, companywebsite) VALUES
     ),
     (
         '1',
-        'mc donald',
+        'mcdonald',
         'sensimedia',
         'www.mcdonalds.nl'
     ),
