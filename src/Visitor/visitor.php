@@ -32,13 +32,7 @@ class VisitorService {
                             $this->email = $visitorarray['email'];
                             $this->datecreated = $visitorarray['datecreated'];
                             $this->expiredate = $visitorarray['expiredate'];
-                            $message =  '<div class="alert succes">
-                                <span class="closebtn">&times;</span>
-                                <strong>Welcome</strong> You succesfully logged in.
-                                </div>';
-                            echo $message;
                             return $visitorarray;
-
                     }elseif ($expiredVisitor == true) {
                             $message =  '<div class="alert">
                                 <span class="closebtn">&times;</span>

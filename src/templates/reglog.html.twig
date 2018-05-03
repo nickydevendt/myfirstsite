@@ -1,63 +1,28 @@
 {% extends "index.html.twig" %}
 
 {% block name %}
-    <div>
-        <h1>Sign Up or Log in</h1>
-    </div>
+<div class="birds">
+    <img>
+</div>
+<div class="mountain">
 {% endblock %}
 
 {% block main %}
     <div class="reglog">
         <div class="login" id="formstyling">
+            <div>
+                <h1>Log in</h1>
+            </div>
             <form action="" method="post">
                 <label for="username">Fill in your username</label></br>
                 <input type="text" name="username" placeholder="username" required></br>
                 <label for="password">Fill in your password</label></br>
                 <input type="password" name="password" placeholder="password" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" required></br>
                 <input type="submit" name="loginsubmit" value="Log in" class="loginbtn"></br>
-                <button class="registerbtn" id="register">Create new user</button>
-            </form>
-        </div>
-        <div class="register" id="formstyling">
-            <form action="" method="post">
-                <label for="firstname">What is your firstname?</label></br>
-                <input type="text" name="firstname" value="" required></br>
-                <label for="prefix">prefix</label></br>
-                <input type="text" name="prefix" value="" required></br>
-                <label for="lastname">What is your lastname</label></br>
-                <input type="text" name="lastname" value="" required></br>
-                <label for="username">What username would you like to use?</label></br>
-                <input type="text" name="username" value="" required></br>
-                <label for="password">What password would you like to use?</label></br>
-                <input type="password" name="password" value="" pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" required></br>
-                <label for="email">What email do you like to use?</label></br>
-                <input type="email" name="email" value="" required></br>
-                <label for="employer">What is your current employer?</label></br>
-                <input type="text" name="currentemployer" value="" required></br>
-                <input class="registerbtn" type="submit" name="registersubmit" value="Register">
-                <input class="loginbtn" id="login"type="submit" value="Back to login" style="padding-left: 80px;">
             </form>
         </div>
     </div>
-    <script type="text/javascript">
-        $(document).ready(function(){
-            $('.register').hide();
-            $('#login').hide();
-            $('#register').click(function() {
-                $('.login').slideUp('slow');
-                $('.register').slideDown('slow');
-                $('#register').hide();
-                $('#login').show();
-            });
-            $('#login').click(function() {
-                $('.register').slideUp('slow');
-                $('.login').slideDown('slow');
-                $('#login').hide();
-                $('#register').show();
-            });
-        });
-    </script>
-{% endblock %}
+    {% endblock %}
 
 {% block promotion %}
     <div class="visitorarea" id="formstyling">
@@ -72,5 +37,6 @@
             </div>
         </div>
     </div>
+</div>
 {% endblock %}
 
