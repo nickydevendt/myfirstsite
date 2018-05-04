@@ -743,6 +743,7 @@ input:required:valid,textarea:required:valid {
     border-radius: 3px;
     -webkit-appearance: none;
     cursor: pointer;
+    padding-left: 30px;
 }
 .deletebtn {
     width: 100%;
@@ -750,7 +751,7 @@ input:required:valid,textarea:required:valid {
     background: red url(./img/delete.png) no-repeat 98% center;
     background-position: 12px 5px;
     background-size: 20px;
-    height: 30px;
+    height: 4vh;
     border: none;
     border-radius: 3px;
     -webkit-appearance: none;
@@ -1173,6 +1174,9 @@ table.blueTable tfoot .links a{
     }
     .navBrand {
         display: none;
+    }
+    .learngoals {
+        text-align: left;
     }
 }
 /* Special sizing for contact page*/
