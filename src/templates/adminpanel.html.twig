@@ -21,23 +21,20 @@
             </tr>
             {% for user in users %}
                 <tr>
-                    <form method="post" action="">
+                    <form name="allusers">
                         <td><input name="id" value="{{ user.id }}" readonly></td>
                         <td><input name="firstname" value="{{ user.firstname }}"></td>
                         <td><input name="prefix" value="{{ user.prefix }}"></td>
                         <td><input name="lastname" value="{{ user.lastname }}"></td>
                         <td><input name="email" value="{{ user.email }}"></td>
                         <td><input name="currentemployer" value="{{ user.currentemployer }}"></td>
-                        <td><input name="username" value="{{ user.username }}"></td>
-                            {% if user.admin == 1 %}
-                                <td><p>User</p></td>
-                            {% elseif user.admin == 2 %}
-                                <td><p>Admin</p></td>
-                            {% endif %}
+                        <td><input name="username" value="{{ user.username }}" readonly></td>
+                        <td><input name="role" value="{{ user.admin }}"></td>
                         <td>
-                            <button class="updatebtn" type="submit" name="updaterow" value="{{ user.id }}">Update</button>
+                            <input class="updatebtn" type="button" value="update user" onClick="adminUpdateUser({{ user.id }});">
+                        </td>
                         <td>
-                            <button class="deletebtn" type="submit" name="deleterow" value="{{ user.id }}">Delete</button></br>
+                            <input class="deletebtn remove" type="button" name="deletevisitor" value="delete" onClick="adminDeleteUser({{ user.id }});">
                         </td>
                     </form>
                 </tr>

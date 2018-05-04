@@ -3,20 +3,18 @@
 include_once '../src/User/function.php';
 include_once '../src/User/userpanel.php';
 include_once '../src/resume/resume.php';
-
+/*
 if(isset($_POST['createpdf'])) {
     pdfcreator($_POST['pdfname']);
-}
-
-if(isset($_POST['deleterow'])) {
-    deleteUser($_POST['deleterow']);
-}
+}*///fix create pdf!
 
 function checkAdminLog()
 {
     if($_SESSION['admin'] != 2) {
         header('refresh:0;url=/login');
         session_destroy();
+    }else {
+        return true;
     }
 }
 
@@ -45,22 +43,36 @@ function getAllUsers() : array
     return [];
 }
 
+function updateUser($firstname, $prefix, $lastname, $email, $currentemployer, $role, $id) : boolean {
+        $pdo = connection();
+    try {
+        checkAdminLog();
+            $statement = $pdo->prepare('UPDATE users set firstname = ?,prefix = ?,lastname = ?,email = ?,currentemployer = ? ,admin = ? WHERE id = ?');
+            $statement->execute(array(
+                $firstname,
+                $prefix,
+                $lastname,
+                $email,
+                $currentemployer,
+                $role,
+                $id));
+            return $statement->fetch(PDO::FETCH_ASSOC);
+    } catch (PDOException $e) {
+        die('error!: ' . $e->getMessage());
+    }
+}
 
 function deleteUser($id)
 {
-    if(!isset($_SESSION['admin'])) {
-        return [];
-    } else {
-        if ($_SESSION['admin'] != 2) {
-            return [];
-        }
-    }
     $pdo = connection();
     try {
+        checkAdminLog();
         if($_SESSION['admin'] == 2) {
             $statement = $pdo->prepare('delete from users where id = ?');
             $statement->execute(array($id));
             return $statement->fetch(PDO::FETCH_ASSOC);
+        }else {
+        return [];
         }
     } catch (PDOException $e) {
         die('error!: ' . $e->getMessage());
@@ -89,14 +101,6 @@ function getAllVisitors() : array
 
     return [];
 }
-/*
-if(isset($_POST['deletevisitor']))
-{
-    if(!isset($_SESSION['admin'])) {
-        return [];
-    }
-    deleteVisitor($_POST['deletevisitor']);
-}*/
 
 function connection()
 {

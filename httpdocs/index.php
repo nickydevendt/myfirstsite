@@ -65,6 +65,7 @@
         case '/adminpanel':
             try {
                 include '../src/Admin/function.php';
+                include 'adpanel.js';
                 $template = 'adminpanel.html.twig';
                 echo $twig->render($template, ['session' => $_SESSION, 'users' => getAllUsers(), 'visitors' => getAllVisitors(), 'myVisitors' => getMyVisitors(), checkAdminLog()]);
             }catch(Exception $e) {
@@ -93,6 +94,10 @@
 
         case '/deleteVisitor':
             include 'panel.php';
+            break;
+
+        case '/adminpanelcall':
+            include '../src/Admin/adpanel.php';
             break;
 
         case '/error':
