@@ -1,7 +1,5 @@
 <?php
 
-include_once '../src/Admin/function.php';
-
 if(isset($_POST['updateuser'])) {
     updateUser($_POST['firstname'],$_POST['prefix'],$_POST['lastname'],$_POST['currentemployer'],$_POST['id']);
 }
@@ -123,6 +121,17 @@ function emailNewVisitor($email, $randomid) {
         <strong>Danger!</strong> Nothing happend because user was already in the database.
         </div>';
         echo $message;
+    }
+}
+function connection()
+{
+    if(isset($_SESSION['admin']) || isset($_SESSION['userid'])) {
+        $pdo = new PDO('pgsql:host=localhost;dbname=nicky;', 'nicky', 'blarps');
+        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        return $pdo;
+    }else {
+        header( "refresh:0;url=/login" );
+        session_destroy();
     }
 }
 

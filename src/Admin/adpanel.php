@@ -16,4 +16,7 @@ if(isset($_POST['adminupdateuser']) && isset($_POST['userid'])) {
 if(isset($_POST['admindeleteuser']) && isset($_POST['userid'])) {
     deleteUser($_POST['userid']);
 }
+if(isset($_POST['admindeletevisitor']) && isset($_POST['visitorid'])) {
+    adminDeleteVisitor($_POST['visitorid']);
+}
 

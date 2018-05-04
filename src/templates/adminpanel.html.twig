@@ -71,8 +71,8 @@
                     <td>{{ visitor.datecreated }}</td>
                     <td>{{ visitor.expiredate }}</td>
                     <td>
-                        <form method="post" action="">
-                            <button class="deletebtn" type="submit" name="deletevisitor" value="{{ visitor.id }}" >Delete</button>
+                        <form name="allvisitors">
+                            <input class="deletebtn remove" type="button" name="deletevisitor" value="delete" onClick="adminDeleteVisitor({{ visitor.id }});">
                         </form>
                     </td>
                 </tr>

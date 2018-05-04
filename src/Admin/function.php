@@ -1,7 +1,6 @@
 <?php
 
 include_once '../src/User/function.php';
-include_once '../src/User/userpanel.php';
 include_once '../src/resume/resume.php';
 /*
 if(isset($_POST['createpdf'])) {
@@ -74,6 +73,19 @@ function deleteUser($id)
         }else {
         return [];
         }
+    } catch (PDOException $e) {
+        die('error!: ' . $e->getMessage());
+    }
+}
+
+function adminDeleteVisitor($visitorid)
+{
+    $pdo = connection();
+    try {
+        checkAdminLog();
+            $statement = $pdo->prepare('DELETE FROM visitors WHERE id = ?');
+            $statement->execute(array($visitorid));
+            return $statement->fetch(PDO::FETCH_ASSOC);
     } catch (PDOException $e) {
         die('error!: ' . $e->getMessage());
     }

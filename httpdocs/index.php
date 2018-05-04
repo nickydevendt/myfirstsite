@@ -67,7 +67,7 @@
                 include '../src/Admin/function.php';
                 include 'adpanel.js';
                 $template = 'adminpanel.html.twig';
-                echo $twig->render($template, ['session' => $_SESSION, 'users' => getAllUsers(), 'visitors' => getAllVisitors(), 'myVisitors' => getMyVisitors(), checkAdminLog()]);
+                echo $twig->render($template, ['session' => $_SESSION, 'users' => getAllUsers(), 'visitors' => getAllVisitors(), checkAdminLog()]);
             }catch(Exception $e) {
                 $template = 'error.html.twig';
                 echo $twig->render($template, ['error' => $e]);
