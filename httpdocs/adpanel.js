@@ -30,7 +30,6 @@ function adminDeleteUser(id) {
 function adminDeleteVisitor(visitorid) {
     if(confirm("visitor gone?")) {
         $('#loading').toggleClass('show');
-        console.log('this is true');
         $.post(
             '/adminpanelcall',
             { admindeletevisitor: true, visitorid: visitorid},
@@ -42,6 +41,20 @@ function adminDeleteVisitor(visitorid) {
             $(this).closest('tr').remove();
         });
     }
+}
+
+function adminCreatePDF() {
+        $('#loading').toggleClass('show');
+        $.post(
+            '/adminpanelcall',
+            { createPDF: true, name: pdfform.name.value },
+                function(output) {
+                    $('#loading').toggleClass('show');
+        });
+        $("table").on('click', '.remove', function (e) {
+            e.preventDefault();
+            $(this).closest('tr').remove();
+        });
 }
 
 </script>

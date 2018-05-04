@@ -1,11 +1,6 @@
 <?php
 
 include_once '../src/User/function.php';
-include_once '../src/resume/resume.php';
-/*
-if(isset($_POST['createpdf'])) {
-    pdfcreator($_POST['pdfname']);
-}*///fix create pdf!
 
 function checkAdminLog()
 {
@@ -42,20 +37,19 @@ function getAllUsers() : array
     return [];
 }
 
-function updateUser($firstname, $prefix, $lastname, $email, $currentemployer, $role, $id) : boolean {
+function updateUser($firstname, $prefix, $lastname, $email, $currentemployer, $id) : boolean {
         $pdo = connection();
     try {
         checkAdminLog();
-            $statement = $pdo->prepare('UPDATE users set firstname = ?,prefix = ?,lastname = ?,email = ?,currentemployer = ? ,admin = ? WHERE id = ?');
-            $statement->execute(array(
-                $firstname,
-                $prefix,
-                $lastname,
-                $email,
-                $currentemployer,
-                $role,
-                $id));
-            return $statement->fetch(PDO::FETCH_ASSOC);
+        $statement = $pdo->prepare('UPDATE users set firstname = ?,prefix = ?,lastname = ?,email = ?,currentemployer = ? WHERE id = ?');
+        $statement->execute(array(
+            $firstname,
+            $prefix,
+            $lastname,
+            $email,
+            $currentemployer,
+            $id));
+        return $statement->fetch(PDO::FETCH_ASSOC);
     } catch (PDOException $e) {
         die('error!: ' . $e->getMessage());
     }

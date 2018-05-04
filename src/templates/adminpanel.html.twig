@@ -89,9 +89,9 @@
                 <th>Action</th>
             </tr>
             <tr>
-                <form method="post" action="">
-                    <td><input name="pdfname" value="{{ user.firstname }}" required></td>
-                    <td><button class="createbtn" type="submit" name="createpdf" value="{{ visitor.id }}" >Create pdf</button></td>
+                <form name="pdfform">
+                    <td><input name="name" value="" required></td>
+                    <td><input class="updatebtn" type="button" name="deletevisitor" value="delete" onClick="adminCreatePDF();"></td>
                 </form>
             </tr>
         </table>

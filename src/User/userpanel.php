@@ -2,19 +2,6 @@
 
 include_once '../src/Admin/function.php';
 
-if(isset($_POST['updaterow'])) {
-    updateUser();
-}
-/*
-if(isset($_POST['deletevisitor'])) {
-    deleteVisitor();
-}
-if(isset($_POST['updatevisitor'])) {
-    updateVisitor();
-}*/
-if(isset($_POST['addVisitor'])) {
-    addVisitor($_POST['inviteid'], $_POST['firstname'], $_POST['lastname'], $_POST['email']);
-}
 if(isset($_POST['updateuserpassword'])) {
     $oldpw = $_POST['oldpw'];
     $newpw = $_POST['newpw'];
@@ -59,38 +46,7 @@ function getCurrentUser() {
         die('error!: ' . $e->getMessage());
         }
 }
-/*
-function updateUser() {
-    $pdo = connection();
-    try{
-        $statement = $pdo->prepare('UPDATE users SET firstname = ?, prefix = ?,lastname = ?, email = ?, currentemployer = ?, username = ? WHERE id = ?');
-        $statement->execute(
-            array($_POST['firstname'],
-            $_POST['prefix'],
-            $_POST['lastname'],
-            $_POST['currentemployer'],
-            $_POST['username'],
-            $_POST['updaterow']
-        ));
-        $count = $statement->rowCount();
-            if($count == '0') {
-                $message = '<div class="alert">
-                    <span class="closebtn">&times;</span>
-                    <strong>Warning!</strong> nothing was changed!.
-                    </div>';
-                echo $message;
-            }else {
-                $message = '<div class="alert succes">
-                    <span class="closebtn">&times;</span>
-                    <strong>Succes!</strong> account info was updated.
-                    </div>';
-                echo $message;
-            }
-    } catch (PDOException $e) {
-        die('error!: ' . $e->getMessage());
-    }
-}
-*/
+
 function updateUserPassword($oldpw, $password, $userid) {
     $pdo = connection();
     try {
@@ -169,28 +125,6 @@ function checkLogin() {
         echo "<script>alert('You are not logged in and you are redirected!');document.location='/login'</script>";
     }
 }
-/*
-function deleteVisitor() {
-    $pdo = connection();
-    try{
-            $statement = $pdo->prepare('DELETE FROM visitors WHERE id = ?');
-            $statement->execute(array($_POST['deletevisitor']));
-            $count = $statement->rowCount();
-                if($count == 1) {
-                    $message = '<div class="alert succes">
-                        <span class="closebtn">&times;</span>
-                        <strong>Succes!</strong> Visitor deleted.
-                        </div>';
-                    echo $message;
-                }
-        } catch (PDOException $e) {
-            $message =  '<div class="alert warning">
-            <span class="closebtn">&times;</span>
-            <strong>Warning!</strong> ' . $e . '.
-            </div>';
-            echo $message;
-        }
-}*/
 
 function updateVisitor() {
     $pdo = connection();
@@ -210,61 +144,4 @@ function updateVisitor() {
         echo $message;
     }
 }
-/*
-function addVisitor($inviteid, $firstname, $lastname, $email) {
-    $pdo = connection();
-    try{
-        $statement = $pdo->prepare('INSERT INTO visitors (inviteid, firstname, lastname, email) VALUES(?,?,?,?)');
-        $statement->execute(array($inviteid, $firstname, $lastname, $email));
-        $lastid = $pdo->lastInsertId();
-        if(isset($lastid)) {
-            $stmt = $pdo->prepare('SELECT email,randomid FROM visitors where id = ?');
-            $stmt->execute(array($lastid));
-            $value = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-            $email = $value[0]['email'];
-            $randomid = $value[0]['randomid'];
-
-            if(isset($email) && !empty($email) && isset($randomid) && !empty($randomid)) {
-                emailNewVisitor($email, $randomid);
-            }else {
-                $message =  '<div class="alert warning">
-            <span class="closebtn">&times;</span>
-            <strong>Warning!</strong> nothing inserted try again.
-            </div>';
-        echo $message;
-            }
-        }
-    } catch (Exception $e) {
-        $message =  '<div class="alert">
-            <span class="closebtn">&times;</span>
-            <strong>Danger!</strong> something went wrong maybe this user is already in the database.
-            </div>';
-        echo $message;
-
-    }
-}
-
-function emailNewVisitor($email, $randomid) {
-    try{
-        $to = $email;
-        $subject = "Welcome to my personal website";
-        $message = 'Welcome you are invited to my personal website I would really like it if you gave it a look your code is: <br/></br><strong>' .$randomid . '</strong> <br/><br/><br/><p>you can use this on the login page and scroll down where there is a visitor section for your visitor code!</p>';
-        $headers = 'From: nicky@sensimedia.nl';
-        $mail = mail($to,$subject,$message, $headers);
-        if($mail){
-            $message = '<div class="alert succes">
-                <span class="closebtn">&times;</span>
-                <strong>Succes!</strong> Visitor was added and E-mail was send your email will soon arive! tell ur visitor to check their spam.
-                </div>';
-            echo $message;
-        }
-    } catch(Exception $e) {
-        $message =  '<div class="alert">
-            <span class="closebtn">&times;</span>
-            <strong>Danger!</strong> Nothing happend because user was already in the database.
-            </div>';
-        echo $message;
-    }
-}
-*/
