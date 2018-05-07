@@ -32,10 +32,15 @@ body h2 {
     padding: 0;
     font-family: 'Ubuntu';
 }
-
+#shrink {
+    display: flex;
+    width: 40px;
+    height: 40px;
+}
 .navBrand {
     position: relative;
     margin-left: 50px;
+    z-index: 3;
 }
 
 .navBrand img:first-child {
@@ -69,6 +74,13 @@ body h2 {
     width: 20%;
     margin: 0 auto;
     padding: 50px 0;
+}
+.namealignment {
+    display: flex;
+}
+.namealignment img {
+    margin-left: 10px;
+    padding-top: 10px;
 }
 .namediv {
     width: 100%;
@@ -299,77 +311,77 @@ z-index: 3;
 *,
 *:before,
 *:after {
-box-sizing: border-box;
--webkit-box-sizing: border-box;
--moz-box-sizing: border-box;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
 }
 
 body {
-background: #fcfcfc;
-margin: 0;
+    background: #fcfcfc;
+    margin: 0;
 }
 
 .container {
-width: 96%;
-min-width: 900px;
-margin: 50px auto;
+    width: 96%;
+    min-width: 900px;
+    margin: 50px auto;
 }
 
 .carousel {
-width: 100%;
-position: relative;
-overflow: hidden;
+    width: 100%;
+    position: relative;
+    overflow: hidden;
 }
 .carousel > input[type="radio"] {
-position: absolute;
-left: 0;
-opacity: 0;
-top: 0;
+    position: absolute;
+    left: 0;
+    opacity: 0;
+    top: 0;
 }
 .carousel > input[type="radio"]:checked ~ .carousel__items .carousel__item,
 .carousel > input[type="radio"]:checked ~ .carousel__prev > label,
 .carousel > input[type="radio"]:checked ~ .carousel__next > label {
-opacity: 0;
+    opacity: 0;
 }
 .carousel > input[type="radio"]:nth-child(1):checked ~ .carousel__items .carousel__item:nth-child(1) {
-opacity: 1;
+    opacity: 1;
 }
 .carousel > input[type="radio"]:nth-child(1):checked ~ .carousel__nav > label:nth-child(1) {
-background: #ccc;
-cursor: default;
-pointer-events: none;
+    background: #ccc;
+    cursor: default;
+    pointer-events: none;
 }
 .carousel > input[type="radio"]:nth-child(2):checked ~ .carousel__items .carousel__item:nth-child(2) {
-opacity: 1;
+    opacity: 1;
 }
 .carousel > input[type="radio"]:nth-child(2):checked ~ .carousel__nav > label:nth-child(2) {
-background: #ccc;
-cursor: default;
-pointer-events: none;
+    background: #ccc;
+    cursor: default;
+    pointer-events: none;
 }
 .carousel > input[type="radio"]:nth-child(3):checked ~ .carousel__items .carousel__item:nth-child(3) {
-opacity: 1;
+    opacity: 1;
 }
 .carousel > input[type="radio"]:nth-child(3):checked ~ .carousel__nav > label:nth-child(3) {
-background: #ccc;
-cursor: default;
-pointer-events: none;
+    background: #ccc;
+    cursor: default;
+    pointer-events: none;
 }
 .carousel > input[type="radio"]:nth-child(4):checked ~ .carousel__items .carousel__item:nth-child(4) {
-opacity: 1;
+    opacity: 1;
 }
 .carousel > input[type="radio"]:nth-child(4):checked ~ .carousel__nav > label:nth-child(4) {
-background: #ccc;
-cursor: default;
-pointer-events: none;
+    background: #ccc;
+    cursor: default;
+    pointer-events: none;
 }
 .carousel > input[type="radio"]:nth-child(5):checked ~ .carousel__items .carousel__item:nth-child(5) {
-opacity: 1;
+    opacity: 1;
 }
 .carousel > input[type="radio"]:nth-child(5):checked ~ .carousel__nav > label:nth-child(5) {
-background: #ccc;
-cursor: default;
-pointer-events: none;
+    background: #ccc;
+    cursor: default;
+    pointer-events: none;
 }
 .carousel__items {
 margin: 0;
@@ -706,11 +718,36 @@ input:required:valid,textarea:required:valid {
     padding-bottom: 10%;
     background-repeat: no-repeat;
     background-position: center;
+    z-index: 0;
+}
+.birds img{
+    position: absolute;
+    height: 3vh;
+    top: 15vh;
+    right: -10vw;
+    z-index: 1;
+    overflow: hidden;
+    animation-timing-function: linear;
+    animation: flying 28s linear 1s normal infinite none running;
+}
+#bird2 { margin-top: 11px;}
+#bird3 { margin-top: 6px; margin-right: 14px;}
+#bird4 { margin-top: 15px; margin-right: 20px;}
+#bird5 { margin-top: 25px; margin-right: 5px;}
+#bird6 { margin-top: 5px; margin-right: 25px;}
+@-webkit-keyframes flying {
+    from {right: -10vw; top: 15vh;}
+    to {right: 100vw; top: 17vh;}
+}
+@-webkit-keyframes flying {
+    from {right: -10vw; top: 15vh;}
+    to {right: 100vw; top: 17vh;}
 }
 .reglog {
     display:flex;
     padding: 4% 0%;
     color: #fff;
+    z-index:2;
 }
 .reglog form {
     width: 100%;
